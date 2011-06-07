@@ -141,8 +141,8 @@ class CreditsManager {
 
     //*******************Parameters to append to entryURLs**************//
     private $app = "AdShop.ie";
-    private $redirectUrl = "http://test.adshop.ie/zong_redirect.php"; //TODO: Enter your redirectUrl here. Eg: http://yoursite.com/zongplusdemo/redirect.php
-    private $basketUrl = "http://test.adshop.ie/place"; //TODO: Enter your basketUrl here. Eg: http://yoursite.com/zongplusdemo/lookup/
+    private $redirectUrl = "http://adshop.ie/zong_redirect.php"; //TODO: Enter your redirectUrl here. Eg: http://yoursite.com/zongplusdemo/redirect.php
+    private $basketUrl = "http://adshop.ie/place"; //TODO: Enter your basketUrl here. Eg: http://yoursite.com/zongplusdemo/lookup/
     private $lang = "en"; //language for UI
     //*******************************************************************//
 

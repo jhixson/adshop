@@ -338,7 +338,7 @@
 		<input type="hidden" name="amount" value="2.50" />
 		<input type="hidden" name="currency_code" value="EUR" />
 		<input type="hidden" name="pp_timestamp" id="pp_timestamp" value="" />
-		<input type="hidden" name="return" value="http://test.adshop.ie/" />
+		<input type="hidden" name="return" value="http://adshop.ie/" />
 		<input type="hidden" name="rm" value="2" />
 		<input type="hidden" name="custom" id="pp_custom" value="" />
 	</form> 
