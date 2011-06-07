@@ -1,0 +1,157 @@
+#menu {
+	float: left;
+	width: 165px;
+}
+
+#menu ul {
+	background-color: #fff;
+	color: #000;
+	list-style-type: none;
+	padding: 10px 0px;
+	margin: 10px 0 0 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+}
+
+#menu li {
+	line-height: normal;
+	margin: 0;
+}
+
+#menu li a {
+	display: block;
+	padding: 6px 12px 8px 12px;
+	font-size: 18px;
+	color: #000;
+	text-decoration: none;
+}
+
+#menu li a span {
+	display: block;
+}
+
+#menu li.caption a {
+	text-align: center;
+	color: #666;
+	cursor: default;
+	padding: 5px 10px;
+}
+
+#menu li a.motors span {
+	background: transparent url(../img/car_b.png) right center no-repeat;
+}
+
+#menu li a.motors:hover span, #menu li a.motors.active span {
+	background: transparent url(../img/car_w.png) right center no-repeat;
+}
+
+#menu li a.pets span {
+	background: transparent url(../img/dog_b.png) right center no-repeat;
+}
+
+#menu li a.pets:hover span, #menu li a.pets.active span {
+	background: transparent url(../img/dog_w.png) right center no-repeat;
+}
+
+#menu li a.farming span {
+	background: transparent url(../img/farm_b.png) right center no-repeat;
+}
+
+#menu li a.farming:hover span, #menu li a.farming.active span {
+	background: transparent url(../img/farm_w.png) right center no-repeat;
+}
+
+#menu li a.household span {
+	background: transparent url(../img/couch_b.png) right center no-repeat;
+}
+
+#menu li a.household:hover span, #menu li a.household.active span {
+	background: transparent url(../img/couch_w.png) right center no-repeat;
+}
+
+#menu li a.electronics span {
+	background: transparent url(../img/ipod_b.png) right center no-repeat;
+}
+
+#menu li a.electronics:hover span, #menu li a.electronics.active span {
+	background: transparent url(../img/ipod_w.png) right center no-repeat;
+}
+
+#menu li a.music span {
+	background: transparent url(../img/music_b.png) right center no-repeat;
+}
+
+#menu li a.music:hover span, #menu li a.music.active span {
+	background: transparent url(../img/music_w.png) right center no-repeat;
+}
+
+#menu li a.equipment span {
+	background: transparent url(../img/wrench_b.png) right center no-repeat;
+}
+
+#menu li a.equipment:hover span, #menu li a.equipment.active span {
+	background: transparent url(../img/wrench_w.png) right center no-repeat;
+}
+
+#menu li a.gaming span {
+	background: transparent url(../img/game_b.png) right center no-repeat;
+}
+
+#menu li a.gaming:hover span, #menu li a.gaming.active span {
+	background: transparent url(../img/game_w.png) right center no-repeat;
+}
+
+#menu li a.sports span {
+	background: transparent url(../img/bike_b.png) right center no-repeat;
+}
+
+#menu li a.sports:hover span, #menu li a.sports.active span {
+	background: transparent url(../img/bike_w.png) right center no-repeat;
+}
+
+#menu li a.tickets span {
+	background: transparent url(../img/ticket_b.png) right center no-repeat;
+}
+
+#menu li a.tickets:hover span, #menu li a.tickets.active span {
+	background: transparent url(../img/ticket_w.png) right center no-repeat;
+}
+
+#menu li a.services span {
+	background: transparent url(../img/camera_b.png) right center no-repeat;
+}
+
+#menu li a.services:hover span, #menu li a.services.active span {
+	background: transparent url(../img/camera_w.png) right center no-repeat;
+}
+
+#menu li a.personal span {
+	background: transparent url(../img/person_b.png) right center no-repeat;
+}
+
+#menu li a.personal:hover span, #menu li a.personal.active span {
+	background: transparent url(../img/person_w.png) right center no-repeat;
+}
+
+#menu li a.rare span {
+	background: transparent url(../img/rare_b.png) right center no-repeat;
+}
+
+#menu li a.rare:hover span, #menu li a.rare.active span {
+	background: transparent url(../img/rare_w.png) right center no-repeat;
+}
+
+#menu li a.active.sub  {
+	background: transparent url(../img/menu_hover_bg2.jpg) repeat-x;
+	color: #fff;
+}
+
+#menu li a:hover, #menu li a.active, #menu li a.active.sub:hover {
+	background: transparent url(../img/menu_hover_bg.jpg) repeat-x;
+	color: #fff;
+}
+
+#menu li.caption a:hover {
+	background-image: none;
+	color: #666;
+}

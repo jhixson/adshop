@@ -1,0 +1,51 @@
+/* CSS PNG Transparency fix by Rogie King, Komodo Media  
+   Patched by Herryanto Siatono, Pluit Solutions to solve background 'none' call to the server */
+* html img,
+* html .png {
+  azimuth: expression(
+    this.pngSet?
+      this.pngSet=true : 
+        (this.nodeName == "IMG" ? 
+          (this.src.toLowerCase().indexOf('.png')>-1 ? 
+            (this.runtimeStyle.backgroundImage = "none", this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.src + "', sizingMethod='image')",
+                this.src = "../img/blank.gif") :
+            '') :
+          (this.currentStyle.backgroundImage.toLowerCase().indexOf('.png')>-1) ?
+            (this.origBg = (this.origBg) ? 
+              this.origBg :             
+              this.currentStyle.backgroundImage.toString().replace('url("','').replace('")',''),
+              this.runtimeStyle.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + this.origBg + "', sizingMethod='crop')",
+              this.runtimeStyle.backgroundImage = "none") :
+            ''
+        ), this.pngSet=true
+  );
+}
+
+.featured .img_holder {
+	#position: absolute; 
+	#top: 50%;
+}
+
+.featured .img_holder img {	
+	width: expression(document.body.clientWidth < 526 ? "524px" : "auto");
+    height: expression(document.body.clientHeight < 395 ? "393px" : "auto");
+	#position: absolute; 
+	#top: -50%;
+}
+
+#thumbstrip li.thumb a {
+	#position: absolute; 
+	#top: 50%;
+}
+
+#thumbstrip li.thumb a img {	
+	width: expression(document.body.clientWidth < 98 ? "96px" : "auto");
+    height: expression(document.body.clientHeight < 74 ? "72px" : "auto");
+	#position: absolute; 
+	#top: -50%;
+}
+
+.photo_button_holder img {
+	width: expression(document.body.clientWidth < 78 ? "76px" : "auto");
+    height: expression(document.body.clientHeight < 61 ? "59px" : "auto");
+}
