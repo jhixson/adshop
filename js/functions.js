@@ -229,10 +229,17 @@ function thumbStrip() {
 			var src = $('img',a).attr('src');
 			var ext_exp = new RegExp(/-t(\.\w+)(\?.+)?/);
 			var img_ext = ext_exp.exec(src)[1];
+			var ts = ext_exp.exec(src)[2];
 			var new_src = src.replace(ext_exp,'');
-			var time = new Date().getTime();
+			new_src = new_src+'.jpg';
+			
+			if($('#place_form').is('.edit'))
+				new_src += ts;
+			
+			//var time = new Date().getTime();
 			//console.log(basename(new_src))
-			$('.featured img').attr('src',new_src+'.jpg');
+			
+			$('.featured img').attr('src',new_src);
 			//imageSize();
 		}
 	};
@@ -288,8 +295,10 @@ function thumbStrip() {
 		var src = $(this).attr('src');
 		var ext_exp = new RegExp(/-t(\.\w+)(\?.+)?/);
 		var img_ext = ext_exp.exec(src)[1];
+		var ts = ext_exp.exec(src)[2];
 		var new_src = src.replace(ext_exp,'');
-		pre.push('upload/'+basename(new_src+'.jpg'));
+		new_src = 'upload/'+basename(new_src+'.jpg');
+		pre.push(new_src);
 		$(pre).preload();
 	});
 }
