@@ -113,8 +113,8 @@
 							?>
 						</select>
 					</div>
-					<label class="field_options<?php echo ($editmode && $item->subcat_title == 'Dogs') ? '' : ' hide' ?>"><input type="checkbox" name="extra_attributes[]" id="item_crossbreed" value="Crossbreed" <?php echo ($editmode && (array_key_exists('Crossbreed',$extra_attributes) && $extra_attributes['Crossbreed'] == "true")) ? ' checked="checked"' : '' ?>/></label>
 					<label class="err">This field is required.</label>
+					<label class="field_options<?php echo ($editmode && $item->subcat_title == 'Dogs') ? '' : ' hide' ?>"><input type="checkbox" name="extra_attributes[]" id="item_crossbreed" value="Crossbreed" <?php echo ($editmode && (array_key_exists('Crossbreed',$extra_attributes) && $extra_attributes['Crossbreed'] == "true")) ? ' checked="checked"' : '' ?>/></label>
 				</div>
 				
 				<span class="clear"></span>

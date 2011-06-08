@@ -52,11 +52,16 @@ class Request_Controller extends Template_Controller {
 	 * @param string the subcategory name
 	 * @return json object of sub-subcategories
 	 */
-	public function subsubcat($subcat) {
+	public function subsubcat($subcat='') {
 		//$this->template->content = new View('subcat_content');
 		$view_model = new View_Model;
-		$subsubcats = $view_model->get_subsubcategories($subcat);
-		$label = $view_model->get_subsubcategory_label($subcat);
+		$label = 'Choose';
+		if(empty($subcat))
+			$subsubcats = array();
+		else {
+			$subsubcats = $view_model->get_subsubcategories($subcat);
+			$label = $view_model->get_subsubcategory_label($subcat);
+		}
 		$this->template->content = json_encode(array('status'=>'ok','label'=>$label,'content'=>$subsubcats));
 	}
 	

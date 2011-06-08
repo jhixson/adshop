@@ -1358,7 +1358,7 @@ function placeAdForm() {
 
 function toggleErrors() {
 	$('label.err').each(function() {
-		$(this).toggleClass('show',$(this).prev().find('.subname').text() == 'Choose');
+		$(this).toggleClass('show',$(this).parent().find('.subname').text() == 'Choose');
 	});
 }
 
