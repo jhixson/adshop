@@ -307,7 +307,7 @@ class Item_Model extends Model {
 		$publish_timestamp = time();
 		$end_of_term = strtotime('+'.$term.' months');
 		
-		$status = $this->db->update('items', array('active'=>'1','term'=>$term,'publish_timestamp'=>$publish_timestamp,'expire_timestamp'=>$end_of_term), array('item_id'=>$item_id));
+		$status = $this->db->update('items', array('active'=>'0','term'=>$term,'publish_timestamp'=>$publish_timestamp,'expire_timestamp'=>$end_of_term), array('item_id'=>$item_id));
 		
 		return count($status);
 	}
@@ -352,7 +352,8 @@ class Item_Model extends Model {
 	 * @return count of records changed
 	 */
 	public function activate($item_id) {
-		$status = $this->db->update('items',array('active'=>'1'),array('item_id'=>$item_id));
+		$publish_timestamp = time();		
+		$status = $this->db->update('items',array('active'=>'1','publish_timestamp'=>$publish_timestamp),array('item_id'=>$item_id));
 		return count($status);
 	}
 	

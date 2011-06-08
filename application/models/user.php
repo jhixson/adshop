@@ -106,6 +106,7 @@ class User_Model extends ORM {
 		$this->db->select('SQL_CALC_FOUND_ROWS users.id, users.name, users.phone, items.*, media.media');
 		$this->db->where('user_id',$user_id);
 		$this->db->where('sold',0);
+		$this->db->where(array('publish_timestamp !=' => 0)); // publish_timestamp gets set on the payment callbacks
 		$this->db->join('users',array('users.id'=>'items.user_id'),'','INNER');
 		$this->db->join('media',array('media.item_id'=>'items.item_id'),'','LEFT');
 		$this->db->orderby('publish_timestamp', 'desc');
