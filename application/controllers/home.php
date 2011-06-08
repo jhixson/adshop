@@ -3,6 +3,7 @@ class Home_Controller extends Template_Controller {
 	const ALLOW_PRODUCTION = FALSE;
 
 	public $template = 'adshop/template';
+	public $no_items_message = 'No items were found in this category. Please try another.';
 	
 	public function __construct() {
 		parent::__construct();
@@ -24,6 +25,7 @@ class Home_Controller extends Template_Controller {
 		
 		$this->template->content->subcategories = '';
 		$this->template->content->save_list = FALSE;
+		$this->template->content->no_items_message = $this->no_items_message;
 		
 		$view_model = new View_Model;
 		
