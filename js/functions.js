@@ -74,7 +74,7 @@ $('document').ready(function() {
 	*/
 	
 	// preload some menu rollover stuff...
-	$(['menu_hover_bg.jpg','item_brief_bg.png','car_w.png','dog_w.png','farm_w.png','couch_w.png','ipod_w.png','music_w.png','wrench_w.png','game_w.png','bike_w.png','ticket_w.png','camera_w.png','person_w.png','rare_w.png','tick-green.png']).preload();
+	$(['menu_hover_bg.jpg','item_brief_bg.png','car_w.png','dog_w.png','farm_w.png','couch_w.png','ipod_w.png','music_w.png','wrench_w.png','game_w.png','bike_w.png','ticket_w.png','camera_w.png','person_w.png','rare_w.png','tick-green.png','finished_checkmark.png']).preload();
 	var sub_active = false;
 	$('#menu ul').delegate('li:not(.caption)', 'mouseenter', function(){
 		sub_active = false;

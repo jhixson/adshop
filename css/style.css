@@ -1995,6 +1995,7 @@ a.red_button_small.remove_ad_button {
 #dialog.finished {
 	background: transparent;
 	border: none;
+	top: 30%;
 }
 
 #dialog p {
