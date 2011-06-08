@@ -373,7 +373,7 @@ class Request_Controller extends Template_Controller {
 					else {
 						//$item_arr['publish_timestamp'] = time();
 						$item_arr['term'] = $this->input->post('item_term');
-						$item_arr['expire_timestamp'] = strtotime('+'.$item_arr['term'].' months',$item_arr['publish_timestamp']);
+						$item_arr['expire_timestamp'] = strtotime('+'.$item_arr['term'].' months',time());
 						$new_item = $item_model->save($item_arr,$media);
 						
 						if(isset($coupon) && $coupon != 'Enter PAYCODE here.') {
