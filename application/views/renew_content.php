@@ -38,3 +38,15 @@
 	</div>
 	
 	<p class="tagline">&quot;&euro;<span id="deal">2.50 for 3</span> months. Pay by Mobile or PayPal. Edit ad whenever you want, for free. Remove ad when sold&quot;.<small>You will be charged only once : )</small></p>
+	
+	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="paypal_form">
+		<input type="hidden" name="business" value="j_hixs_1307546967_biz@yahoo.com" />
+		<input type="hidden" name="cmd" value="_xclick" />
+		<input type="hidden" name="item_name" value="AdShop Ad placement for 3 Months" />
+		<input type="hidden" name="amount" value="2.50" />
+		<input type="hidden" name="currency_code" value="EUR" />
+		<input type="hidden" name="pp_timestamp" id="pp_timestamp" value="" />
+		<input type="hidden" name="return" value="http://adshop.ie/" />
+		<input type="hidden" name="rm" value="2" />
+		<input type="hidden" name="custom" id="pp_custom" value="" />
+	</form>

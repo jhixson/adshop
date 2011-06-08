@@ -332,7 +332,7 @@
 	<?php endif; ?>
 	
 	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="paypal_form">
-		<input type="hidden" name="business" value="j_hixs_1291143289_biz@yahoo.com" />
+		<input type="hidden" name="business" value="j_hixs_1307546967_biz@yahoo.com" />
 		<input type="hidden" name="cmd" value="_xclick" />
 		<input type="hidden" name="item_name" value="AdShop Ad placement for 3 Months" />
 		<input type="hidden" name="amount" value="2.50" />

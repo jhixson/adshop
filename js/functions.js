@@ -1262,7 +1262,7 @@ function placeAdForm() {
 			function(data, status, req) {
 				$('.error,.success').remove();
 				var respObj = JSON.parse(data);
-				$('#dialog').jqmHide();
+				
 				if(respObj.status == 'ok') {
 					if(button == 'renew_by_paypal') {
 						$('#pp_timestamp').val((new Date().getTime() / 1000).toFixed(0));
@@ -1281,10 +1281,12 @@ function placeAdForm() {
 					else
 						$('#container').prepend('<p class="success">'+respObj.content+' <a href="/">Return Home</a></p>');
 				}
-				else
+				else {
+					$('#dialog').jqmHide();
 					$('#container').prepend('<p class="error">'+respObj.content+'</p>');
+				}
 				
-				$('#footer').prevUntil('.error,.success').remove()
+				//$('#footer').prevUntil('.error,.success').remove();
 		});
 	};
 	

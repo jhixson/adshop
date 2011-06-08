@@ -443,11 +443,11 @@ class Request_Controller extends Template_Controller {
 				if($owner == $username || $user->has($this->admin_role)) {
 					$item_model = new Item_Model;
 					if($item_model->renew($item_id,$term))
-						$this->template->content = json_encode(array('status'=>'ok','content'=>'Processing renewal for '.$term.' months.','item_id'=>$item_id));
+						$this->template->content = json_encode(array('status'=>'ok','content'=>'Processing renewal for '.$term.' months.','item_id'=>$item_id,'uid'=>$user_id,));
 					else
 						$this->template->content = json_encode(array('status'=>'err','content'=>'Error renewing ad.'));
 						
-					if(isset($coupon)) {
+					if(isset($coupon) && $coupon != 'Enter PAYCODE here.') {
 						$payment_model = new Payment_Model;
 						if($payment_model->apply_coupon($coupon,$user_id,$item_id))
 							Kohana::log('info', 'applied coupon code: '.$coupon);
@@ -559,19 +559,21 @@ class Request_Controller extends Template_Controller {
 		$result = curl_exec($ch);
 		$req_info = curl_getinfo($ch);
 		
-		//Kohana::log('info', print_r($result,true));
-		//Kohana::log('info', print_r(curl_getinfo($ch),true));
+		Kohana::log('info', print_r($result,true));
+		Kohana::log('info', print_r($req_info,true));
 		
 		curl_close($ch);
 		
 		$item_model = new Item_Model;
 		
 		if($req_info['http_code'] == '200') {
+			
+			$custom_arr = json_decode($post_arr['custom'],true);
+			$pp_timestamp = $custom_arr[0]['timestamp'];
+			//$uid = $custom_arr[0]['uid'];
+			$item_id = $custom_arr[0]['item_id'];
+			
 			if($post_arr['payment_status'] == 'Completed') {
-				$custom_arr = json_decode($post_arr['custom'],true);
-				$pp_timestamp = $custom_arr['timestamp'];
-				$uid = $custom_arr['uid'];
-				$item_id = $custom_arr['item_id'];
 				Kohana::log('info', 'time wtf: ('.time().' - '.$pp_timestamp.') / 86400');
 				Kohana::log('info', 'time diff: '.(time() - $pp_timestamp) / 86400);
 				
@@ -584,7 +586,8 @@ class Request_Controller extends Template_Controller {
 					$payment_model = new Payment_Model;
 					$payment_model->store_transaction($post_arr);
 				}
-				Kohana::log('info', 'payment complete, timestamp fail');
+				else
+					Kohana::log('info', 'payment complete, timestamp fail');
 			}
 			else {
 				$item = $item_model->deactivate($item_id);
