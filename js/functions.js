@@ -1274,6 +1274,10 @@ function placeAdForm() {
 						$('#pp_custom').val(JSON.stringify(custObj));
 						$('#paypal_form').submit();
 					}
+					else if(button == 'renew_by_phone') {
+						$('#dialog').jqmHide();
+						$('#dialog').css({'background-color':'#efefef','width':'490px','margin-left':'-245px','top':'22%'}).jqm({ajax:'/zong_iframe.php?item_id='+respObj.item_id}).jqmShow();
+					}
 					else
 						$('#container').prepend('<p class="success">'+respObj.content+' <a href="/">Return Home</a></p>');
 				}

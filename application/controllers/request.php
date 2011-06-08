@@ -439,7 +439,7 @@ class Request_Controller extends Template_Controller {
 				if($owner == $username || $user->has($this->admin_role)) {
 					$item_model = new Item_Model;
 					if($item_model->renew($item_id,$term))
-						$this->template->content = json_encode(array('status'=>'ok','content'=>'Your ad has been renewed for '.$term.' months.'));
+						$this->template->content = json_encode(array('status'=>'ok','content'=>'Processing renewal for '.$term.' months.','item_id'=>$item_id));
 					else
 						$this->template->content = json_encode(array('status'=>'err','content'=>'Error renewing ad.'));
 						
