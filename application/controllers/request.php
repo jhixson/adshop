@@ -5,7 +5,6 @@ ini_set('memory_limit', '64M');
 include('application/libraries/Zong.php');
 
 class Request_Controller extends Template_Controller {
-	const ALLOW_PRODUCTION = FALSE;
 
 	public $template = 'adshop/blank';
 	

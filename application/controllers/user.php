@@ -1,7 +1,6 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 
 class User_Controller extends Template_Controller {
-	const ALLOW_PRODUCTION = FALSE;
 	
 	public $template = 'adshop/template';
 	

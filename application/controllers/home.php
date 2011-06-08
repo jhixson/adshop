@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 class Home_Controller extends Template_Controller {
-	const ALLOW_PRODUCTION = FALSE;
 
 	public $template = 'adshop/template';
 	public $no_items_message = 'No items were found in this category. Please try another.';

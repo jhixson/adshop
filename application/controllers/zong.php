@@ -4,7 +4,6 @@ include_once 'application/classes/CreditsManager.php';
 include_once 'application/classes/PricePoint.php';
 
 class Zong_Controller extends Template_Controller {
-	const ALLOW_PRODUCTION = FALSE;
 
 	public $template = 'adshop/template';
 	public $no_items_message = 'No items were found in this category. Please try another.';

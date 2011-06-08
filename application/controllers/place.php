@@ -1,6 +1,5 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.');
 class Place_Controller extends Template_Controller {
-	const ALLOW_PRODUCTION = FALSE;
 
 	public $template = 'adshop/template';
 	
@@ -71,7 +70,6 @@ class Place_Controller extends Template_Controller {
 		
 		$this->template->content->steps = $steps;
 		$this->template->content->isAdmin = $isAdmin;
-		
 	}
 	
 	public function edit($item_id) {
