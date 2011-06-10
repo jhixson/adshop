@@ -384,8 +384,8 @@ class Item_Model extends Model {
 	public function expire_items() {
 		$res = $this->db->query('SELECT `item_id`, `expire_timestamp` from `items` where `sold` = 0 and `expire_timestamp` < unix_timestamp() and `expire_timestamp` != 0');
 		foreach ($res as $row) {
-			$status = $this->db->update('items',array('active'=>'0'),array('item_id'=>$row->item_id));	// UNCOMMENT TO COMMIT CHANGE TO DB
-			//Kohana::log('info','expired: '.$row->item_id);	
+			$status = $this->db->update('items',array('active'=>'0'),array('item_id'=>$row->item_id));
+			Kohana::log('info','expired: '.$row->item_id);	
 		}
 			
 		return count($res);
