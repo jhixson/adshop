@@ -214,7 +214,7 @@
 							<label class="inset">Your address will be hidden.</label>
 						<?php endif; ?>
 					<?php endif; */ ?>
-					<input type="email" class="text email required<?php echo ($editmode) ? ' edit' : '' ?>" name="item_email" id="item_email" value="<?php echo ($editmode || Auth::instance()->logged_in()) ? htmlspecialchars($user->username) : 'Your address will be hidden.' ?>" tabindex="4" <?php echo ($editmode && !$isAdmin) ? ' readonly="readonly"' : '' ?>/>
+					<input type="email" class="text email required<?php echo ($editmode) ? ' edit' : '' ?>" name="item_email" id="item_email" value="<?php echo ($editmode || Auth::instance()->logged_in()) ? htmlspecialchars($ad_owner) : 'Your address will be hidden.' ?>" tabindex="4" <?php echo ($editmode && !$isAdmin) ? ' readonly="readonly"' : '' ?>/>
 					<label class="field_options<?php echo ($editmode && !$isAdmin) ? ' hide' : '' ?>"><input type="checkbox" name="item_hide_email" id="item_hide_email" value="No e-mails from buyers" <?php echo ($editmode && $item->hide_email) ? ' checked="checked"' : '' ?>/></label>
 				</div>
 				

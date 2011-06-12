@@ -41,7 +41,6 @@ class Place_Controller extends Template_Controller {
 		if(!empty($item_id)) {
 			$this->template->title = 'Edit or Remove Ad';
 			$this->template->content->editmode = TRUE;
-			$item_model = new Item_Model;
 			$item = $item_model->get_item($item_id);
 			
 			$this->template->content->item = $item;
@@ -59,6 +58,9 @@ class Place_Controller extends Template_Controller {
 					$isAdmin = true;
 					
 				$this->template->content->user = $user;
+				$user_model = new User_Model;
+				$owner = $user_model->get_ad_owner($item_id);
+				$this->template->content->ad_owner = $owner;
 			}
 			
 			$steps = array();
