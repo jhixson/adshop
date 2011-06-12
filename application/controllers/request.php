@@ -442,15 +442,17 @@ class Request_Controller extends Template_Controller {
 				//$my_item = $user_model->get_my_ad();
 				if($owner == $username || $user->has($this->admin_role)) {
 					$item_model = new Item_Model;
-					if($item_model->renew($item_id,$term))
+					//if($item_model->renew($item_id,$term))
 						$this->template->content = json_encode(array('status'=>'ok','content'=>'Processing renewal for '.$term.' months.','item_id'=>$item_id,'uid'=>$user_id,));
-					else
-						$this->template->content = json_encode(array('status'=>'err','content'=>'Error renewing ad.'));
+					//else
+					//	$this->template->content = json_encode(array('status'=>'err','content'=>'Error renewing ad.'));
 						
 					if(isset($coupon) && $coupon != 'Enter PAYCODE here.') {
 						$payment_model = new Payment_Model;
-						if($payment_model->apply_coupon($coupon,$user_id,$item_id))
+						if($payment_model->apply_coupon($coupon,$user_id,$item_id)) {
+							$item_model->renew($item_id,$term);
 							Kohana::log('info', 'applied coupon code: '.$coupon);
+						}
 						else
 							Kohana::log('info', 'error applying coupon code: '.$coupon);
 					}
@@ -579,6 +581,7 @@ class Request_Controller extends Template_Controller {
 				
 				if((time() - $pp_timestamp) / 86400 < 1) {
 					$item = $item_model->activate($item_id);
+					$item = $item_model->renew($item_id);
 					$this->template->content = json_encode(array('status'=>'ok','content'=>'Payment complete.'));
 					Kohana::log('info', 'everything ok');
 					
@@ -631,6 +634,7 @@ class Request_Controller extends Template_Controller {
 		    } 
 			else {
 				$item = $item_model->activate($transRef);
+				$item = $item_model->renew($transRef);
 				//$this->template->content = json_encode(array('status'=>'ok','content'=>'Payment complete.'));
 				$this->template->content = $transRef.':OK';
 				Kohana::log('info', 'everything ok from zong:'.$transRef);

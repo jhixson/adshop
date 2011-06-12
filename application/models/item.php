@@ -300,14 +300,12 @@ class Item_Model extends Model {
 	 * @param integer the item_id
 	 * @param integer the term of renewal
 	 * @return count of records changed
-	 * 
-	 * @todo: change 'active'=>'0' and re-activate on payment callback
 	 */
-	public function renew($item_id,$term) {
+	public function renew($item_id,$term=3) {
 		$publish_timestamp = time();
 		$end_of_term = strtotime('+'.$term.' months');
 		
-		$status = $this->db->update('items', array('active'=>'0','term'=>$term,'publish_timestamp'=>$publish_timestamp,'expire_timestamp'=>$end_of_term), array('item_id'=>$item_id));
+		$status = $this->db->update('items', array('term'=>$term,'publish_timestamp'=>$publish_timestamp,'expire_timestamp'=>$end_of_term), array('item_id'=>$item_id));
 		
 		return count($status);
 	}
