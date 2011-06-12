@@ -24,8 +24,10 @@
 				<?php endif; ?>
 					<?php if(isset($media[0]) && count($media) > 0): 
 					$pathinfo = pathinfo($media[0]['src']);
-					$ts = array('0');
+					$ts = array();
 					preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
+					if(!isset($ts[0]))
+						$ts[0] = '0';
 					?>
 					<div class="img_holder">
 						<img src="<?php echo url::base() ?>img/upload/<?php echo $pathinfo['filename'].'.jpg?ts='.$ts[0] ?>" alt="<?php echo $item->title ?>" />
@@ -61,8 +63,10 @@
 					$angle = isset($m['angle']) ? $m['angle'] : 0;
 					$pathinfo = pathinfo($m['src']);
 					$filename = $pathinfo['filename'];
-					$ts = array('0');
+					$ts = array();
 					preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
+					if(!isset($ts[0]))
+						$ts[0] = '0';
 					$ext = preg_replace('/\?&?.+=.+/','',$pathinfo['extension']);
 					$image = $filename.'-t.'.$ext.'?ts='.$ts[0];
 				?>

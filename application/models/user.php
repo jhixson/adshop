@@ -14,7 +14,9 @@ class User_Model extends ORM {
 	public function register($user_arr) {
 		//attemp to load an existing user, otherwise create a new one
 		$user = ORM::factory('user', $user_arr['username']);
-		if($user->loaded) {
+		if(Auth::instance()->get_user()->has(ORM::factory('role', array('name' => 'admin'))))
+			return $user->id;
+		elseif($user->loaded) {
 			Auth::instance()->force_login($user->username);
 			return $user->id;
 		}
