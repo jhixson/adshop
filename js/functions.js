@@ -228,10 +228,10 @@ function thumbStrip() {
 			a.closest('li').addClass('active');
 			var src = $('img',a).attr('src');
 			var ext_exp = new RegExp(/-t(\.\w+)(\?.+)?/);
-			var img_ext = ext_exp.exec(src)[1];
-			var ts = ext_exp.exec(src)[2];
+			var img_ext = ext_exp.exec(src)[1] || '.jpg';
+			var ts = ext_exp.exec(src)[2] || '';
 			var new_src = src.replace(ext_exp,'');
-			new_src = new_src+'.jpg';
+			new_src = new_src+'.jpg?ts='+ts;
 			
 			if($('#place_form').is('.edit'))
 				new_src += ts;
@@ -1183,7 +1183,7 @@ function placeAdForm() {
 			var time = new Date().getTime();
 		
 			var media_item = {
-				'src': basename(new_src+img_ext),
+				'src': basename(new_src+img_ext+'?ts='+time),
 				'angle': $(this).data('angle')
 			};
 			media.push(media_item);
