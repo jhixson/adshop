@@ -70,8 +70,12 @@
 				$angle = isset($media[0]['angle']) ? $media[0]['angle'] : 0;
 				$pathinfo = pathinfo($media[0]['src']);
 				$filename = $pathinfo['filename'];
+				$ts = array();
+				preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
+				if(!isset($ts[0]))
+					$ts[0] = '0';
 				$ext = preg_replace('/\?&?.+=.+/','',$pathinfo['extension']);
-				$image = $filename.'-t.'.$ext;
+				$image = $filename.'-t.'.$ext.'?ts='.$ts[0];
 			}
 			?>
 			<li class="content item" data-extra-attributes='<?php echo $i->extra_attributes ?>'>
