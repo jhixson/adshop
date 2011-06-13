@@ -288,8 +288,8 @@ function thumbStrip() {
 	
 	$('#thumbstrip li.thumb:first:not(.noactive)').addClass('active');
 	$('#thumbstrip li.thumb a:not(.add_photo,.no_photo) img').each(function() {
-		if($(this).height() % 2 == 1)
-			$(this).height($(this).height()+1);
+		//if($(this).height() % 2 == 1)
+			//$(this).height($(this).height()+1);
 			
 		var pre = [];
 		var src = $(this).attr('src');
@@ -1196,19 +1196,19 @@ function placeAdForm() {
 				
 		$('#step_2 #item_price').val($('#step_2 #item_price').val().replace(/\D/,''));
 		
-		var data = $('#step_1,#step_2,#step_3').serialize();
-		data += '&item_id='+$('#item_id').val();
-		data += '&item_cat='+$('#step_2 #category_options').val();
-		data += '&item_subcat='+$('#step_2 #subcategory_options').val();
-		data += '&item_subsubcat='+$('#step_2 #subsubcategory_options').val();
-		data += '&item_location='+$('#step_2 #county_options').val();
-		data += '&item_hide_email='+$('#item_hide_email:checked').length;
-		data += '&item_trade_ad='+$('#item_trade_ad:checked').length;
-		//data += '&item_term='+$('a.place.tick').attr('rel');
-		data += '&item_term=3';
-		data += '&item_coupon='+$('#item_coupon').val();
-		data += '&media='+JSON.stringify(media);
-		$.post('/request/save_item',data, 
+		var post_data = $('#step_1,#step_2,#step_3').serialize();
+		post_data += '&item_id='+$('#item_id').val();
+		post_data += '&item_cat='+$('#step_2 #category_options').val();
+		post_data += '&item_subcat='+$('#step_2 #subcategory_options').val();
+		post_data += '&item_subsubcat='+$('#step_2 #subsubcategory_options').val();
+		post_data += '&item_location='+$('#step_2 #county_options').val();
+		post_data += '&item_hide_email='+$('#item_hide_email:checked').length;
+		post_data += '&item_trade_ad='+$('#item_trade_ad:checked').length;
+		//post_data += '&item_term='+$('a.place.tick').attr('rel');
+		post_data += '&item_term=3';
+		post_data += '&item_coupon='+$('#item_coupon').val();
+		post_data += '&media='+JSON.stringify(media);
+		$.post('/request/save_item',post_data, 
 			function(data, status, req) {
 				$('.error,.success').remove();
 				var respObj = JSON.parse(data);
@@ -1254,11 +1254,11 @@ function placeAdForm() {
 	
 	var process_renewal = function(button) {
 		//var button = $(e.target).attr('id');
-		var data = 'item_id='+$('#item_id').val();
-		//data += '&item_term='+$('a.place.tick').attr('rel');
-		data += '&item_term=3';
-		data += '&item_coupon='+$('#item_coupon').val();
-		$.post('/request/renew_ad',data, 
+		var post_data = 'item_id='+$('#item_id').val();
+		//post_data += '&item_term='+$('a.place.tick').attr('rel');
+		post_data += '&item_term=3';
+		post_data += '&item_coupon='+$('#item_coupon').val();
+		$.post('/request/renew_ad',post_data, 
 			function(data, status, req) {
 				$('.error,.success').remove();
 				var respObj = JSON.parse(data);
@@ -1299,8 +1299,8 @@ function placeAdForm() {
 	
 	$('#remove_ad').click(function(e) {
 		e.preventDefault();
-		var data = 'item_id='+$('#item_id').val();
-		$.post('/request/remove_ad',data,
+		var post_data = 'item_id='+$('#item_id').val();
+		$.post('/request/remove_ad',post_data,
 			function(data, status, req){
 				$('.error,.success').remove();
 				var respObj = JSON.parse(data);
@@ -1320,8 +1320,8 @@ function placeAdForm() {
 			$(this).closest('.formitem').css('width','auto').find('label').text('Coupon:').removeClass('long').end().find('input.text').removeClass('hide').end().find('.button').removeClass('start');
 		}
 		else {
-			var data = 'code='+$('#item_coupon').val();
-			$.post('/request/valid_coupon',data,
+			var post_data = 'code='+$('#item_coupon').val();
+			$.post('/request/valid_coupon',post_data,
 				function(data, status, req){
 					$('.error,.success').remove();
 					var respObj = JSON.parse(data);
@@ -1340,8 +1340,8 @@ function placeAdForm() {
 			$(this).closest('.formitem').css('width','auto').find('label').text('Coupon:').removeClass('long').end().find('input.text').removeClass('hide').end().find('.button').removeClass('start');
 		}
 		else {
-			var data = 'code='+$('#item_coupon').val();
-			$.post('/request/valid_coupon',data,
+			var post_data = 'code='+$('#item_coupon').val();
+			$.post('/request/valid_coupon',post_data,
 				function(data, status, req){
 					$('.error,.success').remove();
 					var respObj = JSON.parse(data);
@@ -1700,6 +1700,12 @@ if (!window.console) {
         error: function() {},
         warn: function() {}
     };
+}
+
+if(typeof String.prototype.trim !== 'function') {
+	String.prototype.trim = function() {
+		return this.replace(/^\s+|\s+$/g, ''); 
+  	}
 }
 
 $(document).ajaxError(function(e, req, options, exception) {
