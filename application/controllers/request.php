@@ -7,9 +7,12 @@ include('application/libraries/Zong.php');
 class Request_Controller extends Template_Controller {
 
 	public $template = 'adshop/blank';
+	public $domain = 'http://test.adshop.ie';
 	
 	public function __construct() {
 		parent::__construct();
+		if(IN_PRODUCTION)
+			$this->domain = 'http://adshop.ie';
 	}
 
 	// request cannot be directly accessed
@@ -150,8 +153,6 @@ class Request_Controller extends Template_Controller {
 	 * E-mail seller of an item
 	 * Validates name and email address
 	 * @return on success, json object with message. on fail, error message.
-	 * 
-	 * @todo uncomment email sending line in production
 	 */
 	public function email_seller() {
 		$form = $_POST;
@@ -172,7 +173,6 @@ class Request_Controller extends Template_Controller {
 				$message = "<p>".$name." has sent you a message about your AdShop.ie ad: ".$item->title."</p>";
 				$message .= "<p>\"".$this->input->post('message')."\"</p>";
 				$message .= !empty($phone) ? '<p>(you can reply to this e-mail or call '.$name.' on: <b style="color: #ff0000;">'.$phone.'</b>)</p>' : "\n";
-				//if($user_model->send_email($owner_email,$email,'Hello from AdShop.ie',$message))
 				if(email::send($owner_email,$email,'Hello from AdShop.ie',$message, TRUE))
 					$this->template->content = json_encode(array('status'=>'ok','content'=>'E-mail sent successfully.'));
 				else
@@ -189,8 +189,6 @@ class Request_Controller extends Template_Controller {
 	 * E-mail site owner
 	 * Validates name and email address
 	 * @return on success, json object with message. on fail, error message.
-	 * 
-	 * @todo uncomment email sending line in production
 	 */
 	public function contact_us() {
 		$form = $_POST;
@@ -243,7 +241,6 @@ class Request_Controller extends Template_Controller {
 				}
 				
 				$message .= $this->input->post('message')."<br />\n";
-				//if($user_model->send_email('j_hixson@yahoo.com',$email,'AdShop.ie User Feedback',$message))
 				if(email::send('mail@adshop.ie',$email,$subject,$message,TRUE))
 					$this->template->content = json_encode(array('status'=>'ok','content'=>$response));
 				else
@@ -265,11 +262,11 @@ class Request_Controller extends Template_Controller {
 		$subject = "Your ad is now on AdShop.ie";
 		$message = "Your ad: ".$item_arr['title']." has been posted on Adshop.ie\n\n";
 		$message .= "To View or Edit your ad use this link:\n";
-		$message .= "http://adshop.ie/place/edit/".$item_arr['item_id']."?u=".$auto_login."#step_4\n\n";
+		$message .= $this->domain."/place/edit/".$item_arr['item_id']."?u=".$auto_login."#step_4\n\n";
 		$message .= "To Renew your ad use this link:\n";
-		$message .= "http://adshop.ie/renew/".$item_arr['item_id']."?u=".$auto_login."\n\n";
+		$message .= $this->domain."/renew/".$item_arr['item_id']."?u=".$auto_login."\n\n";
 		$message .= "To Remove your ad and \"mark it as sold\" use this link:\n";
-		$message .= "http://adshop.ie/place/remove/".$item_arr['item_id']."?u=".$auto_login."\n\n";
+		$message .= $this->domain."/place/remove/".$item_arr['item_id']."?u=".$auto_login."\n\n";
 		$message .= "Thanks for using the simplest website in Ireland.\n";
 		if(email::send($user_arr['username'],'mail@adshop.ie',$subject,$message))
 			$this->template->content = json_encode(array('status'=>'ok','content'=>'E-mail sent successfully.'));
@@ -524,7 +521,7 @@ class Request_Controller extends Template_Controller {
 				if($user->save()) {
 					$message = "Your AdShop.ie password has been reset.\n\n";
 					$message .= "Click this link below to enter your new password:\n";
-					$message .= "http://adshop.ie/user/new_password/".base64_encode($user->id.'_'.time().'_'.$pwd)."\n\n";
+					$message .= $this->domain"./user/new_password/".base64_encode($user->id.'_'.time().'_'.$pwd)."\n\n";
 					$message .= "If you require any further assistance use the Contact Us form on AdShop.ie.\n";
 					email::send($email,'noreply@adshop.ie','Hello from AdShop.ie',$message);
 					$this->template->content = json_encode(array('status'=>'ok','content'=>'Password reset. Please check your email.'));		
@@ -703,12 +700,12 @@ class Request_Controller extends Template_Controller {
 	
 	
 	/**
-	 * Run daily cron tasks
+	 * Run hourly cron tasks
 	 * 1. Remind users if their ad is expiring within 48 hours
 	 * 2. Expire items that have gone past their term date
 	 * 3. Clean up temporary media
 	 */
-	public function cron() {
+	public function cron_hourly() {
 		$item_model = new Item_Model;
 		$reminders = $item_model->remind();
 		
@@ -716,16 +713,27 @@ class Request_Controller extends Template_Controller {
 			$auto_login = base64_encode($r->username.':'.$r->item_id);
 			$message = "If you do not want to renew your ad you can simply ignore this e-mail.\n\n";
 			$message .= "To Renew your ad use this link:\n";
-			$message .= "http://adshop.ie/renew/".$r->item_id."?u=".$auto_login."\n\n";
+			$message .= $this->domain."/renew/".$r->item_id."?u=".$auto_login."\n\n";
 			$message .= "To Remove your ad and \"mark it as sold\" use this link:\n";
-			$message .= "http://adshop.ie/place/remove/".$r->item_id."?u=".$auto_login."\n\n";
+			$message .= $this->domain."/place/remove/".$r->item_id."?u=".$auto_login."\n\n";
 			$message .= "Thanks from AdShop.ie";
-			//email::send($r->username,'noreply@adshop.ie','Your AdShop.ie ad will expire in 48 hours',$message);
+			if(IN_PRODUCTION)
+				email::send($r->username,'noreply@adshop.ie','Your AdShop.ie ad will expire in 48 hours',$message);
 			Kohana::log('info','emailed: '.$r->username);
 		}
 		
 		$expired = $item_model->expire_items();
 		
+		$this->template->content = '';
+	}
+	
+	/**
+	 * Run daily cron tasks
+	 * 1. Cache new pricepoints from Zong
+	 */
+	public function cron_daily() {
+		$zong = new Zong_Core;
+		$zong->cacheZong();
 		$this->template->content = '';
 	}
    	
@@ -857,5 +865,9 @@ class Request_Controller extends Template_Controller {
 			$this->template->content = 'ok';
 		else
 			$this->template->content = 'err';
+	}
+	
+	public function in_production() {
+		$this->template->content = (IN_PRODUCTION) ? 'yes' : 'no';
 	}
 }
