@@ -521,7 +521,7 @@ class Request_Controller extends Template_Controller {
 				if($user->save()) {
 					$message = "Your AdShop.ie password has been reset.\n\n";
 					$message .= "Click this link below to enter your new password:\n";
-					$message .= $this->domain"./user/new_password/".base64_encode($user->id.'_'.time().'_'.$pwd)."\n\n";
+					$message .= $this->domain."/user/new_password/".base64_encode($user->id.'_'.time().'_'.$pwd)."\n\n";
 					$message .= "If you require any further assistance use the Contact Us form on AdShop.ie.\n";
 					email::send($email,'noreply@adshop.ie','Hello from AdShop.ie',$message);
 					$this->template->content = json_encode(array('status'=>'ok','content'=>'Password reset. Please check your email.'));		
