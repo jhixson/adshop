@@ -294,8 +294,7 @@ class Request_Controller extends Template_Controller {
    	 * If the user is logged in, use the current user_id, otherwise, create and log-in user
    	 * Saves item and media data
    	 * @return on success, json object with status, user_id and item_id. on fail, error message
-   	 * 
-   	 * @todo: change 'active'=>'0'
+   	 *
    	 */
 	public function save_item() {
 		$item_model = new Item_Model;	
@@ -320,11 +319,13 @@ class Request_Controller extends Template_Controller {
 									  'phone'=>$this->input->post('item_phone'),
 									  'password'=>$this->input->post('item_password'));
 									
-					$orm_user = ORM::factory('user', $user_arr['username']);
-					if($orm_user->has($this->admin_role))
-						$user_arr['isAdmin'] = true;
+					$orm_user = ORM::factory('user', Auth::instance()->get_user()->username);
+          if($orm_user->has($this->admin_role)) {
+            Kohana::log('info','is admin');
+            $user_arr['isAdmin'] = true;
+          }
 						
-					$user_id = $user_model->register($user_arr);
+          $user_id = $user_model->register($user_arr);
 					
 					if($orm_user->has($this->admin_role)) // if user is admin, get the ad owner id instead
 						$user_id = $user_model->get_ad_owner_id($item_id);
