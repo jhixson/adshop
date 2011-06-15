@@ -55,7 +55,7 @@ class Place_Controller extends Template_Controller {
 			if(Auth::instance()->logged_in()) {
 				$user = Auth::instance()->get_user();
 				$orm_user = ORM::factory('user', $user->username);
-				if($orm_user->has($this->admin_role))
+				if(Auth::instance()->logged_in('admin'))
 					$isAdmin = true;
 					
 				$this->template->content->user = $user;
@@ -79,10 +79,10 @@ class Place_Controller extends Template_Controller {
 		if(Auth::instance()->logged_in()) {
 			$user = Auth::instance()->get_user();
 			$user_model = new User_Model;
-			$orm_user = ORM::factory('user', $user->username);
+			//$orm_user = ORM::factory('user', $user->username);
 			//$item = $user_model->get_my_ad();
 			$owner = $user_model->get_ad_owner($item_id);
-			if($user->username == $owner || $orm_user->has($this->admin_role))
+			if($user->username == $owner || Auth::instance()->logged_in('admin'))
 				$this->index($item_id);
 			else
 				url::redirect('/user/login?action=edit&item='.$item_id);
@@ -114,9 +114,9 @@ class Place_Controller extends Template_Controller {
 			$user = Auth::instance()->get_user();
 			$user_model = new User_Model;
 			//$item = $user_model->get_my_ad();
-			$orm_user = ORM::factory('user', $user->username);
+			//$orm_user = ORM::factory('user', $user->username);
 			$owner = $user_model->get_ad_owner($item_id);
-			if($user->username == $owner || $orm_user->has($this->admin_role)) {
+			if($user->username == $owner || Auth::instance()->logged_in('admin')) {
 				$item_model = new Item_Model;
 				$item = $item_model->get_item($item_id);
 	

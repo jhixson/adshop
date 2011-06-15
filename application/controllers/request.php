@@ -319,15 +319,17 @@ class Request_Controller extends Template_Controller {
 									  'phone'=>$this->input->post('item_phone'),
 									  'password'=>$this->input->post('item_password'));
 									
-					$orm_user = ORM::factory('user', Auth::instance()->get_user()->username);
-          if($orm_user->has($this->admin_role)) {
-            Kohana::log('info','is admin');
-            $user_arr['isAdmin'] = true;
+          if(Auth::instance()->logged_in('admin')) {
+            //$orm_user = ORM::factory('user', Auth::instance()->get_user()->username);
+            //if($orm_user->has($this->admin_role)) {
+              Kohana::log('info','is admin');
+              $user_arr['isAdmin'] = true;
+            //}
           }
 						
           $user_id = $user_model->register($user_arr);
 					
-					if($orm_user->has($this->admin_role)) // if user is admin, get the ad owner id instead
+					if(Auth::instance()->logged_in('admin')) // if user is admin, get the ad owner id instead
 						$user_id = $user_model->get_ad_owner_id($item_id);
 				//}
 				if($user_id > 0) {
@@ -372,7 +374,7 @@ class Request_Controller extends Template_Controller {
 						Kohana::log('info', 'media: '.$media);
 						
 						//$my_item = $user_model->get_my_ad();
-						if($owner == Auth::instance()->get_user()->username || $orm_user->has($this->admin_role))
+						if($owner == Auth::instance()->get_user()->username || Auth::instance()->logged_in('admin'))
 							$update_item = $item_model->update($item_arr,$media);
 							
 						Kohana::log('info', 'update: '.$update_item);
@@ -436,7 +438,6 @@ class Request_Controller extends Template_Controller {
 			$user = Auth::instance()->get_user();
 			$user_id = $user->id;
 			$username = $user->username;
-			$orm_user = ORM::factory('user', $username);
 			$item_id = $this->input->post('item_id');
 			$term = $this->input->post('item_term');
 			$coupon = $this->input->post('item_coupon');
@@ -444,7 +445,7 @@ class Request_Controller extends Template_Controller {
 			if(!empty($item_id)) {
 				$owner = $user_model->get_ad_owner($item_id);
 				//$my_item = $user_model->get_my_ad();
-				if($owner == $username || $orm_user->has($this->admin_role)) {
+				if($owner == $username || Auth::instance()->logged_in('admin')) {
 					$item_model = new Item_Model;
 					//if($item_model->renew($item_id,$term))
 						$this->template->content = json_encode(array('status'=>'ok','content'=>'Processing renewal for '.$term.' months.','item_id'=>$item_id,'uid'=>$user_id,));
@@ -478,13 +479,12 @@ class Request_Controller extends Template_Controller {
 			$user = Auth::instance()->get_user();
 			$user_id = $user->id;
 			$username = $user->username;
-			$orm_user = ORM::factory('user', $username);
 			$item_id = $this->input->post('item_id');
 			//$item_arr = array('item_id'=>$item_id,'user_id'=>$user_id,'term'=>$term);
 			if(!empty($item_id)) {
 				$owner = $user_model->get_ad_owner($item_id);
 				//$my_item = $user_model->get_my_ad();
-				if($owner == $username || $orm_user->has($this->admin_role)) {
+				if($owner == $username || Auth::instance()->logged_in('admin')) {
 					$item_model = new Item_Model;
 					if($item_model->remove($item_id))
 						$this->template->content = json_encode(array('status'=>'ok','content'=>'Your ad has been removed.'));
@@ -511,7 +511,7 @@ class Request_Controller extends Template_Controller {
 			if($user->loaded) {
 				$length = 5;
 				$characters = 'abcdefghijklmnopqrstuvwxyz';
-				$pwd = '';    
+				$pwd = '';
 	
 				for ($p = 0; $p < $length; $p++)
 				    $pwd .= $characters[mt_rand(0, strlen($characters)-1)];
