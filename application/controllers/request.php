@@ -544,8 +544,6 @@ class Request_Controller extends Template_Controller {
 	 * POST data back to PayPal with validate command
 	 * Parse result for valid status and compare timestamp to now
 	 * Set item to active
-	 * 
-	 * @todo store transaction data in database table
 	 */
 	public function ipn() {
 		//$this->template->content = print_r($_POST,true);
@@ -636,16 +634,23 @@ class Request_Controller extends Template_Controller {
 				$item = $item_model->deactivate($transRef);
 		    	$this->template->content = json_encode(array('status'=>'err','content'=>'Payment could not be completed.'));
 				Kohana::log('info', 'zong error:'.$failure);
-		    } 
+      }
 			else {
-				$item = $item_model->activate($transRef);
-				$item = $item_model->renew($transRef);
-				//$this->template->content = json_encode(array('status'=>'ok','content'=>'Payment complete.'));
-				$this->template->content = $transRef.':OK';
-				Kohana::log('info', 'everything ok from zong:'.$transRef);
-		    }
+          $item = $item_model->activate($transRef);
+          $item = $item_model->renew($transRef);
+          //$this->template->content = json_encode(array('status'=>'ok','content'=>'Payment complete.'));
+          $this->template->content = $transRef.':OK';
 
-		} 
+          // store transaction data in DB
+          /*
+          $payment_data = array('');
+					$payment_model = new Payment_Model;
+          $payment_model->store_transaction($post_arr);
+           */
+
+          Kohana::log('info', 'everything ok from zong:'.$transRef);
+		  }
+		}
 		else {
 			//Signature Verification Failed
 			$item = $item_model->deactivate($transRef);

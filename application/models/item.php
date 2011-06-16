@@ -370,7 +370,7 @@ class Item_Model extends Model {
 	 * @return array of items
 	 */
 	public function remind() {
-		$res = $this->db->query('SELECT `items`.`item_id`, `items`.`expire_timestamp`, `users`.`username` FROM (`items`) JOIN `users` ON (`users`.`id` = `items`.`user_id`) WHERE floor((`items`.`expire_timestamp` - unix_timestamp()) / 3600) = 48');
+		$res = $this->db->query('SELECT `items`.`item_id`, `items`.`expire_timestamp`, `users`.`username` FROM (`items`) JOIN `users` ON (`users`.`id` = `items`.`user_id`) WHERE `items`.`active` = 1 and floor((`items`.`expire_timestamp` - unix_timestamp()) / 3600) = 48');
 		
 		return $res;
 	}
@@ -380,7 +380,7 @@ class Item_Model extends Model {
 	 * @return count of items
 	 */
 	public function expire_items() {
-		$res = $this->db->query('SELECT `item_id`, `expire_timestamp` from `items` where `sold` = 0 and `expire_timestamp` < unix_timestamp() and `expire_timestamp` != 0');
+		$res = $this->db->query('SELECT `item_id`, `expire_timestamp` from `items` where `active` = 1 and `sold` = 0 and `expire_timestamp` < unix_timestamp() and `expire_timestamp` != 0');
 		foreach ($res as $row) {
 			$status = $this->db->update('items',array('active'=>'0'),array('item_id'=>$row->item_id));
 			Kohana::log('info','expired: '.$row->item_id);	
