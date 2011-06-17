@@ -589,8 +589,16 @@ class Request_Controller extends Template_Controller {
 					Kohana::log('info', 'everything ok');
 					
 					// store transaction data in DB
+          $payment_data = array(
+            'item'=>$post_arr['item_name'],
+            'amount'=>$post_arr['mc_gross'],
+            'name'=>$post_arr['first_name'].' '.$post_arr['last_name'],
+            'email'=>$post_arr['payer_email'],
+            'status'=>$post_arr['payment_status'],
+            'signature'=>$post_arr['verify_sign'],
+            'timestamp'=>time());
 					$payment_model = new Payment_Model;
-					$payment_model->store_transaction($post_arr);
+					$payment_model->store_transaction($payment_data);
 				}
 				else
 					Kohana::log('info', 'payment complete, timestamp fail');
@@ -614,14 +622,17 @@ class Request_Controller extends Template_Controller {
 		
 		$queryString = $_SERVER['QUERY_STRING'];
 		
-		//Kohana::log('info', 'qs:'.$queryString);
+		Kohana::log('info', 'zong qs:'.$queryString);
 		
 		$transRef = $_GET['transactionRef'];
 	    $itemRef = $_GET['itemRef'];
 	    $method = $_GET['method'];
 	    $msisdn = $_GET['msisdn'];
 	    $outPayment = $_GET['outPayment'];
-	    $simulated = $_GET['simulated'];
+      $simulated = $_GET['simulated'];
+      $consumerPrice = $_GET['consumerPrice'];
+      $status = $_GET['status'];
+      $signature = $_GET['signature'];
 
 	    $item_model = new Item_Model;
 		
@@ -642,11 +653,19 @@ class Request_Controller extends Template_Controller {
           $this->template->content = $transRef.':OK';
 
           // store transaction data in DB
-          /*
-          $payment_data = array('');
+          $item = $item_model->get_item($transRef);
+          $user_model = new User_Model;
+          $username = $user_model->get_ad_owner($transRef);
+          $payment_data = array(
+            'item'=>'AdShop Ad placement for 3 Months',
+            'amount'=>$consumerPrice,
+            'name'=>$item->owner_name,
+            'email'=>$username,
+            'status'=>$status,
+            'signature'=>$signature,
+            'timestamp'=>time());
 					$payment_model = new Payment_Model;
-          $payment_model->store_transaction($post_arr);
-           */
+          $payment_model->store_transaction($payment_data);
 
           Kohana::log('info', 'everything ok from zong:'.$transRef);
 		  }

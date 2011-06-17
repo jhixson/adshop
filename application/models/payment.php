@@ -6,8 +6,9 @@ class Payment_Model extends Model {
 		parent::__construct();
 	}
 	
-	public function store_transaction($post_arr) {
-		$trans_status = $this->db->insert('transactions',array('item'=>$post_arr['item_name'],'amount'=>$post_arr['mc_gross'],'name'=>$post_arr['first_name'].' '.$post_arr['last_name'],'email'=>$post_arr['payer_email'],'status'=>$post_arr['payment_status'],'signature'=>$post_arr['verify_sign'],'timestamp'=>time()));
+	public function store_transaction($payment_data) {
+		//$trans_status = $this->db->insert('transactions',array('item'=>$post_arr['item_name'],'amount'=>$post_arr['mc_gross'],'name'=>$post_arr['first_name'].' '.$post_arr['last_name'],'email'=>$post_arr['payer_email'],'status'=>$post_arr['payment_status'],'signature'=>$post_arr['verify_sign'],'timestamp'=>time()));
+		$trans_status = $this->db->insert('transactions',$payment_data);
 		return count($trans_status);
 	}
 	
