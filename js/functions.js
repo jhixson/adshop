@@ -921,8 +921,9 @@ function placeAdForm() {
 			$(this).prev('label.inset').show();
 	});
 	
-	$('#item_email').blur(function() {
-		if($(this).valid()) {
+	$('#item_email').keyup(function() {
+		//if($(this).valid()) {
+    if(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}/i.test($(this).val())) { // only request if valid email
 			$.post('/request/valid_user',{'email':$(this).val()},
 				function(data, status, req) {
 					var respObj = JSON.parse(data);
@@ -941,14 +942,20 @@ function placeAdForm() {
 				}
 			);
 		}
+    else if($('#item_password').is('.green')) {
+			$('#item_password').val('Your password is used to edit your ad.').removeClass('green').removeAttr('readonly').data('val', 'Your password is used to edit your ad.');
+			$('#item_password').siblings('label.field_options').find('small').addClass('hide');
+		}
 	});
 	
+  /*
 	$('#item_email').keyup(function(e) {
 		if($('#item_password').is('.green')) {
 			$('#item_password').val('Your password is used to edit your ad.').removeClass('green').removeAttr('readonly').data('val', 'Your password is used to edit your ad.');
 			$('#item_password').siblings('label.field_options').find('small').addClass('hide');
 		}
 	});
+  */
 	
 	$('#place_form form').submit(function(e) {
 		e.preventDefault();
