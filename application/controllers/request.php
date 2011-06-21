@@ -388,6 +388,7 @@ class Request_Controller extends Template_Controller {
 						if(isset($coupon) && $coupon != 'Enter PAYCODE here.') {
 							$payment_model = new Payment_Model;
 							if($payment_model->apply_coupon($coupon,$user_id,$new_item)) {
+                $item_model->activate($new_item);
 								$this->new_item_email($user_arr,$item_arr);
 								Kohana::log('info', 'applied coupon code: '.$coupon);
 							}								
@@ -455,6 +456,7 @@ class Request_Controller extends Template_Controller {
 					if(isset($coupon) && $coupon != 'Enter PAYCODE here.') {
 						$payment_model = new Payment_Model;
 						if($payment_model->apply_coupon($coupon,$user_id,$item_id)) {
+              $item_model->activate($item_id);
 							$item_model->renew($item_id,$term);
 							Kohana::log('info', 'applied coupon code: '.$coupon);
 						}
