@@ -370,7 +370,7 @@ class Item_Model extends Model {
 	 * @return array of items
 	 */
 	public function remind() {
-		$res = $this->db->query('SELECT `items`.`item_id`, `items`.`expire_timestamp`, `users`.`username` FROM (`items`) JOIN `users` ON (`users`.`id` = `items`.`user_id`) WHERE `items`.`active` = 1 and floor((`items`.`expire_timestamp` - unix_timestamp()) / 3600) = 48');
+		$res = $this->db->query('SELECT `items`.`item_id`, `items`.`title`, `items`.`expire_timestamp`, `users`.`username` FROM (`items`) JOIN `users` ON (`users`.`id` = `items`.`user_id`) WHERE `items`.`active` = 1 and floor((`items`.`expire_timestamp` - unix_timestamp()) / 3600) = 48');
 		
 		return $res;
 	}

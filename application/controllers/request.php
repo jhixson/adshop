@@ -738,7 +738,7 @@ class Request_Controller extends Template_Controller {
 		
 		foreach($reminders as $r) {
 			$auto_login = base64_encode($r->username.':'.$r->item_id);
-			$message = "If you do not want to renew your ad you can simply ignore this e-mail.\n\n";
+			$message = "If you do not wish to renew your ad: ".$r->title." you can simply ignore this e-mail.\n\n";
 			$message .= "To Renew your ad use this link:\n";
 			$message .= $this->domain."/renew/".$r->item_id."?u=".$auto_login."\n\n";
 			$message .= "To Remove your ad and \"mark it as sold\" use this link:\n";
