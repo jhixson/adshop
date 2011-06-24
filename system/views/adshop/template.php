@@ -103,11 +103,13 @@
 			<?php endif; 
 			*/
 			?>
-			<p>
-				<?php if (!preg_match('/sold|place|renew\/\d+|edit\/\d+/',url::current())): ?>
+      <p>
+        <?php if(Router::$controller == 'home' && url::current() != 'sold') : ?>
 				<a href="<?php echo url::base().'sold' ?>" class="red">Sold Ads</a>
+				<?php elseif (!preg_match('/sold|place|renew\/\d+|edit\/\d+/',url::current())): ?>
+				<a href="<?php echo url::base() ?>" class="green">Home</a>
 				<?php elseif (url::current() == 'sold' || isset($item_sold)): ?>
-				<a href="<?php echo url::base() ?>" class="red">Home</a>
+				<a href="<?php echo url::base() ?>" class="green">Home</a>
 				<?php endif; ?>
 				<a href="#" id="tip1" class="tip">Our Goal</a>
 				<a href="#" id="tip2" class="tip">Legal</a>
@@ -122,7 +124,7 @@
 	<div id="dialog" class="jqmWindow"></div>
 	
 	<?php 
-	echo "\n<!--\n";
+  echo "\n<!--\n";
 	print_r($_SESSION);
 	print_r($_COOKIE);
 	echo "-->\n";
