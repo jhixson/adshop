@@ -1977,6 +1977,10 @@ a.red_button_small.remove_ad_button {
 	color: #ec281f;
 }
 
+#footer a.green {
+  color: #009a15;
+}
+
 #demotip { 
     display:none; 
     background:transparent url(../img/black_arrow.png); 
