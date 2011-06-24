@@ -22,7 +22,7 @@
 				<?php elseif(!$item->active): ?>
 				<div class="expired_stamp">EXPIRED</div>
 				<?php endif; ?>
-					<?php if(isset($media[0]) && count($media) > 0): 
+					<?php if(count($media) > 0 && isset($media[0]) && isset($media[0]['src'])):
 					$pathinfo = pathinfo($media[0]['src']);
 					$ts = array();
 					preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
@@ -59,19 +59,20 @@
 			<a href="#" class="next_image<?php echo count($media) <= 1 ? ' invisible' : '' ?>">next</a>
 			<ul id="thumb_images" class="images-<?php echo min(10,count($media)) ?>">
 				<?php 
-				foreach($media as $m): 
-					$angle = isset($m['angle']) ? $m['angle'] : 0;
-					$pathinfo = pathinfo($m['src']);
-					$filename = $pathinfo['filename'];
-					$ts = array();
-					preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
-					if(!isset($ts[0]))
-						$ts[0] = '0';
-					$ext = preg_replace('/\?&?.+=.+/','',$pathinfo['extension']);
-					$image = $filename.'-t.'.$ext.'?ts='.$ts[0];
+        foreach($media as $m):
+          if(isset($m['src'])) {
+            $angle = isset($m['angle']) ? $m['angle'] : 0;
+            $pathinfo = pathinfo($m['src']);
+            $filename = $pathinfo['filename'];
+            $ts = array();
+            preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
+            if(!isset($ts[0]))
+              $ts[0] = '0';
+            $ext = preg_replace('/\?&?.+=.+/','',$pathinfo['extension']);
+            $image = $filename.'-t.'.$ext.'?ts='.$ts[0];
 				?>
 				<li class="thumb"><a href="#"><img src="<?php echo url::base() ?>img/upload/<?php echo $image ?>" alt="<?php echo $item->title ?>" /></a></li>
-				<?php endforeach; ?>
+				<?php } endforeach; ?>
 			</ul>
 			<?php else: ?>
 			<ul class="images-1">

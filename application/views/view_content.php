@@ -65,7 +65,7 @@
 			foreach($items as $i): 
 			$image = 'no_photo_uploaded_thumb.gif';
 			$media = json_decode($i->media,true);
-			if(count($media) > 0 && isset($media[0])) {
+			if(count($media) > 0 && isset($media[0]) && isset($media[0]['src'])) {
 				//$image = $media[0]['src'];
 				$angle = isset($media[0]['angle']) ? $media[0]['angle'] : 0;
 				$pathinfo = pathinfo($media[0]['src']);
