@@ -605,10 +605,10 @@ span.price_burst {
 */
 
 span.price_burst {
-	background: transparent url(../img/250.png) no-repeat;
+	background: transparent url(../img/250_purple.png) no-repeat;
     display: block;
     width: 43px;
-    height: 22px;
+    height: 24px;
     position: absolute;
     top: -1px;
     right: -11px;

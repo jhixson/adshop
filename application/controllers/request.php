@@ -561,7 +561,9 @@ class Request_Controller extends Template_Controller {
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_POST, 1);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $post_arr);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
 		
 		$result = curl_exec($ch);
 		$req_info = curl_getinfo($ch);
@@ -612,7 +614,6 @@ class Request_Controller extends Template_Controller {
 			}
 		}
 		else {
-			$item = $item_model->deactivate($item_id);
 			$this->template->content = json_encode(array('status'=>'err','content'=>'Request could not be completed.'));
 			Kohana::log('info', 'request error');
 		}

@@ -155,7 +155,7 @@
 							$disabled = ($i < 1) ? '' : ' disabled';
 							$strong = 'Photo '.($i+1);
 							echo '<li class="photo_button_holder'.$disabled.'">';
-							if($editmode && isset($media_json[$i])) {
+							if($editmode && isset($media_json[$i]) && isset($media_json[$i]['src'])) {
 								//$width = isset($media_json[$i]['width']) ? $media_json[$i]['width'] : 0;
 								//$height = isset($media_json[$i]['height']) ? $media_json[$i]['height'] : 0;
 								$angle = isset($media_json[$i]['angle']) ? $media_json[$i]['angle'] : 0;

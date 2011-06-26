@@ -36,7 +36,7 @@ $config['encryption'] = FALSE;
  * Session lifetime. Number of seconds that each session will last.
  * A value of 0 will keep the session active until the browser is closed (with a limit of 24h).
  */
-$config['expiration'] = 0;
+$config['expiration'] = 900;
 
 /**
  * Number of page loads before the session id is regenerated.
