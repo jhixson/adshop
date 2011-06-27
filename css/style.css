@@ -605,14 +605,18 @@ span.price_burst {
 */
 
 span.price_burst {
-	background: transparent url(../img/250_purple.png) no-repeat;
+	background: transparent url(../img/purple_price.png) no-repeat;
     display: block;
     width: 43px;
     height: 24px;
     position: absolute;
     top: -1px;
     right: -11px;
-	z-index: 2;
+    z-index: 2;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 21px;
 }
 
 input.text, textarea.text, input.password, input#q {

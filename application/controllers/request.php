@@ -257,21 +257,21 @@ class Request_Controller extends Template_Controller {
 	 * E-mail user after posting an ad
 	 * @return on success, json object with message. on fail, error message.
 	 */
-	public function new_item_email($user_arr,$item_arr) {
-		$auto_login = base64_encode($user_arr['username'].':'.$item_arr['item_id']);
+	public function new_item_email($username,$item_id,$item_title) {
+		$auto_login = base64_encode($username.':'.$item_id);
 		$subject = "Your ad is now on AdShop.ie";
-		$message = "Your ad: ".$item_arr['title']." has been posted on Adshop.ie\n\n";
+		$message = "Your ad: ".$item_title." has been posted on Adshop.ie\n\n";
 		$message .= "To View or Edit your ad use this link:\n";
-		$message .= $this->domain."/place/edit/".$item_arr['item_id']."?u=".$auto_login."#step_4\n\n";
+		$message .= $this->domain."/place/edit/".$item_id."?u=".$auto_login."#step_4\n\n";
 		$message .= "To Renew your ad use this link:\n";
-		$message .= $this->domain."/renew/".$item_arr['item_id']."?u=".$auto_login."\n\n";
+		$message .= $this->domain."/renew/".$item_id."?u=".$auto_login."\n\n";
 		$message .= "To Remove your ad and \"mark it as sold\" use this link:\n";
-		$message .= $this->domain."/place/remove/".$item_arr['item_id']."?u=".$auto_login."\n\n";
+		$message .= $this->domain."/place/remove/".$item_id."?u=".$auto_login."\n\n";
 		$message .= "Thanks for using the simplest website in Ireland.\n";
-		if(email::send($user_arr['username'],'mail@adshop.ie',$subject,$message))
-			$this->template->content = json_encode(array('status'=>'ok','content'=>'E-mail sent successfully.'));
-		else
-			$this->template->content = json_encode(array('status'=>'err','content'=>'Error sending e-mail.'));
+		if(email::send($username,'mail@adshop.ie',$subject,$message))
+      return 'ok';
+    else
+      return 'err';
 	}
 	
 	public function edit() {
@@ -403,7 +403,7 @@ class Request_Controller extends Template_Controller {
 					else if($new_item) {
 						$item_arr['item_id'] = $new_item;
 						$return_content = 'New item added.';
-						$this->new_item_email($user_arr,$item_arr);
+						//$this->new_item_email($user_arr,$item_arr);
 					}
 					else {
 						$return_content = 'Error listing item. Please try again.';
@@ -591,6 +591,10 @@ class Request_Controller extends Template_Controller {
 					$item = $item_model->renew($item_id);
 					$this->template->content = json_encode(array('status'=>'ok','content'=>'Payment complete.'));
 					Kohana::log('info', 'everything ok');
+
+          $user = $item_model->get_ad_owner($item_id);
+          $item = $item_model->get_item($item_id);
+          $this->new_item_email($user,$item_id,$item->title);
 					
 					// store transaction data in DB
           $payment_data = array(
@@ -669,6 +673,8 @@ class Request_Controller extends Template_Controller {
             'timestamp'=>time());
 					$payment_model = new Payment_Model;
           $payment_model->store_transaction($payment_data);
+
+          $email = $this->new_item_email($username,$transRef,$item->title);
 
           Kohana::log('info', 'everything ok from zong:'.$transRef);
 		  }
@@ -768,7 +774,6 @@ class Request_Controller extends Template_Controller {
 	public function __call($method,$arguments) {
 		$this->template->content = json_encode(array('status'=>'err','content'=>'Bad request.'));
     }
-	
     
 	/*** test functions below ***/
 	
@@ -879,9 +884,10 @@ class Request_Controller extends Template_Controller {
 	}
 	
 	public function fire_new_ad_email() {
-		$user_arr = array('username' => 'hixsonj@gmail.com');
-		$item_arr = array('title' => 'Samsung Backlit LED TV', 'item_id' => '25');
-		$this->new_item_email($user_arr,$item_arr);
+		$username = 'hixsonj@gmail.com';
+    $item_title = 'Samsung Backlit LED TV';
+    $item_id = '25';
+		$this->new_item_email($username,$item_id,$item_title);
 	}
 	
 	public function make_admin() {
