@@ -23,6 +23,10 @@ h1 a {
 	float: left;
 }
 
+h1 a:active {
+  top: 16px;
+}
+
 h1 a span {
 	display: block;
 	background: transparent url(../img/rollover_home.png) no-repeat;
@@ -605,7 +609,7 @@ span.price_burst {
 */
 
 span.price_burst {
-	background: transparent url(../img/purple_price.png) no-repeat;
+	background: transparent url(../img/250_purple.png) no-repeat;
     display: block;
     width: 43px;
     height: 24px;
@@ -617,6 +621,7 @@ span.price_burst {
     font-size: 11px;
     font-weight: bold;
     line-height: 21px;
+    text-indent: -9000px;
 }
 
 input.text, textarea.text, input.password, input#q {

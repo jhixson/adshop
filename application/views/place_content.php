@@ -301,10 +301,12 @@
 			</form>
 			
 			<form id="step_5" class="form_section hide" action="<?php echo url::current() ?>">
-				<div class="formitem clearfix">
+        <div class="formitem clearfix"<?php echo mobile::isMobile() ? ' style="width: 400px;"' : '' ?>>
 					<label for="item_title">Pay By:</label>
-					<p class="none"><a class="button" href="#" id="pay_by_phone"><span>Mobile</span></a></p> <p class="none" style="font-size: 14px; padding-top: 10px;">or...</p> <p class="none">
-					<a class="button" href="#" id="pay_by_paypal"><span>PayPal</span></a></p>
+					<?php if(!mobile::isMobile()): ?>
+            <p class="none"><a class="button" href="#" id="pay_by_phone"><span>Mobile</span></a></p> <p class="none" style="font-size: 14px; padding-top: 10px;">or...</p>
+          <?php endif; ?>
+					 <p class="none"><a class="button" href="#" id="pay_by_paypal"><span>PayPal</span></a></p>
 				</div>
 				
 				<!--
@@ -328,7 +330,7 @@
 	</div>
 	
 	<?php if (!$editmode): ?>
-	<p class="tagline">&quot;&euro;<span id="deal">2.50 for 3</span> months. Pay by Mobile or PayPal. Edit ad whenever you want, for free. Remove ad when sold&quot;.<small>You will be charged only once : )</small></p>
+  <p class="tagline">&quot;&euro;2.50 for 3 months. Pay by <?php echo !mobile::isMobile() ? 'Mobile or ' : '' ?>PayPal. Edit ad whenever you want, for free. Remove ad when sold&quot;.<small>You will be charged only once : )</small></p>
 	<?php endif; ?>
 	
 	<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" id="paypal_form">

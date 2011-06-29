@@ -2,7 +2,9 @@
 	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Ireland's simplest ad website. Just &euro;2.50. Pay by Mobile or Paypal." />
+    <meta name="keywords" content="adshop, ireland, classified, ads" />
 		<title>AdShop.ie - <?php echo html::specialchars($title) ?></title>
 		<link rel="stylesheet" href="<?php echo url::base() ?>css/style.css" type="text/css" />
 		<link rel="stylesheet" href="<?php echo url::base() ?>css/menu.css" type="text/css" />
@@ -18,7 +20,7 @@
 	<body>
 	<div id="header">		
 		<div class="content">
-		<h1><a<?php echo isset($no_rollover) ? ' class="no_rollover"' : '' ?> href="<?php echo url::base() ?>">AdShop.ie - Ireland's Classifieds<span>home</span></a></h1>
+		<h1><a<?php echo isset($no_rollover) || mobile::isMobile() ? ' class="no_rollover"' : '' ?> href="<?php echo url::base() ?>">AdShop.ie - Ireland's Classifieds<span>home</span></a></h1>
 		
 		<?php if($display_search): ?>
 		<input type="text" name="q" id="q" class="<?php echo isset($search_term) ? 'active' : '' ?>" value="<?php echo isset($search_term) ? $search_term : 'Search' ?>" />
@@ -105,7 +107,7 @@
 			?>
       <p>
         <?php if(Router::$controller == 'home' && url::current() != 'sold') : ?>
-				<a href="<?php echo url::base().'sold' ?>" class="red">Sold Ads</a>
+				<a href="<?php echo url::base().'sold' ?>">Sold Ads</a>
 				<?php elseif (!preg_match('/sold|place|renew\/\d+|edit\/\d+/',url::current())): ?>
 				<a href="<?php echo url::base() ?>" class="green">Home</a>
 				<?php elseif (url::current() == 'sold' || isset($item_sold)): ?>
