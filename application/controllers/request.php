@@ -389,7 +389,9 @@ class Request_Controller extends Template_Controller {
 							$payment_model = new Payment_Model;
 							if($payment_model->apply_coupon($coupon,$user_id,$new_item)) {
                 $item_model->activate($new_item);
-								//$this->new_item_email($user_arr,$item_arr);
+                Kohana::log('info',print_r($user_arr,true));
+                Kohana::log('info',print_r($item_arr,true));
+								$this->new_item_email($user_arr['username'],$new_item,$item_arr['title']);
 								Kohana::log('info', 'applied coupon code: '.$coupon);
 							}								
 							else

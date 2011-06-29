@@ -600,9 +600,12 @@ function comboBoxes() {
 		var val = $(this).val();
 		var op = $(this).find('option[value='+val+']').text();
 		$(this).prev('.select_container').find('.subname').text(op);
+
+    var category = $('#category_options :selected').text();
+    var subcategory = $('#subcategory_options :selected').text();
 		
 		if($(this).attr('id') == 'category_options' || $(this).attr('id') == 'subcategory_options') {
-			if (op == 'Services' || op == 'Music Lessons' || op == 'Sports Lessons') {
+			if (category == 'Services' || subcategory == 'Music Lessons' || subcategory == 'Sports Lessons') {
 				$('#item_price_field').hide();
 				$('#item_name').data('val','Full name (or business name).').not('.active,.edit').val('Full name (or business name).');
 			
