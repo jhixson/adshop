@@ -16,7 +16,7 @@ class Home_Controller extends Template_Controller {
 		$page = $this->uri->segment('page',1);
 		
 		$this->template->content = new View('view_content');
-		$this->template->title = 'Ireland\'s Classifieds!';
+		$this->template->title = 'Ireland\'s simplest Ad Website.';
 		
 		$this->template->no_rollover = true;
 		

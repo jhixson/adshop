@@ -910,6 +910,14 @@ function placeAdForm() {
 	$('#item_title').keyup(function(e) {
 		charCount(e, 45);
 	});
+
+  $('#item_price').keyup(function(e) {
+    if(/\D/.test($(this).val())) {
+      e.preventDefault();
+      $(e.target).val($(e.target).val().substr(0,$(e.target).val().length-1));
+      alert('Please use whole numbers only.');
+    }
+  });
 	
 	$('label.inset').each(function() {
 		$(this).css({'left':$(this).next().position().left}).show();
@@ -1389,12 +1397,15 @@ function updateReview() {
 	//relativeCenter('#item_title_holder',$('#item_title_holder h2'));
 	$('#step_4 .content .button:first span').text(subcat);
 	
-	price.replace(/\D/,'');
+	//price.replace(/\D/,'');
 	var price_regex = /([\d,]+)(.\d+)?/.exec(price);
 	if(price_regex == null || price == '0')
 		$('#step_4 #price').parent().hide();
-	else
-		$('#step_4 #price').html('&euro;'+number_format(price_regex[1],0,'.',',')).parent().show();
+	else {
+    var price = number_format(price,0,'.',',');
+    $('#step_2 #item_price').val(price);
+		$('#step_4 #price').html('&euro;'+price).parent().show();
+  }
 	$('#step_4 #county').text(county);
 	$('#step_4 #seller_name').text(name);
 	$('#step_4 #phone').text(phone);
