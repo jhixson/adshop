@@ -144,14 +144,23 @@
 #menu li a.active.sub  {
 	background: transparent url(../img/menu_hover_bg2.jpg) repeat-x;
 	color: #fff;
+  border: none;
+	padding: 6px 12px 8px 12px;
 }
 
 #menu li a:hover, #menu li a.active, #menu li a.active.sub:hover {
-	background: transparent url(../img/menu_hover_bg.jpg) repeat-x;
+	/*background: transparent url(../img/menu_hover_bg.jpg) repeat-x;*/
+  background-image: none;
+  background-color: #0074f8;
+  border-top: 1px solid #0054ba;
+  border-bottom: 1px solid #0054ba;
 	color: #fff;
+	padding: 5px 12px 7px 12px;
 }
 
 #menu li.caption a:hover {
-	background-image: none;
+	background: none;
+  border: none;
 	color: #666;
+  padding: 5px 10px;
 }

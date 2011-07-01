@@ -912,7 +912,7 @@ function placeAdForm() {
 	});
 
   $('#item_price').keyup(function(e) {
-    if(/\D/.test($(this).val())) {
+    if(/[^\d,]/.test($(this).val())) {
       e.preventDefault();
       $(e.target).val($(e.target).val().substr(0,$(e.target).val().length-1));
       alert('Please use whole numbers only.');

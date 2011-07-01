@@ -51,6 +51,7 @@ h2 {
 	font-weight: normal;
 	text-align: center;
 	margin-bottom: 8px;
+  padding: 5px 10px;
 }
 
 h2.heading {
@@ -1804,9 +1805,10 @@ a#report_ad.active {
 }
 
 #container .content.item.active {
-	background: transparent url(../img/item_brief_bg.png) repeat-x;
+	/*background: transparent url(../img/item_brief_bg.png) repeat-x;*/
+  background-color: #0074f8;
 	color: #fff;
-	border: 1px solid #333;
+	border: 1px solid #0054ba;
 }
 
 #container .content.item div.img {
@@ -1854,6 +1856,7 @@ a#report_ad.active {
 	font-size: 16px;
 	text-align: left;
 	margin-bottom: 2px;
+  padding: 0;
 }
 
 .active .item_brief h2 a {
