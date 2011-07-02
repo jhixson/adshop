@@ -76,7 +76,7 @@
 				<?php endforeach; ?>
 			</ul>
 			<br />
-			<a href="<?php echo url::base() ?>view/saved" class="red_button"><span>Saved Ads</span></a>
+			<a href="<?php echo url::base() ?>view/saved" class="button" id="saved_ads"><span>Saved Ads</span></a>
 		</div>
 		<?php endif; ?>
 	
@@ -109,9 +109,9 @@
         <?php if(Router::$controller == 'home' && url::current() != 'sold') : ?>
 				<a href="<?php echo url::base().'sold' ?>">Sold Ads</a>
 				<?php elseif (!preg_match('/sold|place|renew\/\d+|edit\/\d+/',url::current())): ?>
-				<a href="<?php echo url::base() ?>" class="green">Home</a>
+				<a href="<?php echo url::base() ?>">Home</a>
 				<?php elseif (url::current() == 'sold' || isset($item_sold)): ?>
-				<a href="<?php echo url::base() ?>" class="green">Home</a>
+				<a href="<?php echo url::base() ?>">Home</a>
 				<?php endif; ?>
 				<a href="#" id="tip1" class="tip">Our Goal</a>
 				<a href="#" id="tip2" class="tip">Legal</a>

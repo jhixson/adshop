@@ -62,7 +62,7 @@ $('document').ready(function() {
 	if($('#q').val() != 'Search')
 		$('#q').focus();
 	
-	relativeCenter($('#menu'),$('#menu a.red_button'));	
+	//relativeCenter($('#menu'),$('#menu a.red_button'));	
 	
 	//relativeCenter($('#container .content'),$('#sold_list'));	
 	
@@ -178,7 +178,7 @@ function viewItem() {
 		//if(el.is('.remove_ad_button') && !el.closest('ul').prev().is('.subcategories') && $('#q').val() == 'Search')
 		if(/saved/.test(window.location.href))
 			el.parents('li').remove();
-		if(el.is('.red_button_small'))
+		if(el.is('.confirm_remove_ad_button'))
 			el.remove();
 	};
 	
@@ -201,12 +201,12 @@ function viewItem() {
 	$('.remove_ad_buttons').delegate('a','click',function(e) {
 		e.preventDefault();
 		if($(this).is('.confirm_remove_ad_button')) {
-			$(this).prev('a.blue_button_small').remove();
+			$(this).prev('.small_button').remove();
 			saveRemoveAd(e);
 		}
 		else if($(this).is('.remove_ad_button')) {
 			$(this).html('<span>Yes Remove It</span>').addClass('confirm_remove_ad_button');
-			$('<a href="#" class="blue_button_small" rel="'+$(this).attr('rel')+'"><span>No</span></a>').click(function(e) {
+			$('<a href="#" class="small_button" rel="'+$(this).attr('rel')+'"><span>No</span></a>').click(function(e) {
 				$(this).next('.remove_ad_button').html('<span>Remove from Saved</span>').removeClass('confirm_remove_ad_button');
 				$(this).remove();
 			}).prependTo($(this).parent());
@@ -229,9 +229,9 @@ function thumbStrip() {
 			var src = $('img',a).attr('src');
 			var ext_exp = new RegExp(/-t(\.\w+)(\?.+)?/);
 			var img_ext = ext_exp.exec(src)[1] || '.jpg';
-			var ts = ext_exp.exec(src)[2] || '';
+			var ts = ext_exp.exec(src)[2] || '0';
 			var new_src = src.replace(ext_exp,'');
-			new_src = new_src+'.jpg?ts='+ts;
+			new_src = new_src+'.jpg'+ts;
 			
 			if($('#place_form').is('.edit'))
 				new_src += ts;
@@ -295,10 +295,12 @@ function thumbStrip() {
 		var src = $(this).attr('src');
 		var ext_exp = new RegExp(/-t(\.\w+)(\?.+)?/);
 		var img_ext = ext_exp.exec(src)[1];
-		var ts = ext_exp.exec(src)[2];
+		var ts = ext_exp.exec(src)[2] || '?ts=0';
 		var new_src = src.replace(ext_exp,'');
 		new_src = 'upload/'+basename(new_src+'.jpg');
+    new_src += ts;
 		pre.push(new_src);
+    console.log(pre);
 		$(pre).preload();
 	});
 }

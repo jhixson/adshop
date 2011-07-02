@@ -27,10 +27,10 @@
 					$ts = array();
 					preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
 					if(!isset($ts[0]))
-						$ts[0] = '0';
+						$ts[0] = '?ts=0';
 					?>
 					<div class="img_holder">
-						<img src="<?php echo url::base() ?>img/upload/<?php echo $pathinfo['filename'].'.jpg?ts='.$ts[0] ?>" alt="<?php echo $item->title ?>" />
+						<img src="<?php echo url::base() ?>img/upload/<?php echo $pathinfo['filename'].'.jpg'.$ts[0] ?>" alt="<?php echo $item->title ?>" />
 					</div>
 					<?php else: ?>
 					<div class="img_holder">
@@ -67,9 +67,9 @@
             $ts = array();
             preg_match('/(\?&?.+=.+)/',$pathinfo['extension'],$ts);
             if(!isset($ts[0]))
-              $ts[0] = '0';
+              $ts[0] = '?ts=0';
             $ext = preg_replace('/\?&?.+=.+/','',$pathinfo['extension']);
-            $image = $filename.'-t.'.$ext.'?ts='.$ts[0];
+            $image = $filename.'-t.'.$ext.$ts[0];
 				?>
 				<li class="thumb"><a href="#"><img src="<?php echo url::base() ?>img/upload/<?php echo $image ?>" alt="<?php echo $item->title ?>" /></a></li>
 				<?php } endforeach; ?>
@@ -99,7 +99,7 @@
 		<?php if(!$item->sold && $item->active): ?>
 		<?php echo ($item->hide_email == 0) ? '<a href="#" class="button stamp tip" id="email_seller_bottom" rel="'.$item->item_id.'"><img src="'.url::base().'img/stamp--pencil.png" alt="stamp" /><span>E-mail Seller</span></a>' : '<a href="#" class="button disabled"><span>No E-mails Please</span></a>' ?>
 		
-		<?php echo ($is_saved) ? '<a href="#" class="red_button right" id="save_ad" rel="'.$item->item_id.'"><span>Remove from Saved</span></a>' : '<a href="#" class="red_button right" id="save_ad" rel="'.$item->item_id.'"><span>Save Ad</span></a>' ?>
+		<?php echo ($is_saved) ? '<a href="#" class="button right" id="save_ad" rel="'.$item->item_id.'"><span>Remove from Saved</span></a>' : '<a href="#" class="button right" id="save_ad" rel="'.$item->item_id.'"><span>Save Ad</span></a>' ?>
 		<a href="#" class="tip" id="report_ad">Report Ad</a>
 		<span class="date"><?php echo date("jS F Y", $item->publish_timestamp) ?></span>
 		<?php elseif ($item->sold): ?>

@@ -356,6 +356,7 @@ a.small_button {
     float: left;
     height: 20px;
     padding-left: 10px;
+    margin-left: 5px;
     text-decoration: none;
     position: relative;
 }
@@ -1075,7 +1076,7 @@ a.checkbox.checked {
 #header {
 	width: 100%;
 	height: 69px;
-	background: transparent url(../img/header_bg666.jpg) repeat-x;
+	background: transparent url(../img/header_bg_dark.jpg) repeat-x;
 	border-bottom: 4px solid #b3c0d3;
 }
 
@@ -1774,7 +1775,7 @@ a#report_ad.active {
 	width: 13px;
 	height: 13px;
 	background: transparent url(../img/next_image.gif) no-repeat;
-	margin: 0 auto 3px auto;
+	margin: 4px auto 8px auto;
 	text-indent: -9000px;
 	outline: none;
 }
@@ -1861,6 +1862,7 @@ a#report_ad.active {
 
 .active .item_brief h2 a {
 	color: #fff;
+  text-decoration: none;
 }
 
 .item_price {
@@ -1936,6 +1938,12 @@ a.red_button_small.remove_ad_button {
 	width: 200px;
 	min-height: 260px;
 	margin: 0 auto;
+}
+
+a#saved_ads {
+  width: 98px;
+  margin: 0 auto;
+  float: none;
 }
 
 #footer {
