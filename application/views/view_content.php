@@ -106,12 +106,10 @@
 				<?php 
 					if(round($i->price) > 0)
             echo '&euro;'.number_format(round($i->price)).' ';
-          /*
           elseif($i->cat_title == 'Services' || $i->subcat_title == 'Music Lessons' || $i->subcat_title == 'Sports Lessons')
-            echo 'call 4 quote';
+            echo '<span class="disabled">call 4 quote</span> ';
           else
-            echo 'no price';
-           */
+            echo '<span class="disabled">no price</span> ';
 					echo $i->location;
 				?>
 				</span>
