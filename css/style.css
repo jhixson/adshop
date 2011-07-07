@@ -200,7 +200,7 @@ ul.roman, ol.roman {
 * html .clearfix             { zoom: 1; } /* IE6 */
 *:first-child+html .clearfix { zoom: 1; } /* IE7 */
 
-a.button, a.green_button, a.red_button, a.blue_button, a.button_white_border, a.black_button_small_thin {
+a.button, a.green_button, a.red_button, a.blue_button, a.button_white_border, a.black_button_small_thin, a.dark_button {
     background: transparent url(../img/button_left.png) left top no-repeat;
     color: #000;
     display: block;
@@ -244,11 +244,16 @@ a.black_button_small_thin {
 	color: #fff;
 }
 
-a.button.right, a.small_button.right, a.blue_button.right, a.red_button.right, a.button_white_border.right, a.black_button_small_thin.right {
+a.dark_button {
+	background-image: url(../img/dark_button_left.png);
+	color: #fff;
+}
+
+a.button.right, a.small_button.right, a.blue_button.right, a.red_button.right, a.button_white_border.right, a.black_button_small_thin.right, a.dark_button.right {
 	float: right;
 }
 
-a.button span, a.green_button span, a.red_button span, a.blue_button span, a.button_white_border span, a.black_button_small_thin span {
+a.button span, a.green_button span, a.red_button span, a.blue_button span, a.button_white_border span, a.black_button_small_thin span, a.dark_button span {
     background: transparent url(../img/button_right.png) right top no-repeat;
     display: block;
     padding: 5px 16px 5px 12px;
@@ -282,6 +287,10 @@ a.button_white_border span {
 
 a.black_button_small_thin span {
 	background-image: url(../img/black_button_small_thin_right.png);
+}
+
+a.dark_button span {
+	background-image: url(../img/dark_button_right.png);
 }
 
 a.button.arrow_left img {
@@ -1755,14 +1764,14 @@ a#report_ad.active {
 	margin-left: 13px;
 }
 
-#thumbstrip li a.button, #thumbstrip li a.black_button_small_thin {
+#thumbstrip li a.button, #thumbstrip li a.black_button_small_thin, #thumbstrip li a.dark_button {
 	color: #000;
 	width: 80px;
 	text-align: center;
 	margin: 8px auto 0 auto;
 }
 
-#thumbstrip li a.red_button {
+#thumbstrip li a.red_button, #thumbstrip li a.dark_button {
 	color: #fff;
 }
 
