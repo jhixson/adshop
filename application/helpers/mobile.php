@@ -6,7 +6,7 @@ class mobile_Core {
     	$devices = array(
 	        "android"       => "android",
 	        "blackberry"    => "blackberry",
-	        "iphone"        => "(iphone|ipod)",
+	        "iphone"        => "(iphone|ipod|ipad)",
 	        "opera"         => "opera mini",
 	        "palm"          => "(avantgo|blazer|elaine|hiptop|palm|plucker|xiino)",
 	        "windows"       => "windows ce; (iemobile|ppc|smartphone)",
