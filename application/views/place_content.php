@@ -146,8 +146,8 @@
 					<label>Photos:</label>
 					<?php if(mobile::isMobile()): ?>
 					<img src="<?php echo url::base().'img/mobile_no_upload.jpg' ?>" alt="Mobile upload disabled." />
-					<?php else: ?>
-					<ul id="photo_grid" class="clearfix">
+					<?php endif ?>
+          <ul id="photo_grid" class="clearfix"<?php echo mobile::isMobile() ? ' style="display: none;"' : ''?>>
 						<?php 
 						if(isset($media))
 							$media_json = json_decode($media,true);
@@ -173,7 +173,6 @@
 						}
 						?>							
 					</ul>
-					<?php endif ?>
 				</div>
 				
 				<div class="formitem clearfix" id="item_price_field">
@@ -264,7 +263,7 @@
 					<div id="details">
 						<div id="item_title_holder"><h2></h2> <a href="#step_1" id="edit_title" class="edit_button">edit title</a></div>
 						<div class="featured">
-							<div class="img_holder"></div>
+              <div class="img_holder"></div>
 							<div id="scroller_track">
 								<a id="scroller" href="#"></a>
 							</div>
