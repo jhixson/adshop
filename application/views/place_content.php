@@ -256,8 +256,10 @@
 			<form id="step_4" class="form_section hide" action="<?php echo url::current() ?>">
 				<div class="content clearfix">
 					<a class="button edit_button" href="#step_2"><span></span></a>
-					<a href="#step_2" id="edit_category" class="edit_button">edit category</a>
-					<a href="#" class="button right disabled"><span>E-mail Button Goes Here</span></a>
+          <a href="#step_2" id="edit_category" class="edit_button">edit category</a>
+          <!--
+          <a href="#" class="button right disabled"><span>E-mail Button Goes Here</span></a>
+          -->
 					<span class="clear"></span>
 					
 					<div id="details">

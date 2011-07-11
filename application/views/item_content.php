@@ -1,13 +1,13 @@
 <?php defined('SYSPATH') OR die('No direct access allowed.'); ?>
 	<div class="content">
 		<a href="<?php echo url::base() ?>view/<?php echo $category ?>/<?php echo $subcategory ?>" class="button arrow_left"><img src="<?php echo url::base() ?>img/arrow_left.png" alt="arrow" /><span><?php echo $item->subcat_title ?></span></a>
-		<?php if(!$item->sold): ?>
+		<?php /* if(!$item->sold): ?>
 			<?php if($item->hide_email == 0): ?>
 			<a href="#" class="button stamp right tip" id="email_seller_button"><img src="<?php echo url::base() ?>img/stamp--pencil.png" alt="stamp" /><span>E-mail Seller</span></a>
 			<?php else: ?>
 			<a href="#" class="button disabled right"><span>No E-mails Please</span></a>
-			<?php endif; ?>
-		<?php endif; ?>
+      <?php endif; ?>
+    <?php endif; */ ?>
 		
 		<span class="clear"></span>
 		

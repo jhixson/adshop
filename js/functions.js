@@ -1444,9 +1444,11 @@ function updateReview() {
 	if ($('#step_4 .featured .img_holder img').length == 0)
 		$('#step_4 .featured .img_holder ').append('<img />');
 	
-	if (!$('#photo_grid').is(':visible')) {
-		if($('#place_form').is('.edit'))
+	if ($('#photo_grid').css('display') != 'block') {
+		if($('#place_form').is('.edit')) {
 			$('#step_4 .featured .img_holder img').attr('src', '/img/no_photo_ios_edit.jpg');
+		  $('#step_4 #thumbstrip ul').append('<li class="thumb noactive"><a href="#step_4" class="no_photo"><img src="/img/upload/no_photo_uploaded_thumb.gif" /></a></li>');
+    }
 		else
 			$('#step_4 .featured .img_holder img').attr('src', '/img/no_photo_uploaded_mobile.jpg');
 		//$('#step_4 #thumbstrip ul').append('<li class="thumb noactive"><a href="#step_4" class="no_photo"><img src="/img/upload/no_photo_uploaded_thumb.gif" /></a></li>');
