@@ -24,7 +24,7 @@
 	?>
 	<?php endif; ?>
 	
-	<div id="place_form" class="clearfix<?php echo ($editmode) ? ' edit' : '' ?>">
+	<div id="place_form" class="clearfix<?php echo ($editmode) ? ' edit' : '' ?><?php echo (mobile::isMobile()) ? ' mobile' : '' ?>">
 		<div id="place_ad_form">
 			<form id="step_1" class="form_section hide" action="<?php echo url::current() ?>">
 				<div class="formitem clearfix">
@@ -257,9 +257,7 @@
 				<div class="content clearfix">
 					<a class="button edit_button" href="#step_2"><span></span></a>
           <a href="#step_2" id="edit_category" class="edit_button">edit category</a>
-          <!--
           <a href="#" class="button right disabled"><span>E-mail Button Goes Here</span></a>
-          -->
 					<span class="clear"></span>
 					
 					<div id="details">
@@ -293,8 +291,9 @@
 						<a href="#step_2" id="edit_photos" class="edit_button">edit photos</a>
 						<ul id="thumb_images"></ul>
 					</div>
-					
-					<a href="#" class="button disabled"><span>E-mail Button Goes Here</span></a>
+					<!--
+          <a href="#" class="button disabled"><span>E-mail Button Goes Here</span></a>
+          -->
 					<?php if (!$editmode): ?>
 					<a href="#step_5" id="finish_ad_button" class="blue_button right"><span>Finish and Pay</span></a>
 					<?php endif; ?>

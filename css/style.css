@@ -346,6 +346,10 @@ a.big_button {
 	margin: 5px 5px 5px 0px;
 }
 
+a.black_button {
+  position: relative;
+}
+
 a.black_button span, a.big_button span {
     background: transparent url(../img/black_button_right.png) right top no-repeat;
     display: block;
@@ -408,6 +412,10 @@ a.red_button_small span, a.blue_button_small span {
 
 a.blue_button_small span {
 	background: transparent url(../img/blue_button_small_right.png) right top no-repeat;
+}
+
+a#start_over_button:active {
+  margin-top: 1px;
 }
 
 a.small_button.photo {
@@ -633,6 +641,7 @@ span.price_burst {
     font-weight: bold;
     line-height: 21px;
     text-indent: -9000px;
+    cursor: pointer;
 }
 
 input.text, textarea.text, input.password, input#q {
@@ -1540,7 +1549,7 @@ a#trade_ad_link.active {
 
 .date {
 	float: left;
-	margin: 5px 10px;
+	margin: 5px 10px 5px 6px;
 	color: #aaa;
 }
 

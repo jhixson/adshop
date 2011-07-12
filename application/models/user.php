@@ -105,12 +105,14 @@ class User_Model extends ORM {
 	public function get_my_ads($page=1,$limit=15) {
 		$user_id = Auth::instance()->get_user()->id;	
 		$this->db->from('items');
-		$this->db->select('SQL_CALC_FOUND_ROWS users.id, users.name, users.phone, items.*, media.media');
+		$this->db->select('SQL_CALC_FOUND_ROWS users.id, users.name, users.phone, items.*, media.media, categories.title as cat_title, subcategories.title as subcat_title');
 		$this->db->where('user_id',$user_id);
 		$this->db->where('sold',0);
 		$this->db->where(array('publish_timestamp !=' => 0)); // publish_timestamp gets set on the payment callbacks
 		$this->db->join('users',array('users.id'=>'items.user_id'),'','INNER');
-		$this->db->join('media',array('media.item_id'=>'items.item_id'),'','LEFT');
+    $this->db->join('media',array('media.item_id'=>'items.item_id'),'','LEFT');
+    $this->db->join('categories',array('categories.id'=>'items.category_id'),'','LEFT');
+		$this->db->join('subcategories',array('subcategories.id'=>'items.subcategory_id'),'','LEFT');
 		$this->db->orderby('publish_timestamp', 'desc');
 		$this->db->limit($limit,($page-1)*$limit);
 		

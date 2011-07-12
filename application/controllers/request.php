@@ -267,7 +267,7 @@ class Request_Controller extends Template_Controller {
 		$message .= $this->domain."/renew/".$item_id."?u=".$auto_login."\n\n";
 		$message .= "To Remove your ad and \"mark it as sold\" use this link:\n";
 		$message .= $this->domain."/place/remove/".$item_id."?u=".$auto_login."\n\n";
-		$message .= "Thanks for using the simplest website in Ireland.\n";
+		$message .= "Thanks for using Ireland's Simplest Ad Website.\n";
 		if(email::send($username,'mail@adshop.ie',$subject,$message))
       return 'ok';
     else
