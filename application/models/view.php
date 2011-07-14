@@ -159,7 +159,7 @@ class View_Model extends Model {
 		$this->db->from('items');
 		$this->db->select('SQL_CALC_FOUND_ROWS items.item_id, users.id, users.name, users.phone, items.*, media.media, categories.title as cat_title, subcategories.title as subcat_title');
 		if(!empty($subsubcategory_id))
-			$this->db->where(array('category_id'=>$category_id,'subcategory_id'=>$subcategory_id[0],'subsubcategory_id'=>$subsubcategory_id));
+			$this->db->where(array('items.category_id'=>$category_id,'items.subcategory_id'=>$subcategory_id[0],'items.subsubcategory_id'=>$subsubcategory_id));
 		else if(!empty($subcategory_id)) {
 			//if($dupe) 
 				$this->db->in('subcategory_id',$subcategory_id);
@@ -182,10 +182,12 @@ class View_Model extends Model {
 	
 	public function get_sold_items($page=1) {
 		$this->db->from('items');
-		$this->db->select('SQL_CALC_FOUND_ROWS items.item_id, users.id, users.name, users.phone, items.*, media.media');	
+		$this->db->select('SQL_CALC_FOUND_ROWS items.item_id, users.id, users.name, users.phone, items.*, media.media, categories.title as cat_title, subcategories.title as subcat_title');	
 		$this->db->where(array('sold'=>1));
 		$this->db->join('users',array('users.id'=>'items.user_id'),'','INNER');
 		$this->db->join('media',array('media.item_id'=>'items.item_id'),'','LEFT');
+    $this->db->join('categories',array('categories.id'=>'items.category_id'),'','LEFT');
+		$this->db->join('subcategories',array('subcategories.id'=>'items.subcategory_id'),'','LEFT');
 		//$this->db->groupby('media.item_id');
 		$this->db->limit(15,($page-1)*15);
 		$this->db->orderby('sold_timestamp', 'desc');
@@ -263,10 +265,12 @@ class View_Model extends Model {
 	
 	public function get_saved_items($saved_json,$page=1) {
 		$this->db->from('items');
-		$this->db->select('SQL_CALC_FOUND_ROWS items.item_id, users.id, users.name, users.phone, items.*, media.media');
+		$this->db->select('SQL_CALC_FOUND_ROWS items.item_id, users.id, users.name, users.phone, items.*, media.media, categories.title as cat_title, subcategories.title as subcat_title');
 		$this->db->in('items.item_id',$saved_json);
 		$this->db->join('users',array('users.id'=>'items.user_id'),'','INNER');
 		$this->db->join('media',array('media.item_id'=>'items.item_id'),'','LEFT');
+    $this->db->join('categories',array('categories.id'=>'items.category_id'),'','LEFT');
+		$this->db->join('subcategories',array('subcategories.id'=>'items.subcategory_id'),'','LEFT');
 		//$this->db->groupby('media.item_id');
 		$this->db->limit(15,($page-1)*15);
 		$this->db->orderby('publish_timestamp', 'desc');

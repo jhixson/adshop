@@ -1040,6 +1040,10 @@ label.err.show {
 	display: block;
 }
 
+#photogrid_holder label {
+  margin-top: 7px;
+}
+
 .field_options {
 	display: block;
 	background-image: none;
@@ -1515,13 +1519,13 @@ a#trade_ad_link.active {
 	font-size: 14px;
 }
 
-#priceline strong, #priceline_popout strong {
+#priceline strong, #priceline_popout strong, #priceline .noprice {
 	white-space: nowrap;
 	margin: 0 5px;
 }
 
 #price, #county, #phone {
-	color: #DF2011;
+	color: #0679f7;
 }
 
 #priceline_popout {

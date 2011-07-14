@@ -43,7 +43,14 @@
 			</div>
 			
 			<p id="priceline">
-				<?php echo round($item->price) > 0 ? '<strong>Price: <span id="price">&euro;'.number_format(round($item->price)).'</span></strong>' : '' ?>
+      <?php
+        if(round($item->price) > 0)
+          echo '<strong>Price: <span id="price">&euro;'.number_format(round($item->price)).'</span></strong>';
+        elseif($item->cat_title == 'Services' || $item->subcat_title == 'Music Lessons' || $item->subcat_title == 'Sports Lessons')
+          echo '<span class="noprice disabled">call 4 quote</span> ';
+        else
+          echo '<span class="noprice disabled">no price</span> ';
+        ?>
 				<?php if(!$item->sold): ?>
 				<strong>County: <span id="county"><?php echo $item->location; ?></span></strong>
 				<strong>Call <?php echo $item->owner_name ?>: <span id="phone"><?php echo $item->owner_phone_prefix ?> <?php echo $item->owner_phone ?></span></strong>

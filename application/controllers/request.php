@@ -193,16 +193,18 @@ class Request_Controller extends Template_Controller {
 	public function contact_us() {
 		$form = $_POST;
 		if($form) {
-			$form_data = Validation::factory($form)->add_rules('name', 'required')->add_rules('email', 'required', 'valid::email')->add_rules('message', 'required');
 			$action = $this->input->post('action');
 			switch($action) {
 				case 'contact_us':
+        $form_data = Validation::factory($form)->add_rules('name', 'required')->add_rules('email', 'required', 'valid::email')->add_rules('message', 'required');
 				$error = "Please complete all fields.";
 				break;
 				case 'report_ad':
+        $form_data = Validation::factory($form)->add_rules('message', 'required');
 				$error = "Please provide a reason.";
 				break;
 				case 'ad_mistake':
+        $form_data = Validation::factory($form)->add_rules('name', 'required')->add_rules('email', 'required', 'valid::email')->add_rules('message', 'required');
 				$error = "Please complete all fields.";
 				break;
 				default:
