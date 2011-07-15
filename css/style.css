@@ -7,7 +7,7 @@
 body {
 	font-family: 'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Arial,sans-serif;
 	font-size: 12px;
-	background-color: #e0effa;
+	background: #e0effa url(../img/victorian_bg.gif) repeat;;
 	color: #333;
 	text-align: center;
 }
@@ -377,6 +377,10 @@ a.small_button {
 a.disabled, a.small_button.disabled, a.photo_button.disabled, span.disabled, a.button_white_border.disabled {
 	color: #aaa;
 	cursor: default;
+}
+
+.active .disabled {
+  color: #fff;
 }
 
 a.small_button span {
@@ -1565,6 +1569,10 @@ a#trade_ad_link.active {
 	margin: 0;
 	position: absolute;
 	bottom: 5px;
+}
+
+.item.active .date {
+  color: #fff;
 }
 
 a#report_ad {

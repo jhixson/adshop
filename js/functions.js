@@ -391,6 +391,7 @@ function setupToolTips() {
 			if (id == 'email_seller_button' && temp_response == '') {
 				window.scrollTo(0, 0);
 				$('#tiptip_content').css({'marginTop':'108px'});
+        $('#q').hide();
 			}
 			if((id == 'renew_button' || id == 'edit_button') && temp_response == '')
 				$('#tiptip_content').css({'marginTop':'8px'});
@@ -548,6 +549,7 @@ function setupToolTips() {
 	
 	var clear_actives = function(){
 		$('#recent_grid a, #footer a, #trade_ad_link, #report_ad, #mistake, .action_buttons a, #email_seller_button, #email_seller_bottom').removeClass('active');
+    $('#q').show();
 	};
 }
 
