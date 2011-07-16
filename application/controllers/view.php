@@ -34,6 +34,7 @@ class View_Controller extends Template_Controller {
 		$view_model = new View_Model;
 		$this->template->content->category = $category;
 		$this->template->content->subcategory = $subcategory;
+		$this->template->content->subsubcategory = $subsubcategory;
 		
 		$subcategories = $view_model->get_subcategories($category,$subcategory);
 		$this->template->content->subcategories = $subcategories;

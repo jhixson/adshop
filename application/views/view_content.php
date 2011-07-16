@@ -35,9 +35,9 @@
 			<?php endforeach; ?>
 		</select>
 	</div>
-	<?php endif; ?>
-	
-	<?php if(isset($subcategory) && $subcategory == 'dogs'): ?>
+  <?php endif; ?>
+
+	<?php if(isset($subcategory) && $subcategory == 'dogs' && !empty($subsubcategory)): ?>
 	<label class="field_options">
 		<input type="checkbox" name="show_crossbreeds" id="show_crossbreeds" value="Show crossbreeds" />
 	</label>

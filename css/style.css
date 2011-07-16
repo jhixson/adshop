@@ -7,7 +7,7 @@
 body {
 	font-family: 'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Arial,sans-serif;
 	font-size: 12px;
-	background: #e0effa url(../img/victorian_bg.gif) repeat;;
+	background-color: #e0effa;
 	color: #333;
 	text-align: center;
 }
