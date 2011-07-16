@@ -178,7 +178,7 @@
 				<div class="formitem clearfix" id="item_price_field">
 					<label for="item_price">Price: &euro;</label>
 					<?php /* if (!$editmode): ?><label class="inset">Optional, but recommended.</label><?php endif; */ ?>
-					<input type="text" class="text<?php echo ($editmode) ? ' edit' : '' ?>" name="item_price" id="item_price" value="<?php echo ($editmode) ? htmlspecialchars($item->price) : 'A price is recommended.' ?>" />
+					<input type="text" class="text<?php echo ($editmode && $item->price != '0') ? ' edit' : '' ?>" name="item_price" id="item_price" value="<?php echo ($editmode && $item->price != '0') ? htmlspecialchars($item->price) : 'A price is recommended.' ?>" />
 				</div>
 				
 				<div class="buttons">
