@@ -120,7 +120,8 @@
           <span class="date"><?php echo date("jS F Y", $i->publish_timestamp) ?></span>
           <?php endif; ?>
 				</div>
-				<?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons"><a href="#" class="small_button remove_ad_button" rel="'.$i->item_id.'"><span>Remove from Saved</span></a></div>' : '' ?>
+        <?php /* echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons"><a href="#" class="small_button remove_ad_button" rel="'.$i->item_id.'"><span>Remove from Saved</span></a></div>' : '' */ ?>
+				<?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<a href="#" class="save_ad stars active" rel="'.$i->item_id.'"></a>' : '<a href="#" class="save_ad stars" rel="'.$i->item_id.'"></a>' ?>
 			</li>
 		<?php endforeach; ?>
 		</ul>

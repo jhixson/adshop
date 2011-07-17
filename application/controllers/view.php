@@ -81,7 +81,7 @@ class View_Controller extends Template_Controller {
 	
 		$this->template->menu = parent::build_menu();
 		
-		$this->template->content->no_items_message = 'To save an ad, use the \'Save Ad\' button on the lower right of any ad page.';
+		$this->template->content->no_items_message = 'You can like ads for viewing later by selecting the "star icon" present on all ads.';
 		$this->template->content->save_list = TRUE;
 		
 		$view_model = new View_Model;

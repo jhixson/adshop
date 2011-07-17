@@ -175,12 +175,12 @@ function viewItem() {
 			function(data,status) {
 				var dataObj = JSON.parse(data);
 				if(dataObj.status == 'saved')
-					$('#save_ad').html('<span>Remove from Saved</span');
+					el.addClass('active');
 				else if(dataObj.status == 'removed')
-					$('#save_ad').html('<span>Save Ad</span');
+					el.removeClass('active');
 					
 				//$('#item_list:not(:has(li))').after('<div class="content"><p class="none">To save an ad, use the \'Save Ad\' button on the lower right of any ad page.</p></div>');
-				$('<div class="content"><p class="none">To save an ad, use the \'Save Ad\' button on the lower right of any ad page.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
+				$('<div class="content"><p class="none">You can like ads for viewing later by selecting the "star icon" present on all ads.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
 			}
 		);
 		
@@ -191,7 +191,7 @@ function viewItem() {
 			el.remove();
 	};
 	
-	$('#save_ad, a.confirm_remove_ad_button').click(function(e) {
+	$('.save_ad, a.confirm_remove_ad_button').click(function(e) {
 		e.preventDefault();
 		saveRemoveAd(e);
 	});

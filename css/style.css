@@ -2072,3 +2072,24 @@ a#saved_ads {
 	font-weight: normal;
 	font-size: 13px;
 }
+
+.stars {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: transparent url(../img/stars.png) top no-repeat;
+  float: right;
+  margin: 5px;
+}
+
+.item .stars {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+
+.stars:hover, .stars.active { background-position: bottom; }
+
+.active .stars:hover { background-position: center; }
+
+.active .stars.active:hover { background-position: bottom; }
