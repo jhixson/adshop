@@ -2088,8 +2088,10 @@ a#saved_ads {
   right: 5px;
 }
 
-.stars:hover, .stars.active { background-position: bottom; }
+.stars:hover, .stars.active { background-position: left -16px; }
 
-.active .stars:hover { background-position: center; }
+.stars.active { background-position: left -48px; }
 
-.active .stars.active:hover { background-position: bottom; }
+.stars:hover { background-position: left -32px; }
+
+.stars.active:hover { background-position: left -48px; }

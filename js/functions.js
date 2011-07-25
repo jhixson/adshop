@@ -129,13 +129,14 @@ function toggleLabelTips() {
 }
 
 function viewItem() {
+	$('.content.item').removeClass('active');
 	$('.content.item').mouseenter(function() {
 		$(this).addClass('active');
 	}).mouseleave(function() {
 		$(this).removeClass('active');
 	}).click(function(e) {
 		$(this).addClass('active');
-		$('.content.item').delay(500).removeClass('active');
+		//$('.content.item').delay(500).removeClass('active');
 		if(e.target.nodeName != 'A' && e.target.nodeName != 'SPAN')
 			document.location = $('a:first',this).attr('href');
 	});
@@ -174,10 +175,13 @@ function viewItem() {
 		$.post('/request/save_ad',{'item_id':id},
 			function(data,status) {
 				var dataObj = JSON.parse(data);
+				/*
 				if(dataObj.status == 'saved')
 					el.addClass('active');
 				else if(dataObj.status == 'removed')
 					el.removeClass('active');
+				*/
+				el.toggleClass('active');
 					
 				//$('#item_list:not(:has(li))').after('<div class="content"><p class="none">To save an ad, use the \'Save Ad\' button on the lower right of any ad page.</p></div>');
 				$('<div class="content"><p class="none">You can like ads for viewing later by selecting the "star icon" present on all ads.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
