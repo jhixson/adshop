@@ -11,6 +11,8 @@
 	margin: 10px 0 0 0;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #cfe8fc;
 }
 
 #menu li {

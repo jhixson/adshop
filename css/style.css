@@ -1224,6 +1224,8 @@ a.checkbox.checked {
 	border-radius: 5px;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #cfe8fc;
 }
 
 #container .form_section .content {
@@ -1828,7 +1830,7 @@ a#report_ad.active {
 	color: #000;
 	width: 668px;
 	height: 74px;
-	border: 1px solid #c6e1f8;
+	border: 1px solid #cfe8fc;
 	position: relative;
 	list-style-type: none;
 	cursor: pointer;
