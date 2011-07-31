@@ -170,7 +170,7 @@ function viewItem() {
 	
 	var saveRemoveAd = function(e) {
 		var el = $(e.currentTarget);
-		console.log(el);
+		//console.log(el);
 		var id = el.attr('rel');
 		$.post('/request/save_ad',{'item_id':id},
 			function(data,status) {
@@ -184,7 +184,16 @@ function viewItem() {
 				el.toggleClass('active');
 					
 				//$('#item_list:not(:has(li))').after('<div class="content"><p class="none">To save an ad, use the \'Save Ad\' button on the lower right of any ad page.</p></div>');
-				$('<div class="content"><p class="none">You can like ads for viewing later by selecting the "star icon" present on all ads.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
+        console.log($('#item_list:not(:has(li))'));
+        if($('#item_list:not(:has(li))')) {
+          var page = /\d+/.exec(window.location.pathname) ? /\d+/.exec(window.location.pathname)[0] : "1";
+          page = new Number(page)-1;
+          console.log(page);
+          if(page > 0)
+            window.location.href = '/view/saved/page/'+page;
+          else
+            $('<div class="content"><p class="none">You can like ads for viewing later by selecting the "star icon" present on all ads.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
+        }
 			}
 		);
 		
