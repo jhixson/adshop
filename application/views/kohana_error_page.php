@@ -10,7 +10,7 @@
 }
 
 body {
-	background: #2b45a8 url('/img/404bg.png') top repeat-x;
+	background: #124d9b url('/img/header_bg_dark.png') top repeat-x;
 	font-family: 'Lucida Grande','Lucida Sans Unicode','Lucida Sans',Arial,sans-serif;
 	font-size: 12px;
 	color: #000;
