@@ -27,7 +27,7 @@ class Controller extends Controller_Core {
 			preg_match('/\d+$/',$current,$matches);
 			//print_r($matches);
 			$user_arr = explode(':',base64_decode($u));
-			//print_r($user_arr);
+      //print_r($user_arr);
 			//die();
 			if(count($user_arr) == 2 && count($matches) == 1) {
 				$user = $user_arr[0];
@@ -35,7 +35,8 @@ class Controller extends Controller_Core {
 				if($ad == $matches[0]) {
 					$user_model = new User_Model;
 					$owner = $user_model->get_ad_owner($ad);
-					if($owner == $user)
+          $orm_user = ORM::factory('user',$user);
+          if($owner == $user || $orm_user->has($this->admin_role))
 						Auth::instance()->force_login($user);
 					else
 						url::redirect('/user/login');

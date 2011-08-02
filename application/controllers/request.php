@@ -219,6 +219,7 @@ class Request_Controller extends Template_Controller {
 				$phone = $this->input->post('phone');
 				$ad = $this->input->post('ad');
 				$link = $this->input->post('ad_link');
+				$item_id = $this->input->post('item_id');
 				$message = '';
 				
 				if($action == 'contact_us') {
@@ -232,18 +233,19 @@ class Request_Controller extends Template_Controller {
 					$message = 'Ad: <a href="'.$link.'">'.$ad.'</a>'."<br />\n";
 					$response = 'Thanks for reporting this ad.';
 				}
-				else if($action == 'ad_mistake') {
+        else if($action == 'ad_mistake') {
+          $auto_login = base64_encode('admin@adshop.ie:'.$item_id);
 					$subject = "AdShop.ie Ad Correction";
 					$message = "From: ".$name;
 					if(!empty($phone))
 						$message .= " (".$phone.")";
 					$message .= "<br />\n";
-					$message = 'Ad: <a href="'.$link.'">'.$ad.'</a>'."<br />\n";
+					$message = 'Ad: <a href="'.$link.'?u='.$auto_login.'">'.$ad.'</a>'."<br />\n";
 					$response = 'Your message has been sent.';
 				}
 				
 				$message .= $this->input->post('message')."<br />\n";
-				if(email::send('mail@adshop.ie',$email,$subject,$message,TRUE))
+				if(email::send('hixsonj@gmail.com',$email,$subject,$message,TRUE))
 					$this->template->content = json_encode(array('status'=>'ok','content'=>$response));
 				else
 					$this->template->content = json_encode(array('status'=>'err','content'=>'Error sending message. Please try again.'));

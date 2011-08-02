@@ -457,13 +457,14 @@ function setupToolTips() {
 		var rel = $(this).attr('rel');
 		$('span',this).addClass('disabled').text('Sending...');
 		$.post('/request/contact_us',{
+      'item_id':$('#item_id').val() || '',
 			'name':$('#contact_name').val(),
 			'email':$('#contact_email').val(),
 			'phone':$('#contact_phone_prefix').val()+' '+$('#contact_phone').val(),
 			'message':$('#contact_message').val(),
 			'action':rel,
 			'ad':$('h2').text(),
-			'ad_link':window.location.href
+			'ad_link':'http://'+window.location.host + window.location.pathname
 			},
 			function(data,status) {
 				send_message_response(data, status, id);
