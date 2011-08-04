@@ -76,8 +76,8 @@
 				<?php endforeach; ?>
 			</ul>
 			<br />
-			<?php if(!preg_match('/view\/saved/',url::current())): ?>
-        <a href="<?php echo url::base() ?>view/saved" class="button" id="saved_ads"><span>Saved Ads</span></a>
+			<?php if(!preg_match('/view\/saved/',url::current()) || !preg_match('/view\/liked/',url::current())): ?>
+        <a href="<?php echo url::base() ?>view/liked" class="button" id="saved_ads"><span>Liked Ads</span></a>
       <?php endif; ?>
 		</div>
 		<?php endif; ?>

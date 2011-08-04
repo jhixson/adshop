@@ -130,12 +130,14 @@ function toggleLabelTips() {
 
 function viewItem() {
 	$('.content.item').removeClass('active');
-	$('.content.item').mouseenter(function() {
-		$(this).addClass('active');
+	$('.content.item').mouseenter(function(e) {
+    if(!$(e.target).is('.stars'))
+      $(this).addClass('active');
 	}).mouseleave(function() {
 		$(this).removeClass('active');
 	}).click(function(e) {
-		$(this).addClass('active');
+    if(!$(e.target).is('.stars'))
+      $(this).addClass('active');
 		//$('.content.item').delay(500).removeClass('active');
 		if(e.target.nodeName != 'A' && e.target.nodeName != 'SPAN')
 			document.location = $('a:first',this).attr('href');
@@ -175,22 +177,21 @@ function viewItem() {
 		$.post('/request/save_ad',{'item_id':id},
 			function(data,status) {
 				var dataObj = JSON.parse(data);
-				/*
+				
 				if(dataObj.status == 'saved')
-					el.addClass('active');
+					el.text('Liked');
 				else if(dataObj.status == 'removed')
-					el.removeClass('active');
-				*/
+					el.text('');
+				
 				el.toggleClass('active');
 					
 				//$('#item_list:not(:has(li))').after('<div class="content"><p class="none">To save an ad, use the \'Save Ad\' button on the lower right of any ad page.</p></div>');
-        console.log($('#item_list:not(:has(li))'));
-        if($('#item_list:not(:has(li))')) {
+        if($('#item_list .item').length == 0) {
           var page = /\d+/.exec(window.location.pathname) ? /\d+/.exec(window.location.pathname)[0] : "1";
           page = new Number(page)-1;
           console.log(page);
           if(page > 0)
-            window.location.href = '/view/saved/page/'+page;
+            window.location.href = '/view/liked/page/'+page;
           else
             $('<div class="content"><p class="none">You can like ads for viewing later by selecting the "star icon" present on all ads.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
         }
@@ -198,8 +199,8 @@ function viewItem() {
 		);
 		
 		//if(el.is('.remove_ad_button') && !el.closest('ul').prev().is('.subcategories') && $('#q').val() == 'Search')
-		if(/saved/.test(window.location.href))
-			el.parents('li').remove();
+		if(/saved/.test(window.location.href) || /liked/.test(window.location.href))
+			el.parents('.item').remove();
 		if(el.is('.confirm_remove_ad_button'))
 			el.remove();
 	};

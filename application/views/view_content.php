@@ -60,7 +60,7 @@
 	<?php endif; ?>
 	
 	<?php if(count($items) > 0): ?>
-		<ul id="item_list">
+		<div id="item_list">
 		<?php 
 			foreach($items as $i): 
 			$image = 'no_photo_uploaded_thumb.gif';
@@ -77,8 +77,9 @@
 				$ext = preg_replace('/\?&?.+=.+/','',$pathinfo['extension']);
 				$image = $filename.'-t.'.$ext.'?ts='.$ts[0];
 			}
-			?>
-			<li class="content item" data-extra-attributes='<?php echo $i->extra_attributes ?>'>
+    ?>
+      <div class="content item" data-extra-attributes='<?php echo $i->extra_attributes ?>'>
+        <?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<a href="#" class="save_ad stars active" rel="'.$i->item_id.'">Liked</a>' : '<a href="#" class="save_ad stars" rel="'.$i->item_id.'"></a>' ?>
 				<?php
 				$path = 'view/';
 				if(!empty($category))
@@ -121,10 +122,9 @@
           <?php endif; ?>
 				</div>
         <?php /* echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons"><a href="#" class="small_button remove_ad_button" rel="'.$i->item_id.'"><span>Remove from Saved</span></a></div>' : '' */ ?>
-				<?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<a href="#" class="save_ad stars active" rel="'.$i->item_id.'"></a>' : '<a href="#" class="save_ad stars" rel="'.$i->item_id.'"></a>' ?>
-			</li>
+      </div>
 		<?php endforeach; ?>
-		</ul>
+		</div>
 		<?php echo isset($this->pagination) ? $this->pagination->render() : '' ?>
 	<?php else: ?>
 		<div class="content">

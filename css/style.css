@@ -2077,23 +2077,29 @@ a#saved_ads {
 
 .stars {
   display: block;
-  width: 16px;
+  width: 25px;
   height: 16px;
   background: transparent url(../img/stars.png) top no-repeat;
   float: right;
   margin: 5px;
+  font-size: 11px;
+  text-decoration: none;
+  color: #ed5072;
 }
 
 .item .stars {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
+  top: 25px;
+  right: -35px;
 }
 
-.stars:hover, .stars.active { background-position: left -16px; }
+.stars:hover, .stars.active { background-position: center 0; }
 
-.stars.active { background-position: left -48px; }
+.stars.active {
+  background-position: center -32px;
+  padding-top: 18px;
+}
 
-.stars:hover { background-position: left -32px; }
+.stars:hover { background-position: center -16px; }
 
-.stars.active:hover { background-position: left -48px; }
+.stars.active:hover { background-position: center -32px; }
