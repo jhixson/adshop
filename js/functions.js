@@ -62,14 +62,28 @@ $('document').ready(function() {
 	if($('#q').val() != 'Search')
 		$('#q').focus();
 
-  $('.black_button,.price_burst').mousedown(function(e) {
-    $('.black_button').css({'top':'1px'});
-    $('.price_burst').css({'top':'0'});
-  }).mouseup(function(e) {
-    $('.black_button').css({'top':'0'});
-    $('.price_burst').css({'top':'-1px'});
-    window.location = $('.black_button').attr('href');
+  $('.black_button,.price_burst').click(function(e) {
+    $(this).addClass('press');
+	$(this).next('.black_button').addClass('press');
+	$(this).prev('.price_burst').addClass('press');
+	$(this).delay(100).queue(function(next){
+		$(this).removeClass('press');
+		$(this).next('.black_button').removeClass('press');
+		$(this).prev('.price_burst').removeClass('press');
+		window.location.href = $(this).attr('href') || $(this).next('.black_button').attr('href');
+        next();
+    });
   });
+
+	$('#start_over_button, h1 a, #container .subcategory a').click(function(e) {
+		$(this).addClass('press');
+		$(this).delay(100).queue(function(next){
+			$(this).removeClass('press');
+			window.location.href = $(this).closest('a').attr('href');
+	        next();
+	    });
+	});
+	
 
 	//relativeCenter($('#menu'),$('#menu a.red_button'));	
 	
@@ -140,7 +154,7 @@ function viewItem() {
       $(this).addClass('active');
 		//$('.content.item').delay(500).removeClass('active');
 		if(e.target.nodeName != 'A' && e.target.nodeName != 'SPAN')
-			document.location = $('a:first',this).attr('href');
+		document.location = $('h2 a:first',this).attr('href');
 	});
 	
 	var none_text = '';
@@ -174,27 +188,28 @@ function viewItem() {
 		var el = $(e.currentTarget);
 		//console.log(el);
 		var id = el.attr('rel');
+		el.toggleClass('active');
+		if(el.is('.active'))
+			el.parent().find('.remove_ad_buttons').text('Liked');
+		else
+			el.parent().find('.remove_ad_buttons').text('');
+			
 		$.post('/request/save_ad',{'item_id':id},
 			function(data,status) {
 				var dataObj = JSON.parse(data);
 				
-				if(dataObj.status == 'saved')
-					el.text('Liked');
-				else if(dataObj.status == 'removed')
-					el.text('');
-				
-				el.toggleClass('active');
+				//el.toggleClass('active');
 					
 				//$('#item_list:not(:has(li))').after('<div class="content"><p class="none">To save an ad, use the \'Save Ad\' button on the lower right of any ad page.</p></div>');
-        if($('#item_list .item').length == 0) {
-          var page = /\d+/.exec(window.location.pathname) ? /\d+/.exec(window.location.pathname)[0] : "1";
-          page = new Number(page)-1;
-          console.log(page);
-          if(page > 0)
-            window.location.href = '/view/liked/page/'+page;
-          else
-            $('<div class="content"><p class="none">You can like ads for viewing later by selecting the "star icon" present on all ads.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
-        }
+        		if($('#item_list .item').length == 0 && $('#details').length == 0) {
+		          var page = /\d+$/.exec(window.location.pathname) ? /\d+$/.exec(window.location.pathname)[0] : "1";
+		          page = new Number(page)-1;
+		          console.log(page);
+		          if(page > 0)
+		            window.location.href = '/view/liked/page/'+page;
+		          else
+		            $('<div class="content"><p class="none">You can like ads for viewing later by selecting the "star icon" present on all ads.</p></div>').hide().insertAfter('#item_list:not(:has(li))').fadeIn('fast');
+		        }
 			}
 		);
 		

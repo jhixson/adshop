@@ -49,6 +49,8 @@
 		<p class="context"><a href="<?php echo url::base() ?>user/myAds">View My Ads</a></p>
 	<?php elseif(preg_match('/sold/',url::current())): ?>
 		<p class="context">Everyone's Sold Ads</p>
+	<?php elseif(preg_match('/liked/',url::current())): ?>
+		<p class="context">Your Liked Ads</p>
 	<?php endif; ?>
 	
 	<?php if(isset($_GET['q'])):
@@ -79,7 +81,7 @@
 			}
     ?>
       <div class="content item" data-extra-attributes='<?php echo $i->extra_attributes ?>'>
-        <?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<a href="#" class="save_ad stars active" rel="'.$i->item_id.'">Liked</a>' : '<a href="#" class="save_ad stars" rel="'.$i->item_id.'"></a>' ?>
+        <?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<a href="#" class="save_ad stars active" rel="'.$i->item_id.'"></a>' : '<a href="#" class="save_ad stars" rel="'.$i->item_id.'"></a>' ?>
 				<?php
 				$path = 'view/';
 				if(!empty($category))
@@ -122,6 +124,7 @@
           <?php endif; ?>
 				</div>
         <?php /* echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons"><a href="#" class="small_button remove_ad_button" rel="'.$i->item_id.'"><span>Remove from Saved</span></a></div>' : '' */ ?>
+		<?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons">Liked</div>' : '<div class="remove_ad_buttons"></div>' ?>
       </div>
 		<?php endforeach; ?>
 		</div>
