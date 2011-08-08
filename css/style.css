@@ -23,7 +23,7 @@ h1 a {
 	float: left;
 }
 
-h1 a.press {
+h1 a:active, h1 a.press {
   top: 16px;
 }
 
@@ -423,7 +423,7 @@ a.blue_button_small span {
 	background: transparent url(../img/blue_button_small_right.png) right top no-repeat;
 }
 
-a#start_over_button.press {
+a#start_over_button:active, a#start_over_button.press {
   top: 1px;
 }
 
@@ -1400,7 +1400,7 @@ a.checkbox.checked {
 	color: #999;
 }
 
-#container .subcategory a.press img {
+#container .subcategory a:active img, #container .subcategory a.press img {
 	top: 1px;
 }
 
@@ -1901,9 +1901,12 @@ a#report_ad.active {
   padding: 0;
 }
 
+.item_brief h2 a {
+  text-decoration: none;
+}
+
 .active .item_brief h2 a {
 	color: #fff;
-  text-decoration: none;
 }
 
 .item_price {

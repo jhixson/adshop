@@ -75,6 +75,7 @@ $('document').ready(function() {
     });
   });
 
+  /*
 	$('#start_over_button, h1 a, #container .subcategory a').click(function(e) {
 		$(this).addClass('press');
 		$(this).delay(100).queue(function(next){
@@ -83,6 +84,7 @@ $('document').ready(function() {
 	        next();
 	    });
 	});
+  */
 	
 
 	//relativeCenter($('#menu'),$('#menu a.red_button'));	
@@ -150,11 +152,12 @@ function viewItem() {
 	}).mouseleave(function() {
 		$(this).removeClass('active');
 	}).click(function(e) {
+    console.log("CLICKED: "+e);
     if(!$(e.target).is('.stars'))
       $(this).addClass('active');
 		//$('.content.item').delay(500).removeClass('active');
-		if(e.target.nodeName != 'A' && e.target.nodeName != 'SPAN')
-		document.location = $('h2 a:first',this).attr('href');
+		if(e.target.nodeName != 'A')
+		  window.location.href = $('h2 a:first',this).attr('href');
 	});
 	
 	var none_text = '';
