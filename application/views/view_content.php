@@ -119,7 +119,7 @@
 				<div class="item_brief">
 					<h2><a href="<?php echo url::base() ?><?php echo $path ?>"><?php echo $i->title ?></a></h2>
 					<p><?php echo text::widont(text::limit_chars($i->description,userdata::is_saved($i->item_id) ? 133 : 140)) ?></p>
-          <?php if(!$i->sold): ?>
+          <?php if(!$i->active && !$i->sold): ?>
           <span class="date"><?php echo date("jS F Y", $i->publish_timestamp) ?></span>
           <?php endif; ?>
 				</div>

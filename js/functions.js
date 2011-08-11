@@ -66,7 +66,7 @@ $('document').ready(function() {
     $(this).addClass('press');
 	$(this).next('.black_button').addClass('press');
 	$(this).prev('.price_burst').addClass('press');
-	$(this).delay(100).queue(function(next){
+	$(this).delay(50).queue(function(next){
 		$(this).removeClass('press');
 		$(this).next('.black_button').removeClass('press');
 		$(this).prev('.price_burst').removeClass('press');
@@ -1442,11 +1442,15 @@ function updateReview() {
 	$('#step_4 #details h2').text(title);
 	//relativeCenter('#item_title_holder',$('#item_title_holder h2'));
 	$('#step_4 .content .button:first span').text(subcat);
+
+  $('#priceline span.disabled.noprice').remove();
 	
 	//price.replace(/\D/,'');
 	var price_regex = /([\d,]+)(.\d+)?/.exec(price);
-	if(price_regex == null || price == '0')
+	if(price_regex == null || price == '0') {
 		$('#step_4 #price').parent().hide();
+    $('#priceline').prepend('<span class="disabled noprice">no price</span>');
+  }
 	else {
     var price = number_format(price,0,'.',',');
     $('#step_2 #item_price').val(price);
@@ -1459,7 +1463,8 @@ function updateReview() {
 	$('#step_4 #edit_price').text('edit price or county');
 	if(cat == 'Services' || subcat == 'Music Lessons' || subcat == 'Sports Lessons') {
 		$('#step_4 #price').parent().hide();
-		$('#step_4 #seller_name').text(name+' for a quote');
+		//$('#step_4 #seller_name').text(name+' for a quote');
+    $('#priceline span.disabled').text('call 4 quote');
 		$('#step_4 #edit_price').text('edit county');
 	}
 	

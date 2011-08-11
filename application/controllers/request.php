@@ -240,7 +240,7 @@ class Request_Controller extends Template_Controller {
 					if(!empty($phone))
 						$message .= " (".$phone.")";
 					$message .= "<br />\n";
-					$message = 'Ad: <a href="'.$link.'?u='.$auto_login.'#step_4">'.$ad.'</a>'."<br />\n";
+					$message .= 'Ad: <a href="'.$link.'?u='.$auto_login.'#step_4">'.$ad.'</a>'."<br />\n";
 					$response = 'Your message has been sent.';
 				}
 				

@@ -115,8 +115,10 @@
 				<?php elseif (url::current() == 'sold' || isset($item_sold)): ?>
 				<a href="<?php echo url::base() ?>">Home</a>
 				<?php endif; ?>
-				<a href="#" id="tip1" class="tip">Our Goal</a>
-				<a href="#" id="tip2" class="tip">Legal</a>
+        <a href="#" id="tip1" class="tip">Our Goal</a>
+        <!--
+        <a href="#" id="tip2" class="tip">Legal</a>
+        -->
 				<?php echo (Auth::instance()->logged_in()) ? '<a href="'.url::base().'user/myAds">View My Ads</a>' : '<a href="#" id="tip3" class="tip">View My Ads</a>' ?>
 				<a href="#" id="tip4" class="tip">Contact Us</a>
 			</p>
