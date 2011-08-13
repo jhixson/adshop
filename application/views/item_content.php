@@ -108,7 +108,9 @@
     <?php /* echo ($item->hide_email == 0) ? '<a href="#" class="button stamp tip" id="email_seller_bottom" rel="'.$item->item_id.'"><img src="'.url::base().'img/stamp--pencil.png" alt="stamp" /><span>E-mail Seller</span></a>' : '<a href="#" class="button disabled"><span>No E-mails Please</span></a>' */ ?>
 		
     <?php /* echo ($is_saved) ? '<a href="#" class="button right" id="save_ad" rel="'.$item->item_id.'"><span>Remove from Saved</span></a>' : '<a href="#" class="button right" id="save_ad" rel="'.$item->item_id.'"><span>Save Ad</span></a>' */ ?>
-    <?php echo ($is_saved) ? '<a href="#" class="save_ad stars active" id="save_ad" rel="'.$item->item_id.'"></a>' : '<a href="#" class="save_ad stars" id="save_ad" rel="'.$item->item_id.'"></a>' ?>
+    <?php if(!$item->sold && $item->active && (Auth::instance()->logged_in() && $item->user_id != Auth::instance()->get_user()->id)): ?>
+      <?php echo ($is_saved) ? '<a href="#" class="save_ad stars active" id="save_ad" rel="'.$item->item_id.'">Liked</a>' : '<a href="#" class="save_ad stars" id="save_ad" rel="'.$item->item_id.'"></a>' ?>
+    <?php endif; ?>
 		<!-- <a href="#" class="tip" id="report_ad">Report Ad</a> -->
 		<span class="date"><?php echo date("jS F Y", $item->publish_timestamp) ?></span>
 		<?php elseif ($item->sold): ?>

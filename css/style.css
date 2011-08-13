@@ -1835,9 +1835,15 @@ a#report_ad.active {
 }
 */
 
+#container .item_wrapper {
+  position: relative;
+  overflow: visible;
+  float: right;
+}
+
 #container .content.item {
 	color: #000;
-	width: 668px;
+	width: 670px;
 	height: 74px;
 	border: 1px solid #c5d6f5;
 	position: relative;
@@ -2109,9 +2115,9 @@ a#saved_ads {
   color: #ed5072;
 }
 
-.item .stars {
+.item_wrapper .stars {
   position: absolute;
-  top: 29px;
+  top: 41px;
   right: -33px;
 }
 
@@ -2122,3 +2128,7 @@ a#saved_ads {
 .stars:hover { background-position: center -16px; }
 
 .stars.active:hover { background-position: center -32px; }
+
+.content .stars { padding-top: 2px; }
+
+.content .stars.active { text-indent: -30px; }

@@ -79,9 +79,12 @@
 				$ext = preg_replace('/\?&?.+=.+/','',$pathinfo['extension']);
 				$image = $filename.'-t.'.$ext.'?ts='.$ts[0];
 			}
-    ?>
-      <div class="content item" data-extra-attributes='<?php echo $i->extra_attributes ?>'>
+      ?>
+      <div class="item_wrapper">
+        <?php if(!$i->sold && $i->active && (Auth::instance()->logged_in() && $i->user_id != Auth::instance()->get_user()->id)): ?>
         <?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<a href="#" class="save_ad stars active" rel="'.$i->item_id.'"></a>' : '<a href="#" class="save_ad stars" rel="'.$i->item_id.'"></a>' ?>
+        <?php endif; ?>
+      <div class="content item" data-extra-attributes='<?php echo $i->extra_attributes ?>'>
 				<?php
 				$path = 'view/';
 				if(!empty($category))
@@ -119,12 +122,19 @@
 				<div class="item_brief">
 					<h2><a href="<?php echo url::base() ?><?php echo $path ?>"><?php echo $i->title ?></a></h2>
 					<p><?php echo text::widont(text::limit_chars($i->description,userdata::is_saved($i->item_id) ? 133 : 140)) ?></p>
-          <?php if($i->active && !$i->sold): ?>
+          <?php if($i->sold): ?>
+          <span class="date">Sold: <?php echo date("jS F Y", $i->sold_timestamp) ?></span>
+          <?php elseif(!$i->active): ?>
+          <span class="date">Expired: <?php echo date("jS F Y", $i->expire_timestamp) ?></span>
+          <?php else: ?>
           <span class="date"><?php echo date("jS F Y", $i->publish_timestamp) ?></span>
           <?php endif; ?>
 				</div>
         <?php /* echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons"><a href="#" class="small_button remove_ad_button" rel="'.$i->item_id.'"><span>Remove from Saved</span></a></div>' : '' */ ?>
-		<?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons">Liked</div>' : '<div class="remove_ad_buttons"></div>' ?>
+          <?php if(!$i->sold && $i->active && (Auth::instance()->logged_in() && $i->user_id != Auth::instance()->get_user()->id)): ?>
+          <?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons">Liked</div>' : '<div class="remove_ad_buttons"></div>' ?>
+          <?php endif; ?>
+      </div>
       </div>
 		<?php endforeach; ?>
 		</div>

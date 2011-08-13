@@ -147,13 +147,13 @@ function toggleLabelTips() {
 function viewItem() {
 	$('.content.item').removeClass('active');
 	$('.content.item').mouseenter(function(e) {
-    if(!$(e.target).is('.stars'))
+    //if(!$(e.target).is('.stars'))
       $(this).addClass('active');
 	}).mouseleave(function() {
 		$(this).removeClass('active');
 	}).click(function(e) {
     console.log("CLICKED: "+e);
-    if(!$(e.target).is('.stars'))
+    //if(!$(e.target).is('.stars'))
       $(this).addClass('active');
 		//$('.content.item').delay(500).removeClass('active');
 		if(e.target.nodeName != 'A')
@@ -192,10 +192,14 @@ function viewItem() {
 		//console.log(el);
 		var id = el.attr('rel');
 		el.toggleClass('active');
-		if(el.is('.active'))
+		if(el.is('.active')) {
 			el.parent().find('.remove_ad_buttons').text('Liked');
-		else
+      $('.content:not(.item) .stars.active').text('Liked');
+    }
+		else {
 			el.parent().find('.remove_ad_buttons').text('');
+      $('.content:not(.item) .stars').text('');
+    }
 			
 		$.post('/request/save_ad',{'item_id':id},
 			function(data,status) {
@@ -218,7 +222,7 @@ function viewItem() {
 		
 		//if(el.is('.remove_ad_button') && !el.closest('ul').prev().is('.subcategories') && $('#q').val() == 'Search')
 		if(/saved/.test(window.location.href) || /liked/.test(window.location.href))
-			el.parents('.item').remove();
+			el.parents('.item_wrapper').remove();
 		if(el.is('.confirm_remove_ad_button'))
 			el.remove();
 	};

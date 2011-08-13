@@ -17,8 +17,11 @@ class Renew_Controller extends Template_Controller {
 		
 		$this->template->menu = '';
 		$this->template->content->categories = parent::build_menu();
-			
-		if(Auth::instance()->logged_in()) {
+
+    $user_model = new User_Model;
+    $owner = $user_model->get_ad_owner($item_id);
+    $user = Auth::instance()->get_user();
+    if($user->username == $owner || Auth::instance()->logged_in('admin')) {
 			$user_model = new User_Model;
 			$ad_count = count($user_model->get_my_ads());
 			if($ad_count > 1 && empty($item_id))
