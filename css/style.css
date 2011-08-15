@@ -2129,6 +2129,4 @@ a#saved_ads {
 
 .stars.active:hover { background-position: center -32px; }
 
-.content .stars { padding-top: 2px; }
-
-.content .stars.active { text-indent: -30px; }
+.content .stars.active { text-indent: -30px; line-height: 16px; }

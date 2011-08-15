@@ -308,20 +308,14 @@
           <?php endif; ?>
 					 <p class="none"><a class="button" href="#" id="pay_by_paypal"><span>PayPal</span></a></p>
 				</div>
-				
-				<!--
-				<div class="formitem clearfix" style="width: auto;">
-					<label for="item_coupon">Coupon:</label>
-					<input type="text" class="text small" name="item_coupon" id="item_coupon" value="Enter PAYCODE here." />
-					<a href="#" class="button inline" id="pay_with_coupon"><span>Pay with Coupon</span></a>
-				</div>
-				-->
+
+        <!--
 				<div class="formitem clearfix">
 					<label for="item_coupon" class="long">If you have a code you can:</label>
 					<input type="text" class="text small hide" name="item_coupon" id="item_coupon" value="Enter PAYCODE here." />
 					<a href="#" class="button inline start" id="pay_with_coupon"><span>Pay with Coupon</span></a>
 				</div>
-				
+        -->		
 				<p class="important">IMPORTANT: ADSHOP.IE WILL NEVER ASK YOU TO SEND A TEXT</p>
 				
 				<input type="hidden" name="item_id" id="item_id" value="<?php echo ($editmode) ? $item->item_id : '' ?>" />
