@@ -2110,7 +2110,7 @@ a#saved_ads {
   background: transparent url(../img/stars.png) top no-repeat;
   float: right;
   margin: 5px;
-  font-size: 11px;
+  font-size: 12px;
   text-decoration: none;
   color: #ed5072;
 }
@@ -2129,4 +2129,4 @@ a#saved_ads {
 
 .stars.active:hover { background-position: center -32px; }
 
-.content .stars.active { text-indent: -30px; line-height: 16px; }
+.content .stars.active { text-indent: -32px; line-height: 18px; }

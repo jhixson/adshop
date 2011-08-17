@@ -81,7 +81,7 @@
 			}
       ?>
       <div class="item_wrapper">
-        <?php if(!$i->sold && $i->active && !(Auth::instance()->logged_in() && $i->user_id == Auth::instance()->get_user()->id)): ?>
+        <?php if(!$i->sold && $i->active): ?>
         <?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<a href="#" class="save_ad stars active" rel="'.$i->item_id.'"></a>' : '<a href="#" class="save_ad stars" rel="'.$i->item_id.'"></a>' ?>
         <?php endif; ?>
       <div class="content item" data-extra-attributes='<?php echo $i->extra_attributes ?>'>
@@ -131,7 +131,7 @@
           <?php endif; ?>
 				</div>
         <?php /* echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons"><a href="#" class="small_button remove_ad_button" rel="'.$i->item_id.'"><span>Remove from Saved</span></a></div>' : '' */ ?>
-          <?php if(!$i->sold && $i->active && !(Auth::instance()->logged_in() && $i->user_id == Auth::instance()->get_user()->id)): ?>
+          <?php if(!$i->sold && $i->active): ?>
           <?php echo ($save_list || userdata::is_saved($i->item_id)) ? '<div class="remove_ad_buttons">Liked</div>' : '<div class="remove_ad_buttons"></div>' ?>
           <?php endif; ?>
       </div>

@@ -1,5 +1,5 @@
 $('document').ready(function() {
-	
+
 	setupToolTips();
 
 	thumbStrip();
@@ -152,9 +152,11 @@ function viewItem() {
 	}).mouseleave(function() {
 		$(this).removeClass('active');
 	}).click(function(e) {
-    console.log("CLICKED: "+e);
     //if(!$(e.target).is('.stars'))
-      $(this).addClass('active');
+    $(this).addClass('active').delay(250).queue(function(next){
+      $(this).removeClass('active');
+      next();
+    });
 		//$('.content.item').delay(500).removeClass('active');
 		if(e.target.nodeName != 'A')
 		  window.location.href = $('h2 a:first',this).attr('href');
