@@ -431,6 +431,20 @@ a.small_button.photo {
 	margin: 12px 0px 0px 5px;
 }
 
+a#place_ad_button {
+    background: transparent url(../img/place_ad_button.png) no-repeat;
+    display: block;
+    width: 142px;
+    height: 43px;
+    position: relative;
+    top: -10px;
+    right: -18px;
+}
+
+a#place_ad_button:active {
+  top: -9px;
+}
+
 a.photo_button {
 	background: transparent url(../img/photo_button_bg.png) repeat-x;
     color: #000;

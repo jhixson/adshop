@@ -35,8 +35,7 @@
 			<?php if(preg_match('/place$/',url::current())): ?>
 			<a href="<?php echo url::base() ?>place" class="button_white_border" id="start_over_button"><span>Start Over</span></a>
 			<?php elseif(!preg_match('/(place\/edit\/\d+|renew\/\d+|remove\/\d+)/',url::current())): ?>
-			<span class="price_burst">&euro;2.50</span>
-			<a href="<?php echo url::base() ?>place" class="black_button"><span>Place Ad</span></a>
+			<a href="<?php echo url::base() ?>place" id="place_ad_button"></a>
 			<?php endif; ?>
 		</div>
 		</div>

@@ -62,6 +62,7 @@ $('document').ready(function() {
 	if($('#q').val() != 'Search')
 		$('#q').focus();
 
+  /*
   $('.black_button,.price_burst').click(function(e) {
     $(this).addClass('press');
 	$(this).next('.black_button').addClass('press');
@@ -74,6 +75,7 @@ $('document').ready(function() {
         next();
     });
   });
+  */
 
   /*
 	$('#start_over_button, h1 a, #container .subcategory a').click(function(e) {
@@ -188,10 +190,13 @@ function viewItem() {
 			}
 		}
 	});
+
+  $('.content:not(.item) .stars').mouseenter(function(e) {
+    $(this).removeAttr('style');
+  });
 	
 	var saveRemoveAd = function(e) {
 		var el = $(e.currentTarget);
-		//console.log(el);
 		var id = el.attr('rel');
 		el.toggleClass('active');
 		if(el.is('.active')) {
@@ -202,7 +207,10 @@ function viewItem() {
 			el.parent().find('.remove_ad_buttons').text('');
       $('.content:not(.item) .stars').text('');
     }
-			
+
+    if($('.content:not(.item) .stars').text() == '')
+      $('.content:not(.item) .stars').css({'background-position':'center top'});
+
 		$.post('/request/save_ad',{'item_id':id},
 			function(data,status) {
 				var dataObj = JSON.parse(data);
@@ -964,7 +972,7 @@ function placeAdForm() {
 	});
 
   $('#item_price').keyup(function(e) {
-    if(/[^\d,]/.test($(this).val())) {
+    if(/[^\d,€]/.test($(this).val())) {
       e.preventDefault();
       $(e.target).val($(e.target).val().substr(0,$(e.target).val().length-1));
       alert('Please use whole numbers only.');
