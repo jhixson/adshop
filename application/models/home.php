@@ -11,10 +11,10 @@ class Home_Model extends Model {
 	 * @return the array
 	 */
 	public function list_counties() {
-		$counties = array('Antrim', 'Armagh', 'Carlow', 'Cavan', 'Clare', 'Cork', 'Derry', 'Donegal', 
-						  'Down', 'Dublin', 'Fermanagh', 'Galway', 'Kerry', 'Kildare', 'Kilkenny', 'Laois', 'Leitrim', 
+		$counties = array('Carlow', 'Cavan', 'Clare', 'Cork', 'Derry', 'Donegal', 
+						  'Dublin', 'Galway', 'Kerry', 'Kildare', 'Kilkenny', 'Laois', 'Leitrim', 
 						  'Limerick', 'Longford', 'Louth', 'Mayo', 'Meath', 'Monaghan', 'Offaly', 'Roscommon', 'Sligo', 
-						  'Tipperary', 'Tyrone', 'Waterford', 'Westmeath', 'Wexford', 'Wicklow');
+						  'Tipperary', 'Waterford', 'Westmeath', 'Wexford', 'Wicklow');
 		return $counties;
 	}
  
