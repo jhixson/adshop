@@ -11,7 +11,7 @@ class Home_Model extends Model {
 	 * @return the array
 	 */
 	public function list_counties() {
-		$counties = array('Carlow', 'Cavan', 'Clare', 'Cork', 'Derry', 'Donegal', 
+		$counties = array('Carlow', 'Cavan', 'Clare', 'Cork', 'Donegal', 
 						  'Dublin', 'Galway', 'Kerry', 'Kildare', 'Kilkenny', 'Laois', 'Leitrim', 
 						  'Limerick', 'Longford', 'Louth', 'Mayo', 'Meath', 'Monaghan', 'Offaly', 'Roscommon', 'Sligo', 
 						  'Tipperary', 'Waterford', 'Westmeath', 'Wexford', 'Wicklow');
