@@ -107,9 +107,11 @@
 			*/
 			?>
       <p>
+        <?php /*
         <?php if(Router::$controller == 'home' && url::current() != 'sold') : ?>
-				<a href="<?php echo url::base().'sold' ?>">Sold Ads</a>
-				<?php elseif (!preg_match('/sold|place|renew\/\d+|edit\/\d+/',url::current())): ?>
+        <a href="<?php echo url::base().'sold' ?>">Sold Ads</a>
+        */ ?>
+				<?php if (!preg_match('/sold|place|renew\/\d+|edit\/\d+/',url::current())): ?>
 				<a href="<?php echo url::base() ?>">Home</a>
 				<?php elseif (url::current() == 'sold' || isset($item_sold)): ?>
 				<a href="<?php echo url::base() ?>">Home</a>

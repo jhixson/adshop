@@ -468,7 +468,8 @@ function setupToolTips() {
 		e.preventDefault();
 		e.stopPropagation();
 		var id = $(this).attr('id');
-		var item_id = $('#email_seller_button').attr('rel') || $('#email_seller_bottom').attr('rel');
+		//var item_id = $('#email_seller_button').attr('rel') || $('#email_seller_bottom').attr('rel');
+		var item_id = $('h2').data('item_id');
 		$('span',this).addClass('disabled').text('Sending...');
 		$.post('/request/email_seller',{
 			'item_id':item_id,
