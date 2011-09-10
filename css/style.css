@@ -2056,6 +2056,8 @@ a#saved_ads {
 	margin: 0px 5px;
 }
 
+#footer a.home { margin-right: 0; color: #000; }
+
 #footer a.active, a.tip.active {
 	color: #000;
 	text-decoration: none;

@@ -85,7 +85,7 @@
 		
 		<span class="clear"></span>
 		<div id="footer"<?php echo ($counties) ? ' class="full"' : '' ?>>
-			<p><span>&copy; AdShop.ie</span></p>
+      <p><span><?php echo Router::$controller != 'home' ? '&copy;<a href="'.url::base().'" class="home">AdShop.ie</a>' : '&copy; AdShop.ie' ?></span></p>
 			<?php if (preg_match('/place|renew\/\d+|edit\/\d+/',url::current())): ?>
 			<p>
 				<a href="#" id="tip2" class="tip">Terms and Conditions</a>
@@ -110,12 +110,12 @@
         <?php /*
         <?php if(Router::$controller == 'home' && url::current() != 'sold') : ?>
         <a href="<?php echo url::base().'sold' ?>">Sold Ads</a>
-        */ ?>
 				<?php if (!preg_match('/sold|place|renew\/\d+|edit\/\d+/',url::current())): ?>
 				<a href="<?php echo url::base() ?>">Home</a>
 				<?php elseif (url::current() == 'sold' || isset($item_sold)): ?>
 				<a href="<?php echo url::base() ?>">Home</a>
-				<?php endif; ?>
+        <?php endif; ?>
+        */ ?>
         <a href="#" id="tip1" class="tip">Our Goal</a>
         <!--
         <a href="#" id="tip2" class="tip">Legal</a>
