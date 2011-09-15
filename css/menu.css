@@ -39,7 +39,7 @@
 	padding: 5px 10px;
 }
 
-#menu li a.motors span {
+#menu li a.motors span, #menu li a.motors.clicked span, #menu li a.motors.clicked:hover span {
 	background: transparent url(../img/car_b.png) right center no-repeat;
 }
 
@@ -47,7 +47,7 @@
 	background: transparent url(../img/car_w.png) right center no-repeat;
 }
 
-#menu li a.pets span {
+#menu li a.pets span, #menu li a.pets.clicked span, #menu li a.pets.clicked:hover span {
 	background: transparent url(../img/dog_b.png) right center no-repeat;
 }
 
@@ -55,7 +55,7 @@
 	background: transparent url(../img/dog_w.png) right center no-repeat;
 }
 
-#menu li a.farming span {
+#menu li a.farming span, #menu li a.farming.clicked span, #menu li a.farming.clicked:hover span {
 	background: transparent url(../img/farm_b.png) right center no-repeat;
 }
 
@@ -63,7 +63,7 @@
 	background: transparent url(../img/farm_w.png) right center no-repeat;
 }
 
-#menu li a.household span {
+#menu li a.household span, #menu li a.household.clicked span, #menu li a.household.clicked:hover span {
 	background: transparent url(../img/couch_b.png) right center no-repeat;
 }
 
@@ -71,7 +71,7 @@
 	background: transparent url(../img/couch_w.png) right center no-repeat;
 }
 
-#menu li a.electronics span {
+#menu li a.electronics span, #menu li a.electronics.clicked span, #menu li a.electronics.clicked:hover span {
 	background: transparent url(../img/ipod_b.png) right center no-repeat;
 }
 
@@ -79,7 +79,7 @@
 	background: transparent url(../img/ipod_w.png) right center no-repeat;
 }
 
-#menu li a.music span {
+#menu li a.music span, #menu li a.music.clicked span, #menu li a.music.clicked:hover span {
 	background: transparent url(../img/music_b.png) right center no-repeat;
 }
 
@@ -87,7 +87,7 @@
 	background: transparent url(../img/music_w.png) right center no-repeat;
 }
 
-#menu li a.equipment span {
+#menu li a.equipment span, #menu li a.equipment.clicked span, #menu li a.equipment.clicked:hover span {
 	background: transparent url(../img/wrench_b.png) right center no-repeat;
 }
 
@@ -95,7 +95,7 @@
 	background: transparent url(../img/wrench_w.png) right center no-repeat;
 }
 
-#menu li a.gaming span {
+#menu li a.gaming span, #menu li a.gaming.clicked span, #menu li a.gaming.clicked:hover span {
 	background: transparent url(../img/game_b.png) right center no-repeat;
 }
 
@@ -103,7 +103,7 @@
 	background: transparent url(../img/game_w.png) right center no-repeat;
 }
 
-#menu li a.sports span {
+#menu li a.sports span, #menu li a.sports.clicked span, #menu li a.sports.clicked:hover span {
 	background: transparent url(../img/bike_b.png) right center no-repeat;
 }
 
@@ -111,7 +111,7 @@
 	background: transparent url(../img/bike_w.png) right center no-repeat;
 }
 
-#menu li a.tickets span {
+#menu li a.tickets span, #menu li a.tickets.clicked span, #menu li a.tickets.clicked:hover span {
 	background: transparent url(../img/ticket_b.png) right center no-repeat;
 }
 
@@ -119,7 +119,7 @@
 	background: transparent url(../img/ticket_w.png) right center no-repeat;
 }
 
-#menu li a.services span {
+#menu li a.services span, #menu li a.services.clicked span, #menu li a.services.clicked:hover span {
 	background: transparent url(../img/camera_b.png) right center no-repeat;
 }
 
@@ -127,7 +127,7 @@
 	background: transparent url(../img/camera_w.png) right center no-repeat;
 }
 
-#menu li a.personal span {
+#menu li a.personal span, #menu li a.personal.clicked span, #menu li a.personal.clicked:hover span {
 	background: transparent url(../img/person_b.png) right center no-repeat;
 }
 
@@ -135,7 +135,7 @@
 	background: transparent url(../img/person_w.png) right center no-repeat;
 }
 
-#menu li a.rare span {
+#menu li a.rare span, #menu li a.rare.clicked span, #menu li a.rare.clicked:hover span {
 	background: transparent url(../img/rare_b.png) right center no-repeat;
 }
 
@@ -166,6 +166,12 @@
 #menu li.caption a:hover {
 	background: none;
   border: none;
-	color: #666;
+	color: #aaa;
   padding: 5px 10px;
+}
+
+#menu li a.clicked, #menu li a.clicked.active {
+  background-color: transparent;
+  color: #000;
+  border-color: #fff;
 }

@@ -40,7 +40,7 @@
 		</div>
 	</div>
 	
-  <p class="tagline">&quot;&euro;2.50 for 3 months. Pay by <?php echo !mobile::isMobile() ? 'Mobile or ' : '' ?>PayPal. Edit ad whenever you want, for free. Remove ad when sold&quot;.<small>You will be charged only once : )</small></p>
+  <p class="tagline">&quot;&euro;2.50 for 3 months. Pay by Mobile or PayPal. Edit ad whenever you want, for free. Remove ad when sold&quot;.<small>You will be charged only once : )</small></p>
 
   <?php
     $paypal_url = "https://www.sandbox.paypal.com/cgi-bin/webscr";

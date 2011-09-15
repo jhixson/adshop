@@ -2077,6 +2077,11 @@ a#saved_ads {
   color: #009a15;
 }
 
+#footer a.home-icon {
+  position: relative;
+  top: 2px;
+}
+
 #demotip { 
     display:none; 
     background:transparent url(../img/black_arrow.png); 
