@@ -2082,6 +2082,8 @@ a#saved_ads {
   top: 2px;
 }
 
+#footer a.home-icon img { width: 14px; height: 14px; }
+
 #demotip { 
     display:none; 
     background:transparent url(../img/black_arrow.png); 

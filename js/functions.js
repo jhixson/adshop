@@ -281,7 +281,7 @@ function thumbStrip() {
 	});
 	
 	var set_featured_image = function(e,a) {
-		if(!a.is('.no_photo') && !a.is('.add_photo') && ($('#photo_grid').is(':visible') || $('#photo_grid').length == 0)) {
+		if(!a.is('.no_photo') && !a.is('.add_photo') && ($('#photo_grid').css('display') == 'block' || $('#photo_grid').length == 0)) {
 			e.preventDefault();
 			$('#thumbstrip li.thumb').removeClass('active');
 			a.closest('li').addClass('active');

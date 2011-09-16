@@ -5,7 +5,8 @@
 		<p class="error"><?php echo $error_msg ?></p>
 		<?php endif; ?>
 		<?php if(isset($success_msg)): ?>
-		<p class="success"><?php echo $success_msg ?></p>
+    <p class="success"><?php echo $success_msg ?></p>
+    <p><a href="<?php echo url::base() ?>user/myAds">View My Ads</a>
 		<?php else: ?>
 		<?php 
 		/*

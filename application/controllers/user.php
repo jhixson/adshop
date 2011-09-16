@@ -217,7 +217,7 @@ class User_Controller extends Template_Controller {
 						$user->password = Auth::instance()->hash_password($form['new_password']);
 						$user->save();
 						if(Auth::instance()->login($user->username, $form['new_password'])) {
-							$this->template->content->success_msg = 'Your password has been updated.<br /><a href="/user/myAd">View My Ads</a> or return <a href="/">home</a>.';
+							$this->template->content->success_msg = 'Your password has been updated';
 						}
 					}
 					else
