@@ -531,7 +531,7 @@ class Request_Controller extends Template_Controller {
 					$message = "Your AdShop.ie password has been reset.\n\n";
 					$message .= "Click this link below to enter your new password:\n";
 					$message .= $this->domain."/user/new_password/".base64_encode($user->id.'_'.time().'_'.$pwd)."\n\n";
-					$message .= "If you require any further assistance use the Contact Us form on AdShop.ie.\n";
+					$message .= "If you require any further assistance use the Contact Us form on AdShop.ie\n";
 					email::send($email,'noreply@adshop.ie','Hello from AdShop.ie',$message);
 					$this->template->content = json_encode(array('status'=>'ok','content'=>'Password reset. Please check your email.'));		
 				}
@@ -712,11 +712,20 @@ class Request_Controller extends Template_Controller {
 		$form = $_POST;
 		$form_data = Validation::factory($form)->add_rules('email','required','valid::email');
 		if($form_data->validate()) {
-			$email = $this->input->post('email');
+      $email = $this->input->post('email');
+      $item_id = $this->input->post('item_id');
 			$logged_in = isset($form['logged_in']);
-			$user_model = new User_Model;
-			if($user_model->valid_user($email,$logged_in))
-				$this->template->content = json_encode(array('status'=>'ok','content'=>'User exists.'));
+      $user_model = new User_Model;
+      if($user_model->valid_user($email,$logged_in)) {
+        if(isset($item_id)) {
+          if($user_model->get_ad_owner($item_id) == $email)
+            $this->template->content = json_encode(array('status'=>'ok','content'=>'User exists.'));
+          else
+            $this->template->content = json_encode(array('status'=>'err','content'=>'Invalid e-mail address.'));
+        }
+        else
+          $this->template->content = json_encode(array('status'=>'ok','content'=>'User exists.'));
+      }
 			else
 				$this->template->content = json_encode(array('status'=>'err','content'=>'User does not exist.'));
 		}

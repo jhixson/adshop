@@ -199,7 +199,7 @@ class User_Controller extends Template_Controller {
 		$this->template->content = new View('user_password_content');
 		$this->template->title = 'Change Password';
 		$this->template->content->user = 0;
-		$user_arr = explode('_',base64_decode($user));		
+    $user_arr = explode('_',base64_decode($user));
 		if(isset($user_arr[0]) && isset($user_arr[1]) && ((time() - $user_arr[1]) / 86400) < 7) {
 			$this->template->content->user = $this->input->xss_clean($user);
 			$form = $_POST;
@@ -209,7 +209,7 @@ class User_Controller extends Template_Controller {
 				$user_id = $user_arr[0];
 				$pwd = $user_arr[2];
 				$user = ORM::factory('user', $user_id);
-				if($user->loaded) {
+				if($user->loaded && $user->last_login < $user_arr[1]) {
 					$salt = Auth::instance()->find_salt($user->password);
 					$current_password = Auth::instance()->hash_password($pwd,$salt);
 	
@@ -224,7 +224,7 @@ class User_Controller extends Template_Controller {
 						$this->template->content->error_msg = 'Error: current password is incorrect.';
 				}
 				else
-					$this->template->content->error_msg = 'Error: user not found.';
+					$this->template->content->error_msg = 'Error: user not found or link has expired. Please <a href="/user/login">try again</a>.';
 			}
 		}
 		else

@@ -292,8 +292,8 @@ function thumbStrip() {
 			var new_src = src.replace(ext_exp,'');
 			new_src = new_src+'.jpg'+ts;
 			
-			if($('#place_form').is('.edit'))
-				new_src += ts;
+			//if($('#place_form').is('.edit'))
+				//new_src += ts;
 			
 			//var time = new Date().getTime();
 			//console.log(basename(new_src))
@@ -559,7 +559,8 @@ function setupToolTips() {
 				});
 			}
 			else if($('#view_form').valid()) {
-				$.post('/request/valid_user',{'email':$('#view_email').val()},function(data,status) {
+        var item_id = $('h2').data('item_id');
+				$.post('/request/valid_user',{'email':$('#view_email').val(),'item_id':item_id},function(data,status) {
 					var respObj = JSON.parse(data);
 					if(respObj.status == 'ok')
 						$('#view_form').submit();
@@ -576,7 +577,7 @@ function setupToolTips() {
 			e.preventDefault();
 			do_login();
 		});
-		$('#view_password').keyup(function(e){
+		$('#view_password,#view_email').keyup(function(e){
 			if (e.keyCode == '13')
 				do_login();
 		});
