@@ -85,7 +85,7 @@
 		
 		<span class="clear"></span>
 		<div id="footer"<?php echo ($counties) ? ' class="full"' : '' ?>>
-      <p><span><?php echo Router::$controller == 'home' ? '&copy; AdShop.ie' : '' ?></span></p>
+      <p><span><?php echo Router::$controller == 'home' && $this->uri->segment('page',0) == 0 ? '&copy; AdShop.ie' : '' ?></span></p>
 			<?php if (preg_match('/place|renew\/\d+|edit\/\d+/',url::current())): ?>
 			<p>
 				<a href="#" id="tip2" class="tip">Terms and Conditions</a>
@@ -122,7 +122,7 @@
         -->
 				<?php echo (Auth::instance()->logged_in()) ? '<a href="'.url::base().'user/myAds">View My Ads</a>' : '<a href="#" id="tip3" class="tip">View My Ads</a>' ?>
 				<a href="#" id="tip4" class="tip">Contact Us</a>
-        <?php echo Router::$controller != 'home' ? '<a href="'.url::base().'" class="home-icon"><img src="/img/home-icon.png" alt="Home" /></a>' : '' ?>
+        <?php echo Router::$controller == 'home' && $this->uri->segment('page',0) == 0 ? '' : '<a href="'.url::base().'" class="home-icon"><img src="/img/home-icon.png" alt="Home" /></a>' ?>
 			</p>
 			<?php endif; ?>
 		</div>
