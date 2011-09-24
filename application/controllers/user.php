@@ -199,8 +199,9 @@ class User_Controller extends Template_Controller {
 		$this->template->content = new View('user_password_content');
 		$this->template->title = 'Change Password';
 		$this->template->content->user = 0;
-    $user_arr = explode('_',base64_decode($user));
-		if(isset($user_arr[0]) && isset($user_arr[1]) && ((time() - $user_arr[1]) / 86400) < 7) {
+	    $user_arr = explode('_',base64_decode($user));
+		$orm_user = ORM::factory('user', $user_arr[0]);
+		if(isset($user_arr[0]) && isset($user_arr[1]) && ((time() - $user_arr[1]) / 86400) < 7 && $orm_user->last_login < $user_arr[1]) {
 			$this->template->content->user = $this->input->xss_clean($user);
 			$form = $_POST;
 			if($form) {
@@ -228,7 +229,7 @@ class User_Controller extends Template_Controller {
 			}
 		}
 		else
-			$this->template->content->error_msg = 'Error: reset link has expired. Please <a href="/user/login">try again</a>.';
+			$this->template->content->error_msg = 'Error: user not found or reset link has expired. Please <a href="/user/login">try again</a>.';
 	}
 	
 	public function delete_item() {

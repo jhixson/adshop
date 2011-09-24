@@ -128,19 +128,19 @@
 }
 
 #menu li a.personal span, #menu li a.personal.clicked span, #menu li a.personal.clicked:hover span {
-	background: transparent url(../img/person_b.png) right center no-repeat;
+	background: transparent url(../img/shirt_b.png) right center no-repeat;
 }
 
 #menu li a.personal:hover span, #menu li a.personal.active span {
-	background: transparent url(../img/person_w.png) right center no-repeat;
+	background: transparent url(../img/shirt_w.png) right center no-repeat;
 }
 
 #menu li a.rare span, #menu li a.rare.clicked span, #menu li a.rare.clicked:hover span {
-	background: transparent url(../img/rare_b.png) right center no-repeat;
+	background: transparent url(../img/stamp_b.png) right center no-repeat;
 }
 
 #menu li a.rare:hover span, #menu li a.rare.active span {
-	background: transparent url(../img/rare_w.png) right center no-repeat;
+	background: transparent url(../img/stamp_w.png) right center no-repeat;
 }
 
 #menu li a.active.sub  {

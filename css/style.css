@@ -730,13 +730,17 @@ input.error, textarea.error {
 
 input#q {
 	width: 280px;
-	height: 20px;
-	margin: 22px 0 0 73px;
-	padding: 3px 2px 2px 2px;
+	height: 21px;
+	margin: 21px 0 0 73px;
+	padding: 5px 4px 3px 6px;
+	background: transparent url(../img/search_bg.png) repeat-x;
+	border: 1px solid #315379;
+	font-family: Arial, sans-serif;
+	color: #879aad;
 }
 
 input#q.active {
-	color: #000;
+	color: #c2cbd3;
 }
 
 #place_form {

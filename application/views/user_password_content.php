@@ -16,6 +16,7 @@
 		</div>
 		*/
 		?>
+		<?php if(!isset($error_msg)): ?>
 		<div class="formitem clearfix">
 			<label for="new_password">New Password:</label>
 			<input type="text" class="text password" name="new_password" id="new_password" value="Enter your password of choice here." />
@@ -26,5 +27,6 @@
 		<div class="buttons">
 			<a href="#" class="button right" id="change_password_button"><span>Set Password</span></a>
 		</div>
+		<?php endif; ?>
 		<?php endif; ?>
 	</form>

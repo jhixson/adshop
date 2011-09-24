@@ -101,7 +101,7 @@ $('document').ready(function() {
 	*/
 	
 	// preload some menu rollover stuff...
-	$(['menu_hover_bg.jpg','item_brief_bg.png','car_w.png','dog_w.png','farm_w.png','couch_w.png','ipod_w.png','music_w.png','wrench_w.png','game_w.png','bike_w.png','ticket_w.png','camera_w.png','person_w.png','rare_w.png','tick-green.png','finished_checkmark.png']).preload();
+	$(['menu_hover_bg.jpg','item_brief_bg.png','car_w.png','dog_w.png','farm_w.png','couch_w.png','ipod_w.png','music_w.png','wrench_w.png','game_w.png','bike_w.png','ticket_w.png','camera_w.png','shirt_w.png','stamp_w.png','tick-green.png','finished_checkmark.png']).preload();
 	var sub_active = false;
 	$('#menu ul').delegate('li:not(.caption)', 'mouseenter', function(){
 		sub_active = false;
@@ -553,19 +553,30 @@ function setupToolTips() {
 		
 		var do_login = function(e) {
 			$('#view_login_button').addClass('disabled').html('<span>Wait...</span>');
+	      	var item_id = $('h2').data('item_id');
 			if($('#view_password').val() == '') {
-				$.post('/request/reset_password',{'email':$('#view_email').val()},function(data,status) {
-					var respObj = JSON.parse(data);
-					tip_response = '<div class="inner"><p>'+respObj.content+'</p></div>';
-					$('#tiptip_holder').hide();
-					$('#'+id).trigger('click');
-				});
-			}
-			else if($('#view_form').valid()) {
-        var item_id = $('h2').data('item_id');
 				$.post('/request/valid_user',{'email':$('#view_email').val(),'item_id':item_id},function(data,status) {
 					var respObj = JSON.parse(data);
-					if(respObj.status == 'ok')
+					if(respObj.status == 'ok' || id == 'tip3') {
+           				$.post('/request/reset_password',{'email':$('#view_email').val()},function(data,status) {
+			              var respObj = JSON.parse(data);
+			              tip_response = '<div class="inner"><p>'+respObj.content+'</p></div>';
+			              $('#tiptip_holder').hide();
+			              $('#'+id).trigger('click');
+			            });
+			        }
+					else {
+						tip_response = '<div class="inner"><p>Wrong e-mail entered. Typo?</p></div>';
+						$('#tiptip_holder').hide();
+						$('#'+id).trigger('click');
+					}
+        })
+			}
+			else if($('#view_form').valid()) {
+		        var item_id = $('h2').data('item_id');
+				$.post('/request/valid_user',{'email':$('#view_email').val(),'item_id':item_id},function(data,status) {
+					var respObj = JSON.parse(data);
+					if(respObj.status == 'ok' || id == 'tip3')
 						$('#view_form').submit();
 					else {
 						tip_response = '<div class="inner"><p>Wrong e-mail entered. Typo?</p></div>';
