@@ -730,11 +730,13 @@ input.error, textarea.error {
 
 input#q {
 	width: 280px;
-	height: 21px;
+	height: 23px;
 	margin: 21px 0 0 73px;
-	padding: 5px 4px 3px 6px;
+	padding: 5px 4px 4px 6px;
 	background: transparent url(../img/search_bg.png) repeat-x;
-	border: 1px solid #315379;
+	border: none;
+	border-left: 1px solid #315379;
+	border-right: 1px solid #315379;
 	font-family: Arial, sans-serif;
 	color: #879aad;
 }
