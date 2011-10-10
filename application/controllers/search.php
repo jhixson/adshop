@@ -19,7 +19,7 @@ class Search_Controller extends Template_Controller {
 		
 		$this->template->content->subcategories = FALSE;
 		$this->template->content->save_list = FALSE;
-		$this->template->content->no_items_message = 'No items were found. Please try another search or <a href="'.url::base().'">return home</a>.';
+		$this->template->content->no_items_message = 'No items were found. Please try another search or <a href="/" class="home-icon"><img src="/img/home-icon.png" alt="Home"></a>';
 		
 		$this->template->search_term = $term;
 		

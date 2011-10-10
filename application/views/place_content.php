@@ -322,7 +322,7 @@
 	</div>
 	
 	<?php if (!$editmode): ?>
-  <p class="tagline">&quot;&euro;2.50 for 3 months. Pay by Mobile or PayPal. Edit ad whenever you want, for free. Remove ad when sold&quot;.<small>You will be charged only once : )</small></p>
+  <p class="tagline">&quot;&euro;3 for 3 months. Pay by Mobile or PayPal. Edit ad whenever you want, for free. Remove ad when sold&quot;.<small>You will be charged only once : )</small></p>
   <?php endif; ?>
 
   <?php

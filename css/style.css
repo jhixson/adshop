@@ -2088,12 +2088,12 @@ a#saved_ads {
   color: #009a15;
 }
 
-#footer a.home-icon {
+a.home-icon {
   position: relative;
   top: 2px;
 }
 
-#footer a.home-icon img { width: 14px; height: 14px; }
+a.home-icon img { width: 14px; height: 14px; }
 
 #demotip { 
     display:none; 

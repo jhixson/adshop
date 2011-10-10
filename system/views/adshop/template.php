@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Ireland's simplest ad website. Just &euro;2.50. Pay by Mobile or Paypal." />
+    <meta name="description" content="Ireland's simplest ad website. Just &euro;3. Pay by Mobile or Paypal." />
     <meta name="keywords" content="adshop, ireland, classified, ads" />
 		<title>AdShop.ie - <?php echo html::specialchars($title) ?></title>
 		<link rel="stylesheet" href="<?php echo url::base() ?>css/style.css" type="text/css" />
@@ -87,9 +87,7 @@
 		<div id="footer"<?php echo ($counties) ? ' class="full"' : '' ?>>
       <p><span><?php echo Router::$controller == 'home' && $this->uri->segment('page',0) == 0 ? '&copy; AdShop.ie' : '' ?></span></p>
 			<?php if (preg_match('/place|renew\/\d+|edit\/\d+/',url::current())): ?>
-			<p>
-				<a href="#" id="tip2" class="tip">Terms and Conditions</a>
-			</p>
+			<?php echo !preg_match('/remove/',url::current()) ? '<p><a href="#" id="tip2" class="tip">Terms and Conditions</a></p>' : '' ?>
 			<?php else: ?>
 			<?php 
 			/*
@@ -122,7 +120,7 @@
         -->
 				<?php echo (Auth::instance()->logged_in()) ? '<a href="'.url::base().'user/myAds">View My Ads</a>' : '<a href="#" id="tip3" class="tip">View My Ads</a>' ?>
 				<a href="#" id="tip4" class="tip">Contact Us</a>
-        <?php echo Router::$controller == 'home' && $this->uri->segment('page',0) == 0 ? '' : '<a href="'.url::base().'" class="home-icon"><img src="/img/home-icon.png" alt="Home" /></a>' ?>
+        <?php echo (Router::$controller == 'home' || Router::$controller == 'search') && $this->uri->segment('page',0) == 0 ? '' : '<a href="'.url::base().'" class="home-icon"><img src="/img/home-icon.png" alt="Home" /></a>' ?>
 			</p>
 			<?php endif; ?>
 		</div>

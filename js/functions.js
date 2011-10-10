@@ -1415,11 +1415,11 @@ function placeAdForm() {
 				$('.error,.success').remove();
 				var respObj = JSON.parse(data);
 				if (respObj.status == 'ok') 
-					$('#container').prepend('<p class="success">Your ad has been successfully removed. <a href="/">Return Home</a></p>');
+					$('#container').prepend('<p class="success">Your ad has been successfully removed.</p><p><a href="/">Return Home</a></p>');
 				else 
 					$('#container').prepend('<p class="error">' + respObj.content + '</p>');
 				
-				$('#footer').prevUntil('.error,.success').remove();
+				$('#footer').prevUntil('.error,.success,.success + p').remove();
 			}
 		);
 	});
