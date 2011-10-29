@@ -718,6 +718,7 @@ input.password {
 textarea.text {
 	height: 215px;
 	max-height: 350px;	
+  line-height: normal;
 }
 
 input.active, textarea.active, input.edit, textarea.edit {
@@ -1764,7 +1765,7 @@ a#report_ad.active {
 }
 
 #thumbstrip ul#thumb_images li.thumb a img {
-	max-width: 96px;
+	max-width: 97px;
 	max-height: 72px;
 	text-align: center;
 	vertical-align: middle;
@@ -1903,7 +1904,7 @@ a#report_ad.active {
 }
 
 #container .content.item div.img img {
-	max-width: 96px;
+	max-width: 97px;
 	max-height: 73px;
 	text-align: center;
 	vertical-align: middle;
