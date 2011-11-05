@@ -247,14 +247,14 @@ class View_Model extends Model {
 				$query .= " INNER JOIN `users` ON (`users`.`id` = `items`.`user_id`)";
 				$query .= " LEFT JOIN `media` ON (`media`.`item_id` = `items`.`item_id`)";
 				if($desc)
-					$query .= " WHERE (items.title regexp '[[:<:]]".$term."s?[[:>:]]' OR items.description regexp '[[:<:]]".$term."s?[[:>:]]'";
+					$query .= " WHERE (items.title regexp '[[:<:]]".$term."s?[[:>:]]' or items.description regexp '[[:<:]]".$term."s?[[:>:]]')";
 				else
-					$query .= " WHERE (items.title regexp '[[:<:]]".$term."s?[[:>:]]'";
+					$query .= " WHERE (items.title regexp '[[:<:]]".$term."s?[[:>:]]')";
 				if(count($subsubcats) > 0)
-				  $query .= " OR (items.subsubcategory_id in (".implode(",",$subsubcats)."))";
-				$query .= ") AND (items.active = 1 AND items.sold = 0)";
+				  $query .= " OR items.subsubcategory_id in (".implode(",",$subsubcats).")";
+				$query .= " AND `active` = '1' AND `sold` = '0'";
 				$query .= " ORDER BY `publish_timestamp` DESC LIMIT 0, 15";
-
+				
 				$res = $this->db->query($query);
 				//if($desc)
 				//	$this->db->where('items.title regexp \'[[:<:]]'.$term.'[[:>:]]\' or items.description regexp \'[[:<:]]'.$term.'[[:>:]]\'');

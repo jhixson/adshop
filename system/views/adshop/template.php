@@ -120,7 +120,8 @@
         -->
 				<?php echo (Auth::instance()->logged_in()) ? '<a href="'.url::base().'user/myAds">View My Ads</a>' : '<a href="#" id="tip3" class="tip">View My Ads</a>' ?>
 				<a href="#" id="tip4" class="tip">Contact Us</a>
-        <?php echo (Router::$controller == 'home' || Router::$controller == 'search') && $this->uri->segment('page',0) == 0 ? '' : '<a href="'.url::base().'" class="home-icon"><img src="/img/home-icon.png" alt="Home" /></a>' ?>
+        <?php echo (Router::$controller == 'home' && $this->uri->segment('page',0) == 0) || Router::$controller == 'search' ? '' : '<a href="'.url::base().'" class="home-icon"><img src="/img/home-icon.png" alt="Home" /></a>' ?>
+        <?php echo Router::$controller == 'search' ? '<a href="'.url::base().'" class="home-icon"><img src="/img/home-icon.png" alt="Home" /></a>' : '' ?>
 			</p>
 			<?php endif; ?>
 		</div>

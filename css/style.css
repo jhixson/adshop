@@ -1070,6 +1070,15 @@ label.long {
 	color: #777;
 }
 
+.field_options.crossbreeds {
+  width: auto;
+}
+
+#wikipedia_link {
+  float: right;
+  margin: 13px 10px 0 0;
+}
+
 label.error, label.err {
 	color: #cc0000;
 	background-image: url(../img/arrow_left_red.png);
@@ -1444,7 +1453,6 @@ a.checkbox.checked {
 a#trade_ad_link {
 	color: #c00;
 	font-size: 16px;
-	margin-left: 10px;
 }
 
 a#trade_ad_link.active {
@@ -2165,3 +2173,9 @@ a.home-icon img { width: 14px; height: 14px; }
 .stars.active:hover { background-position: center -32px; }
 
 .content .stars.active { text-indent: -32px; line-height: 18px; }
+
+.addthis_toolbox {
+  float: right;
+  margin: 5px 5px 0 0;
+}
+.addthis_button_twitter { margin-left: 6px; }

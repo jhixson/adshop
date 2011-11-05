@@ -109,6 +109,21 @@
 		
     <?php /* echo ($is_saved) ? '<a href="#" class="button right" id="save_ad" rel="'.$item->item_id.'"><span>Remove from Saved</span></a>' : '<a href="#" class="button right" id="save_ad" rel="'.$item->item_id.'"><span>Save Ad</span></a>' */ ?>
     <?php if(!$item->sold && $item->active): ?>
+      <!-- AddThis Button BEGIN -->
+      <div class="addthis_toolbox addthis_default_style ">
+      <a class="addthis_button_facebook"></a>
+      <a class="addthis_button_twitter"></a>
+      </div>
+      <script type="text/javascript">
+      var addthis_share = 
+      {
+          templates: {
+                         twitter: '{{url}}'
+                     }
+      }
+      </script>
+      <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=ra-4eadbf7f5914de64"></script>
+      <!-- AddThis Button END -->
       <?php echo ($is_saved) ? '<a href="#" class="save_ad stars active" id="save_ad" rel="'.$item->item_id.'">Liked</a>' : '<a href="#" class="save_ad stars" id="save_ad" rel="'.$item->item_id.'"></a>' ?>
     <?php endif; ?>
 		<!-- <a href="#" class="tip" id="report_ad">Report Ad</a> -->

@@ -274,6 +274,12 @@ function viewItem() {
 			}).prependTo($(this).parent());
 		}
 	});
+	
+	$('.tweet_button').click(function(e) {
+	  e.preventDefault();
+	  var left = ($(window).width() / 2) - 125;
+	  window.open($(this).attr('href'),'tweet_ad','width=550,height=375,top=200,left='+left+'menubar=no,location=yes,resizable=yes,scrollbars=no,status=yes');
+	});
 }
 
 function thumbStrip() {
@@ -1223,6 +1229,11 @@ function placeAdForm() {
 		return !(value == '' && !$(element).parents('#trade_details').is('.hide'));
 	}, 'This field is required.');
 	
+	$.validator.addMethod("minimums",function(value, element, param) {
+	  var val = parseInt(value.replace(/\D/g,''));
+	  return val >= 10;
+	}, 'Please enter at least €10');
+	
 	$('#place_form:not(.edit) #step_1').validate({
 		rules: {
 			item_title: {
@@ -1233,6 +1244,22 @@ function placeAdForm() {
 			}
 		}
 	});
+	$('#place_form:not(.edit) #step_2').validate({
+	  rules: {
+	    item_price: {
+	      default_data: true,
+	      minimums: true
+	    }
+	  }
+  });
+  $('#place_form #step_2').validate({
+	  rules: {
+	    item_price: {
+	      required: true,
+	      minimums: true
+	    }
+	  }
+  });
 	$('#place_form:not(.edit) #step_3').validate({
 		rules: {
 			item_name: {

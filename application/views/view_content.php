@@ -38,9 +38,10 @@
   <?php endif; ?>
 
 	<?php if(isset($subcategory) && $subcategory == 'dogs' && !empty($subsubcategory)): ?>
-	<label class="field_options">
+	<label class="field_options crossbreeds">
 		<input type="checkbox" name="show_crossbreeds" id="show_crossbreeds" value="Show crossbreeds" />
 	</label>
+	<a href="<?php echo $wikipedia_links[$subsubcategory] ?>" id="wikipedia_link" target="_blank">Wikipedia</a>
 	<?php endif; ?>
 	
 	<?php if(isset($sold_ads_count) && $sold_ads_count > 0): ?>

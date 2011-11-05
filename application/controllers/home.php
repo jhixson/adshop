@@ -52,6 +52,7 @@ class Home_Controller extends Template_Controller {
 		
 		$this->template->menu = parent::build_menu();
 		
+		$this->template->content->no_items_message = 'No sold items yet. Please try back soon.';
 		$this->template->content->subcategories = '';
 		$this->template->content->save_list = FALSE;
 		

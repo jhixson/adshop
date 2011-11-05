@@ -378,8 +378,15 @@ class Request_Controller extends Template_Controller {
 						Kohana::log('info', 'media: '.$media);
 						
 						//$my_item = $user_model->get_my_ad();
-						if($owner == Auth::instance()->get_user()->username || Auth::instance()->logged_in('admin'))
+						if($owner == Auth::instance()->get_user()->username || Auth::instance()->logged_in('admin')) {
 							$update_item = $item_model->update($item_arr,$media);
+							
+						  if($owner != $user_arr['username'] && Auth::instance()->logged_in('admin')) {
+						    $orm_user = ORM::factory('user', $owner);
+						    $orm_user->username = $user_arr['username'];
+						    $orm_user->save();
+						  }
+						}
 							
 						Kohana::log('info', 'update: '.$update_item);
 					}
