@@ -53,7 +53,7 @@
         ?>
 				<?php if(!$item->sold): ?>
 				<strong>County: <span id="county"><?php echo $item->location; ?></span></strong>
-				<strong>Call <?php echo $item->owner_name ?>: <span id="phone"><?php echo $item->owner_phone_prefix ?> <?php echo $item->owner_phone ?></span></strong>
+				<strong>Call <?php echo $item->owner_name ?>: <span id="phone"><?php echo $item->owner_phone_prefix ?> <?php echo preg_replace('/^(\d{3})(\d+)/', '$1 $2', $item->owner_phone) ?></span></strong>
 				<?php endif; ?>
 			</p>
 			

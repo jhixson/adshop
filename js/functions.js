@@ -489,7 +489,7 @@ function setupToolTips() {
 			'item_id':item_id,
 			'name':$('#item_name').val(),
 			'email':$('#item_email').val(),
-			'phone':$('#item_phone_prefix').val()+' '+$('#item_phone').val(),
+			'phone':$('#item_phone_prefix').val()+' '+$('#item_phone').val().replace(/^(\d{3})(\d+)/,'$1 $2'),
 			'message':$('#item_message').val()
 			},
 			function(data,status) {
@@ -508,7 +508,7 @@ function setupToolTips() {
       'item_id':$('#item_id').val() || '',
 			'name':$('#contact_name').val(),
 			'email':$('#contact_email').val(),
-			'phone':$('#contact_phone_prefix').val()+' '+$('#contact_phone').val(),
+			'phone':$('#contact_phone_prefix').val()+' '+$('#contact_phone').val().replace(/^(\d{3})(\d+)/,'$1 $2'),
 			'message':$('#contact_message').val(),
 			'action':rel,
 			'ad':$('h2').text(),
@@ -705,11 +705,19 @@ function comboBoxes() {
 			}
 		}
 
-		if($(this).attr('id') == 'category_options')
+		if($(this).attr('id') == 'category_options') {
+		  $(this).closest('.formitem.combo').find('label.err').removeClass('show');
 			getSubcategories(val);
+		}
 		
-		if($(this).attr('id') == 'subcategory_options')
+		if($(this).attr('id') == 'subcategory_options') {
+		  $(this).closest('.formitem.combo').find('label.err').removeClass('show');
 			getSubsubcategories(val);
+		}
+		
+		if($(this).attr('id') == 'subsubcategory_options' || $(this).attr('id') == 'county_options') {
+		  $(this).closest('.formitem.combo').find('label.err').removeClass('show');
+		}
 			
 		if($(this).attr('id') == 'view_subsubcategory_options') {
 			var path = window.location.pathname.split('/');
@@ -1219,6 +1227,7 @@ function placeAdForm() {
 	$(window).hashchange(update_step);
 	
 	$.validator.addMethod("default_data",function(value, element, param) {
+	  //toggleErrors();
 		if($(element).is('.green'))
 			return true;
 		else
@@ -1231,7 +1240,7 @@ function placeAdForm() {
 	
 	$.validator.addMethod("minimums",function(value, element, param) {
 	  var val = parseInt(value.replace(/\D/g,''));
-	  return val >= 10;
+	  return $(element).parent().css('display') == 'none' || val >= 10;
 	}, 'Please enter at least €10');
 	
 	$('#place_form:not(.edit) #step_1').validate({
@@ -1247,12 +1256,11 @@ function placeAdForm() {
 	$('#place_form:not(.edit) #step_2').validate({
 	  rules: {
 	    item_price: {
-	      default_data: true,
 	      minimums: true
 	    }
 	  }
   });
-  $('#place_form #step_2').validate({
+  $('#place_form.edit #step_2').validate({
 	  rules: {
 	    item_price: {
 	      required: true,
@@ -1289,13 +1297,15 @@ function placeAdForm() {
 	});
 	
 	$('#place_form .buttons a.right').click(function(e) {
-		if(!$(this).closest('form').valid())
-			return false;
-		else if($(this).closest('form').attr('id') == 'step_2') {
+		if($(this).closest('form').attr('id') == 'step_2') {
 			toggleErrors();
 			if($('label.err:visible').length > 0)
 				return false;
+			else if(!$(this).closest('form').valid())
+			  return false;
 		}
+		else if(!$(this).closest('form').valid())
+			return false;
 	});
 	
 	var process_payment = function(button) {
