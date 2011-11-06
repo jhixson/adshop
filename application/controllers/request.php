@@ -172,7 +172,7 @@ class Request_Controller extends Template_Controller {
 				
 				$message = "<p>".$name." has sent you a message about your AdShop.ie ad: ".$item->title."</p>";
 				$message .= "<p>\"".$this->input->post('message')."\"</p>";
-				$message .= !empty($phone) ? '<p>(you can reply to this e-mail or call '.$name.' on: <b style="color: #ff0000;">'.$phone.'</b>)</p>' : "\n";
+				$message .= !empty($phone) ? '<p>(you can reply to this e-mail or call '.$name.' on: <b style="color: #0679F7;">'.$phone.'</b>)</p>' : "\n";
 				if(email::send($owner_email,$email,'Hello from AdShop.ie',$message, TRUE))
 					$this->template->content = json_encode(array('status'=>'ok','content'=>'E-mail sent successfully.'));
 				else
