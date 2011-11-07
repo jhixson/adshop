@@ -110,6 +110,13 @@ p.important {
 	color: #c00;
 }
 
+p.notice {
+  padding: 5px;
+  background-color: #fffbc4;
+  color: #000;
+  margin-top: 12px;
+}
+
 p.done {
 	color: #00aa4b;
 }

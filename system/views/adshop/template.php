@@ -40,6 +40,9 @@
 		</div>
 		</div>
 	</div>
+	
+	<p class="notice">We have removed our Services category. We have concluded this website should be about selling "things". We're keeping Music and Sports Lessons.</p>
+	
 	<div id="container">
 		<?php if($display_favs): 
 		echo "<!-- j/k -->\n";
