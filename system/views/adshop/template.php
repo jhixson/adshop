@@ -41,7 +41,7 @@
 		</div>
 	</div>
 	
-	<p class="notice">We have removed our Services category. We have concluded this website should be about selling "things". We're keeping Music and Sports Lessons.</p>
+	<p class="notice">We have removed our Services category. We have concluded this website should be about selling "things".</p>
 	
 	<div id="container">
 		<?php if($display_favs): 
