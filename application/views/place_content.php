@@ -37,7 +37,7 @@
 				<div class="formitem clearfix">
 					<label for="item_description">Description:</label>
 					<?php /* if (!$editmode): ?><label class="inset">Be honest when describing your ad. There is no need to add your phone number, contact details or price in the description box.</label><?php endif; */ ?>
-					<textarea class="text required<?php echo ($editmode) ? ' edit' : '' ?>" name="item_desc" id="item_desc" rows="8"><?php echo ($editmode) ? htmlspecialchars($item->description) : 'Be honest when describing your ad. There is no need to add your phone number, contact details or price in this description box.' ?></textarea>
+					<textarea class="text required<?php echo ($editmode) ? ' edit' : '' ?>" name="item_desc" id="item_desc" rows="8"><?php echo ($editmode) ? htmlspecialchars($item->description) : 'Please don\'t put your contact details or price in this description box.' ?></textarea>
 					<label class="field_tip">250 Words max.</label>
 				</div>
 				

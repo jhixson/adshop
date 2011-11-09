@@ -40,9 +40,7 @@
 		</div>
 		</div>
 	</div>
-	
-	<p class="notice">We have removed our Services category. We have concluded this website should be about selling "things".</p>
-	
+
 	<div id="container">
 		<?php if($display_favs): 
 		echo "<!-- j/k -->\n";
