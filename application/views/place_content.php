@@ -280,6 +280,9 @@
 							<?php else: ?>
 							<a href="#" id="edit_details" class="edit_button disabled"><b>For security:</b> after publishing, you cannot change your name, phone or e-mail address.</a>
 							<span class="mistakes">For mistakes <a href="#" id="mistake" class="tip">Contact Us</a></span>
+							<label class="field_options no-emails">
+            		<input type="checkbox" name="item_edit_hide_email" id="item_edit_hide_email" value="No e-mails"<?php echo ($editmode && $item->hide_email) ? ' checked="checked"' : '' ?> />
+            	</label>
 							<?php endif; ?>
 						</p>
 						

@@ -95,7 +95,7 @@
 				<?php endif; ?>
 				<li><a href="<?php echo (Auth::instance()->logged_in() && (Auth::instance()->get_user()->id == $item->user_id || Auth::instance()->get_user()->has($admin_role))) ? url::base()."renew/".$item->item_id : '#' ?>" class="dark_button tip" id="renew_button"><span>Renew</span></a></li>
 				<?php if($item->active): ?>
-				<li><a href="<?php echo (Auth::instance()->logged_in() && (Auth::instance()->get_user()->id == $item->user_id || Auth::instance()->get_user()->has($admin_role))) ? url::base()."place/edit/".$item->item_id."#step_4" : '#' ?>" class="dark_button tip" id="edit_button"><span>Edit</span></a></li>
+				<li><a href="<?php echo (Auth::instance()->logged_in() && (Auth::instance()->get_user()->id == $item->user_id || Auth::instance()->get_user()->has($admin_role))) ? url::base()."place/edit/".$item->item_id."#step_4" : '#' ?>" class="dark_button tip" id="edit_button"><span>Edit / Sold</span></a></li>
 				<?php endif; ?>
 				<?php if(!$item->active): ?>
 				<li><a href="#" class="button red_button tip" id="remove_button"><span>Remove</span></a></li>
