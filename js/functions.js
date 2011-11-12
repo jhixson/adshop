@@ -1339,7 +1339,8 @@ function placeAdForm() {
 		post_data += '&item_subcat='+$('#step_2 #subcategory_options').val();
 		post_data += '&item_subsubcat='+$('#step_2 #subsubcategory_options').val();
 		post_data += '&item_location='+$('#step_2 #county_options').val();
-		post_data += '&item_hide_email='+$('#item_hide_email:checked, #item_edit_hide_email:checked').length;
+		var hide_email = ($('#place_form').is('.edit') && $('#item_edit_hide_email').is(':checked')) || ($('#item_hide_email').is(':checked') && $('#item_edit_hide_email').is(':checked')) ? 1 : 0;
+		post_data += '&item_hide_email='+hide_email;
 		post_data += '&item_trade_ad='+$('#item_trade_ad:checked').length;
 		//post_data += '&item_term='+$('a.place.tick').attr('rel');
 		post_data += '&item_term=3';
