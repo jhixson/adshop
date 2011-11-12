@@ -379,13 +379,18 @@ class Request_Controller extends Template_Controller {
 						
 						//$my_item = $user_model->get_my_ad();
 						if($owner == Auth::instance()->get_user()->username || Auth::instance()->logged_in('admin')) {
-							$update_item = $item_model->update($item_arr,$media);
-							
 						  if($owner != $user_arr['username'] && Auth::instance()->logged_in('admin')) {
-						    $orm_user = ORM::factory('user', $owner);
-						    $orm_user->username = $user_arr['username'];
-						    $orm_user->save();
+						    $existing_user = ORM::factory('user', $user_arr['username']);
+						    if($existing_user->loaded) {
+						      $item_arr['user_id'] = $existing_user->id;
+					      }
+						    else {
+						      $orm_user = ORM::factory('user', $owner);
+  						    $orm_user->username = $user_arr['username'];
+  						    $orm_user->save();
+  					    }
 						  }
+						  $update_item = $item_model->update($item_arr,$media);
 						}
 							
 						Kohana::log('info', 'update: '.$update_item);

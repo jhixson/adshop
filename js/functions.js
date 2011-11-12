@@ -503,12 +503,15 @@ function setupToolTips() {
 		e.stopPropagation();
 		var id = $(this).attr('id');
 		var rel = $(this).attr('rel');
+		var phone = '';
+		if($('#contact_phone').length > 0)
+		  phone = $('#contact_phone_prefix').val()+' '+$('#contact_phone').val().replace(/^(\d{3})(\d+)/,'$1 $2');
 		$('span',this).addClass('disabled').text('Sending...');
 		$.post('/request/contact_us',{
       'item_id':$('#item_id').val() || '',
 			'name':$('#contact_name').val(),
 			'email':$('#contact_email').val(),
-			'phone':$('#contact_phone_prefix').val()+' '+$('#contact_phone').val().replace(/^(\d{3})(\d+)/,'$1 $2'),
+			'phone':phone,
 			'message':$('#contact_message').val(),
 			'action':rel,
 			'ad':$('h2').text(),
