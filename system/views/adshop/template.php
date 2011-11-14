@@ -32,7 +32,7 @@
 				<?php if (Auth::instance()->logged_in()): ?><a href="<?php echo url::base() ?>user/logout" class="logout">logout</a><?php endif; ?>
 			</p>
 		*/ ?>
-			<?php if(preg_match('/place$/',url::current())): ?>
+			<?php if(Router::$controller == 'place' && !preg_match('/edit/',url::current())): ?>
 			<a href="<?php echo url::base() ?>place" class="button_white_border" id="start_over_button"><span>Start Over</span></a>
 			<?php elseif(!preg_match('/(place\/edit\/\d+|renew\/\d+|remove\/\d+)/',url::current())): ?>
 			<a href="<?php echo url::base() ?>place" id="place_ad_button"></a>
@@ -87,7 +87,7 @@
 		<span class="clear"></span>
 		<div id="footer"<?php echo ($counties) ? ' class="full"' : '' ?>>
       <p><span><?php echo Router::$controller == 'home' && $this->uri->segment('page',0) == 0 ? '&copy; AdShop.ie' : '' ?></span></p>
-			<?php if (preg_match('/place|renew\/\d+|edit\/\d+/',url::current())): ?>
+			<?php if (Router::$controller == 'place' || Router::$controller == 'renew'): ?>
 			<?php echo !preg_match('/remove/',url::current()) ? '<p><a href="#" id="tip2" class="tip">Terms and Conditions</a></p>' : '' ?>
 			<?php else: ?>
 			<?php 
