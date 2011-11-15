@@ -130,7 +130,7 @@ var tips = {
 	'</form><span class="clear"></span>',
 	'tip4': '<div class="formitem inset"><label for="contact_name">Your Name</label><input type="text" id="contact_name" /></div>'+
 	'<div class="formitem inset"><label for="contact_email">Your E-mail</label><input type="email" id="contact_email" /></div>'+
-	'<div class="formitem inset"><label for="contact_message">Questions / Comments</label><textarea id="contact_message" rows="5"></textarea></div>'+
+	'<div class="formitem inset"><label for="contact_message">Questions / Comments / Feedback</label><textarea id="contact_message" rows="5"></textarea></div>'+
 	'<div class="formitem"><a class="button_white_border right" href="#" rel="contact_us" id="send_message_to_us"><span>Send Message</span></a><br style="clear: both;" /></div>'+
 	'<span class="clear"></span>',
 	'mistake': '<div class="formitem inset"><label for="contact_name">Your Name</label><input type="text" id="contact_name" /></div>'+

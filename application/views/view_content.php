@@ -52,6 +52,8 @@
 		<p class="context">Everyone's Sold Ads</p>
 	<?php elseif(preg_match('/liked/',url::current())): ?>
 		<p class="context">Your Liked Ads</p>
+	<?php elseif(preg_match('/myAds/',url::current())): ?>
+		<p class="context">Your Ads</p>
 	<?php endif; ?>
 	
 	<?php if(isset($_GET['q'])):
