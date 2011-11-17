@@ -172,7 +172,7 @@ var tips = {
 	'<input type="hidden" name="action" value="edit" /><input type="hidden" name="item_id" value="" />' + 
 	'</form><span class="clear"></span>',
 	'remove_button': '<form id="view_form" action="/user/delete_item" method="post">'+
-	'<div class="inner justify"><p class="center">Are you sure?</p><p class="center">If you want to completely remove this<br />ad enter your login information below:</p></div>'+
+	'<div class="inner justify"><p class="center">Are you sure you want to remove this ad?</p></div>'+
 	'<div class="formitem inset"><label for="view_email">Your E-mail</label><input type="email" id="view_email" name="username" /></div>'+
 	'<div class="formitem inset"><label for="view_password">Your Password</label><input type="password" id="view_password" name="password" /></div>'+
 	'<div class="formitem"><a class="button_white_border right" href="#" id="remove_item_button"><span>Remove Ad</span></a><br style="clear: both;" /></div>'+
