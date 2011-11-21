@@ -42,7 +42,7 @@
 				</div>
 			</div>
 			
-			<p id="priceline">
+			<p id="priceline"<?php echo $item->no_offers ? ' class="no_offers"' : '' ?>>
       <?php
         if(round($item->price) > 0)
           echo '<strong>Price: <span id="price">&euro;'.number_format(round($item->price)).'</span></strong>';
@@ -56,6 +56,9 @@
 				<strong>Call <?php echo $item->owner_name ?>: <span id="phone"><?php echo $item->owner_phone_prefix ?> <?php echo preg_replace('/^(\d{3})(\d+)/', '$1 $2', $item->owner_phone) ?></span></strong>
 				<?php endif; ?>
 			</p>
+			<?php if($item->no_offers): ?>
+  			<strong class="no_offers">no offers</strong>
+			<?php endif; ?>
 			
 			<p><strong>Description:</strong></p>
 			<?php echo text::auto_p($item->description) ?>

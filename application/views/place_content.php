@@ -37,8 +37,8 @@
 				<div class="formitem clearfix">
 					<label for="item_description">Description:</label>
 					<?php /* if (!$editmode): ?><label class="inset">Be honest when describing your ad. There is no need to add your phone number, contact details or price in the description box.</label><?php endif; */ ?>
-					<textarea class="text required<?php echo ($editmode) ? ' edit' : '' ?>" name="item_desc" id="item_desc" rows="8"><?php echo ($editmode) ? htmlspecialchars($item->description) : 'Please don\'t put your contact details or price in this description box.' ?></textarea>
-					<label class="field_tip">250 Words max.</label>
+					<textarea class="text required<?php echo ($editmode) ? ' edit' : '' ?>" name="item_desc" id="item_desc" rows="8"><?php echo ($editmode) ? htmlspecialchars($item->description) : 'If you enter your phone number or selling price in this field we will remove it.' ?></textarea>
+					<label class="field_tip">250 words max.</label>
 				</div>
 				
 				<div class="buttons">
@@ -179,6 +179,7 @@
 					<label for="item_price">Price: &euro;</label>
 					<?php /* if (!$editmode): ?><label class="inset">Optional, but recommended.</label><?php endif; */ ?>
 					<input type="text" class="text required<?php echo ($editmode && $item->price != '0') ? ' edit' : '' ?>" name="item_price" id="item_price" value="<?php echo ($editmode && $item->price != '0') ? htmlspecialchars($item->price) : 'You must enter a price.' ?>" />
+					<label class="field_options<?php echo ($editmode && !$isAdmin) ? ' hide' : '' ?>"><input type="checkbox" name="item_no_offers" id="item_no_offers" value="No offers" <?php echo ($editmode && $item->no_offers) ? ' checked="checked"' : '' ?>/></label>
 				</div>
 				
 				<div class="buttons">

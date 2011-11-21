@@ -354,7 +354,8 @@ class Request_Controller extends Template_Controller {
 									  'trade_ad'=>$this->input->post('item_trade_ad'),
 									  'trade_company'=>$this->input->post('item_business_name'),
 									  'trade_address'=>$this->input->post('item_business_address'),
-									  'hide_email'=>$this->input->post('item_hide_email'));
+									  'hide_email'=>$this->input->post('item_hide_email'),
+									  'no_offers'=>$this->input->post('item_no_offers'));
 									  
 					$extras = $this->input->post('extra_attributes');
 					if(isset($extras)) {

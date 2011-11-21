@@ -275,6 +275,11 @@ function viewItem() {
 		}
 	});
 	
+  var no_offers_left = 0;
+	if($('#priceline strong:first').length > 0)
+	  no_offers_left = $('#priceline strong:first').position().left + $('#priceline strong:first').width() / 2;
+	$('strong.no_offers').css('marginLeft',no_offers_left - 20);
+	
 	$('.tweet_button').click(function(e) {
 	  e.preventDefault();
 	  var left = ($(window).width() / 2) - 125;
@@ -1344,6 +1349,7 @@ function placeAdForm() {
 		post_data += '&item_location='+$('#step_2 #county_options').val();
 		var hide_email = ($('#place_form').is('.edit') && $('#item_edit_hide_email').is(':checked')) || (!$('#place_form').is('.edit') && $('#item_hide_email').is(':checked')) ? 1 : 0;
 		post_data += '&item_hide_email='+hide_email;
+		post_data += '&item_no_offers='+$('#item_no_offers:checked').length;
 		post_data += '&item_trade_ad='+$('#item_trade_ad:checked').length;
 		//post_data += '&item_term='+$('a.place.tick').attr('rel');
 		post_data += '&item_term=3';
@@ -1708,14 +1714,15 @@ function wordCount(e,maxlen) {
 	if(words != null) {
 		if(words.length > maxlen) {
 			e.stopPropagation();
-			alert('Field can have up to '+maxlen+' words.');
+			//alert('Field can have up to '+maxlen+' words.');
 			$(e.target).val($(e.target).val().substr(0,$(e.target).val().length-1));
+			$(e.target).next('label').addClass('error').html('Field can have<br />up to '+maxlen+' words.');
 		}
 		else if(words.length != 0)
-			$(e.target).next('label').text(maxlen-words.length+' words remaining.');
+		 	$(e.target).next('label').removeClass('error').text(maxlen-words.length+' words remaining.'); 
 	}
 	else
-		$(e.target).next('label').text(maxlen+' words max.');
+		$(e.target).next('label').removeClass('error').text(maxlen+' words max.');
 }
 
 function charCount(e,maxlen) {

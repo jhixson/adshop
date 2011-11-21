@@ -1589,6 +1589,19 @@ a#trade_ad_link.active {
 	font-size: 14px;
 }
 
+#priceline.no_offers {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+strong.no_offers {
+  display: block;
+  font-weight: bold;
+  color: #00c43f;
+  padding-bottom: 0;
+  margin: 0 0 5px 100px;
+}
+
 #priceline strong, #priceline_popout strong, #priceline .noprice {
 	white-space: nowrap;
 	margin: 0 5px;
